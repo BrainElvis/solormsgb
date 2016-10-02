@@ -6,7 +6,6 @@ class Appconfig extends CI_Model {
         $this->db->from('config');
         $this->db->where('config.key', $key);
         $query = $this->db->get();
-
         return ($query->num_rows() == 1);
     }
 
