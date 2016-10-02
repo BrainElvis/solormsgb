@@ -6,7 +6,7 @@ class MY_Controller extends MX_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->appconfig = $this->Appconfig->get_all();
+        $this->appconfig = $this->Appconfig->get_all()->result();
         debugPrint($this->appconfig);
     }
 
