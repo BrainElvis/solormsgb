@@ -1,0 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 1, 2016, 11:29:34 PM
+    Author     : Md.Aktaruzzaman
+    All custom made admin css goes here
+*/
+/*Login Form specific*/
+.login_content form input[type="submit"], #content form .submit {
+  margin-left: 0;
+}
+/*-----------------------End----------*/
