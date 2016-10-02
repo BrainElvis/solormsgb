@@ -80,7 +80,7 @@ class Admin_Controller extends MY_Controller {
         //'colorpicker/docs.js',
         //'cropping/cropper.min.js',
         //'cropping/main2.js',
-        //'validator/validator.js',
+        'validator/validator.js',
         'pace/pace.min.js',
         'custom.js',
     );
