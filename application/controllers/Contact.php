@@ -16,7 +16,11 @@ class Contact extends Site_Controller {
         $this->body_class[] = 'contact';
         $this->page_meta_keywords = 'Online,order, Restaurant, Contact ';
         $this->page_meta_description = 'Contact for online Order at Restaurant';
-        $this->render_page('contact/index');
+        $contact['address']=$this->Appconfig->get('address');
+        $contact['email']=$this->Appconfig->get('email');
+        $contact['phone']=$this->Appconfig->get('phone');
+        $contact['fax']=$this->Appconfig->get('fax');
+        $this->render_page('contact/index',$contact);
     }
 
 }
