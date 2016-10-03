@@ -1,17 +1,17 @@
-<?php echo form_open('config/save_locale/', array('id' => 'locale_config_form', 'class' => 'form-horizontal')); ?>
+<?php echo form_open('admin/config/save_locale/', array('id' => 'locale_config_form', 'class' => 'form-horizontal')); ?>
 <div id="config_wrapper">
     <fieldset id="config_info">
         <div id="required_fields_message"><?php echo $this->lang->line('common_fields_required_message'); ?></div>
         <ul id="locale_error_message_box" class="error_message_box"></ul>
 
         <div class="form-group form-group-sm">
-            <?php echo form_label($this->lang->line('config_currency_symbol'), 'currency_symbol', array('class' => 'control-label col-xs-2')); ?>
+            <?php echo form_label($this->lang->line('config_currency_symbol'), 'currency_symbol', array('class' => 'control-label col-xs-2 required')); ?>
             <div class='col-xs-1'>
                 <?php
                 echo form_input(array(
                     'name' => 'currency_symbol',
                     'id' => 'currency_symbol',
-                    'class' => 'form-control input-sm',
+                    'class' => 'form-control input-sm required',
                     'value' => $this->config->item('currency_symbol')));
                 ?>
             </div>
@@ -24,13 +24,13 @@
                         'value' => 'currency_side',
                         'checked' => $this->config->item('currency_side')));
                     ?>
-<?php echo $this->lang->line('config_currency_side'); ?>
+                    <?php echo $this->lang->line('config_currency_side'); ?>
                 </label>
             </div>
         </div>
 
         <div class="form-group form-group-sm">
-                <?php echo form_label($this->lang->line('config_currency_decimals'), 'language', array('class' => 'control-label col-xs-2')); ?>
+            <?php echo form_label($this->lang->line('config_currency_decimals'), 'language', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-xs-2'>
                 <?php
                 echo form_dropdown('currency_decimals', array(
@@ -43,7 +43,7 @@
         </div>
 
         <div class="form-group form-group-sm">
-                <?php echo form_label($this->lang->line('config_tax_decimals'), 'language', array('class' => 'control-label col-xs-2')); ?>
+            <?php echo form_label($this->lang->line('config_tax_decimals'), 'language', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-xs-2'>
                 <?php
                 echo form_dropdown('tax_decimals', array(
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group form-group-sm">
-                <?php echo form_label($this->lang->line('config_decimal_point'), 'language', array('class' => 'control-label col-xs-2')); ?>
+            <?php echo form_label($this->lang->line('config_decimal_point'), 'language', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-xs-2'>
                 <?php
                 echo form_dropdown('decimal_point', array(
@@ -69,7 +69,7 @@
         </div>
 
         <div class="form-group form-group-sm">
-                <?php echo form_label($this->lang->line('config_thousands_separator'), 'language', array('class' => 'control-label col-xs-2')); ?>
+            <?php echo form_label($this->lang->line('config_thousands_separator'), 'language', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-xs-2'>
                 <?php
                 echo form_dropdown('thousands_separator', array(
@@ -83,7 +83,7 @@
         </div>
 
         <div class="form-group form-group-sm">
-                <?php echo form_label($this->lang->line('config_quantity_decimals'), 'language', array('class' => 'control-label col-xs-2')); ?>
+            <?php echo form_label($this->lang->line('config_quantity_decimals'), 'language', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-xs-2'>
                 <?php
                 echo form_dropdown('quantity_decimals', array(
@@ -97,7 +97,7 @@
         </div>
 
         <div class="form-group form-group-sm">
-                <?php echo form_label($this->lang->line('config_language'), 'language', array('class' => 'control-label col-xs-2')); ?>
+            <?php echo form_label($this->lang->line('config_language'), 'language', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-xs-4'>
                 <?php
                 echo form_dropdown('language', array(
@@ -120,7 +120,7 @@
         </div>
 
         <div class="form-group form-group-sm">	
-                <?php echo form_label($this->lang->line('config_timezone'), 'timezone', array('class' => 'control-label col-xs-2')); ?>
+            <?php echo form_label($this->lang->line('config_timezone'), 'timezone', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-xs-4'>
                 <?php
                 echo form_dropdown('timezone', array(
@@ -221,7 +221,7 @@
         </div>
 
         <div class="form-group form-group-sm">	
-                <?php echo form_label($this->lang->line('config_datetimeformat'), 'datetimeformat', array('class' => 'control-label col-xs-2')); ?>
+            <?php echo form_label($this->lang->line('config_datetimeformat'), 'datetimeformat', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-sm-2'>
                 <?php
                 echo form_dropdown('dateformat', array(
@@ -245,14 +245,57 @@
                 ?>
             </div>
         </div>
-
-        <?php
-        echo form_submit(array(
-            'name' => 'submit_form',
-            'id' => 'submit_form',
-            'value' => $this->lang->line('common_submit'),
-            'class' => 'btn btn-primary btn-sm pull-right'));
-        ?>
+        <div class="form-group form-group-sm">	
+            <div class="col-sm-offset-2">
+                <?php
+                echo form_submit(array(
+                    'name' => 'submit_form',
+                    'id' => 'submit_form',
+                    'value' => $this->lang->line('common_submit'),
+                    'class' => 'btn btn-primary btn-sm'));
+                ?>
+            </div>
+        </div>
     </fieldset>
 </div>
 <?php echo form_close(); ?>
+<script type='text/javascript'>
+//validation and submit handling
+    $(document).ready(function ()
+    {
+        $('#locale_config_form').validate({
+            submitHandler: function (form) {
+                $(form).ajaxSubmit({
+                    success: function (response) {
+                        if (response.success)
+                        {
+                            set_feedback(response.message, 'alert alert-dismissible alert-success', false);
+                        } else
+                        {
+                            set_feedback(response.message, 'alert alert-dismissible alert-danger', true);
+                        }
+                    },
+                    dataType: 'json'
+                });
+            },
+            errorClass: "has-error",
+            errorLabelContainer: "#locale_error_message_box",
+            wrapper: "li",
+            highlight: function (e) {
+                $(e).closest('.form-group').addClass('has-error');
+            },
+            unhighlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');
+            },
+            rules:
+                    {
+                        currency_symbol: "required",
+                    },
+            messages:
+                    {
+                        currency_symbol: "<?php echo $this->lang->line('config_currency_symbol_required'); ?>",
+                    }
+        });
+    });
+</script>
+

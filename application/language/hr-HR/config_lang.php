@@ -35,6 +35,7 @@ $lang["config_company_required"] = "Polje naziv tvrtke je potreban";
 $lang["config_company_website_url"] = "Adresa web stranice nije valjana (http://...)";
 $lang["config_currency_side"] = "Desna strana";
 $lang["config_currency_symbol"] = "Valutna oznaka";
+$lang["config_currency_symbol_required"]="Currency Symbol is a required field";
 $lang["config_currency_decimals"] = "Velutne decimale";
 $lang["config_custom1"] = "Korisničko polje1";
 $lang["config_custom10"] = "Korisničko polje10";

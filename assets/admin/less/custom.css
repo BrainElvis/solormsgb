@@ -3222,7 +3222,7 @@ select.parsley-error {
     width: auto;
 }
 
-//----
+
 .daterangepicker .daterangepicker_start_input label,
 .daterangepicker .daterangepicker_end_input label {
     color: #333;
@@ -3299,7 +3299,7 @@ select.parsley-error {
     border: none;
 }
 
-//----
+
 .daterangepicker.single .ranges,
 .daterangepicker.single .calendar {
     float: none;
@@ -5842,7 +5842,7 @@ form:after {
     border: 1px solid #A878AF;
     outline: none;
 }
-}
+
 #username { background-position: 10px 10px !important }
 #password { background-position: 10px -53px !important }
 .login_content form div a {

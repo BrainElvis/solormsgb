@@ -35,6 +35,7 @@ $lang["config_company_required"] = "Cégnév kötelező mező";
 $lang["config_company_website_url"] = "A cég webcime nem érvényes URL (http://...)";
 $lang["config_currency_side"] = "Jobb oldal";
 $lang["config_currency_symbol"] = "Pénznem";
+$lang["config_currency_symbol_required"]="Currency Symbol is a required field";
 $lang["config_currency_decimals"] = "Currency Decimals";
 $lang["config_custom1"] = "Egyedi mező 1";
 $lang["config_custom10"] = "Egyedi mező 10";

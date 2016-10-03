@@ -1,11 +1,11 @@
-<?php 
+<?php
 
-$lang["config_address"] = "Company Address";
-$lang["config_address_required"] = "Company address is a required field";
+$lang["config_address"] = "Restaurant Address";
+$lang["config_address_required"] = "Restaurant address is a required field";
 $lang["config_backup_button"] = "Backup";
 $lang["config_backup_database"] = "Backup Database";
 $lang["config_barcode"] = "Barcode";
-$lang["config_barcode_company"] = "Company Name";
+$lang["config_barcode_company"] = "Restaurant Name";
 $lang["config_barcode_configuration"] = "Barcode Configuration";
 $lang["config_barcode_content"] = "Barcode Content";
 $lang["config_barcode_first_row"] = "Row 1";
@@ -26,15 +26,17 @@ $lang["config_barcode_third_row"] = "Row 3";
 $lang["config_barcode_type"] = "Barcode Type";
 $lang["config_barcode_width"] = "Width (px)";
 $lang["config_barcode_generate_if_empty"] = "Generate if empty";
-$lang["config_company"] = "Company Name";
-$lang["config_company_logo"] = "Company Logo";
+$lang["config_company"] = "Restaurant Name";
+$lang["config_company_logo"] = "Restaurant Logo";
 $lang["config_company_select_image"] = "Select Image";
 $lang["config_company_change_image"] = "Change Image";
 $lang["config_company_remove_image"] = "Remove Image";
-$lang["config_company_required"] = "Company name is a required field";
-$lang["config_company_website_url"] = "Company website is not a valid URL (http://...)";
+$lang["config_company_required"] = "Restaurant name is a required field";
+$lang["config_vatreg_required"] = "VAT Registration is a required field";
+$lang["config_company_website_url"] = "Restaurant website is not a valid URL (http://...)";
 $lang["config_currency_side"] = "Right side";
 $lang["config_currency_symbol"] = "Currency Symbol";
+$lang["config_currency_symbol_required"] = "Currency Symbol is a required field";
 $lang["config_currency_decimals"] = "Currency Decimals";
 $lang["config_custom1"] = "Custom Field 1";
 $lang["config_custom10"] = "Custom Field 10";
@@ -105,7 +107,7 @@ $lang["config_msg_src"] = "SMS-API Sender ID";
 $lang["config_msg_src_required"] = "SMS-API Sender ID is a required field";
 $lang["config_number_format"] = "Number Format";
 $lang["config_phone"] = "Phone";
-$lang["config_phone_required"] = "Company phone is a required field";
+$lang["config_phone_required"] = "Restaurant phone is a required field";
 $lang["config_print_bottom_margin"] = "Margin Bottom";
 $lang["config_print_bottom_margin_number"] = "The default bottom margin must be a number";
 $lang["config_print_bottom_margin_required"] = "The default bottom margin is a required field";
@@ -148,4 +150,67 @@ $lang["config_timezone"] = "Timezone";
 $lang["config_use_invoice_template"] = "Use Invoice Template";
 $lang["config_website"] = "Website";
 $lang["config_datetimeformat"] = "Date and Time format";
-$lang["config_vatreg"]="VAT Registration No";
+$lang["config_vatreg"] = "VAT Registration No";
+/* ------------Dashboard navigation language---- */
+$lang['setting_menu'] = "Appilication Setup";
+
+$lang['site_configuration_title'] = "Configure your Application";
+$lang['config_api_configuration'] = "Restaurant Api Configuration";
+$lang['config_api'] = "Api Configuration";
+$lang['config_api_id'] = "Api Id#";
+$lang['config_api_id_required'] = "Api Id# is a required field";
+$lang['config_api_name'] = "Api Name";
+$lang['config_api_name_required'] = "Api Name is a required field";
+$lang['config_api_website'] = "Api Website Domain";
+$lang['config_api_website_required'] = "Api Website is a required field";
+$lang['config_api_key'] = "Api Key";
+$lang['config_api_key_required'] = "Api Key is a required field";
+$lang['config_api_host'] = "Api Host Address";
+$lang['config_api_host_required'] = "Api host is a required field";
+$lang['config_payment_configuration'] = "Payment Configuration";
+$lang['config_payment'] = "Payment Gateway";
+$lang['config_nochex'] = "Nochex";
+$lang['config_paypal'] = "Paypal";
+$lang['config_paymnet_gateways'] = "Payment Gateway";
+$lang['config_paymnet_mode'] = "Transaction Mode";
+$lang['config_payment_mode_test'] = "Test";
+$lang['config_payment_mode_live'] = "Live";
+$lang['config_merchant_id'] = "Merchant ID";
+$lang['config_merchant_id_required'] = "Merchant ID is a required field";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+$lang[''] = "";
+
+
+
+
+
+

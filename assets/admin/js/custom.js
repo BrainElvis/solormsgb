@@ -9,10 +9,10 @@ $(function () {
     $('#sidebar-menu li ul').slideUp();
     $('#sidebar-menu li').removeClass('active');
 
-    $('#sidebar-menu li').on('click touchstart', function() {
+    $('#sidebar-menu li').on('click touchstart', function () {
         var link = $('a', this).attr('href');
 
-        if(link) { 
+        if (link) {
             window.location.href = link;
         } else {
             if ($(this).is('.active')) {
@@ -21,7 +21,7 @@ $(function () {
             } else {
                 $('#sidebar-menu li').removeClass('active');
                 $('#sidebar-menu li ul').slideUp();
-                
+
                 $(this).addClass('active');
                 $('ul', this).slideDown();
             }
@@ -333,3 +333,19 @@ if (typeof NProgress != 'undefined') {
     });
 }
 /** ******  NProgress  *********************** **/
+
+function set_feedback(text, classname, keep_displayed)
+{
+    if (text)
+    {
+        $('#feedback_bar').removeClass().addClass(classname).html(text).css('opacity', '1');
+
+        if (!keep_displayed)
+        {
+            $('#feedback_bar').fadeTo(5000, 1).fadeTo("fast", 0);
+        }
+    } else
+    {
+        $('#feedback_bar').css('opacity', '0');
+    }
+}

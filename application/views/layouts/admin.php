@@ -26,6 +26,7 @@
                 <?php echo $template['partials']['header'] ?>
                 <!-- page content -->
                 <div class="right_col" role="main">
+                    <div id="feedback_bar"></div>
                     <?php echo $template['body'] ?>
                     <!-- footer content -->
                     <?php echo $template['partials']['footer'] ?>

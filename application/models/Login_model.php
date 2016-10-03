@@ -3,12 +3,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login_model extends MY_Model {
-
-    /*function __construct() {
-        //parent::__construct();
-        //$this->_table_name = 'admin';
-    }
-*/
+    /* function __construct() {
+      //parent::__construct();
+      //$this->_table_name = 'admin';
+      }
+     */
     /*
       Attempts to login employee and set session. Returns boolean based on outcome.
      */
@@ -29,7 +28,7 @@ class Login_model extends MY_Model {
 
     function logout() {
         $this->session->sess_destroy();
-        redirect('login');
+        redirect('admin/login');
     }
 
     /*
@@ -44,12 +43,13 @@ class Login_model extends MY_Model {
       Gets information about the currently logged in employee.
      */
 
-    function get_logged_in_employee_info() {
+    function get_logged_in_admin_info() {
         if ($this->is_logged_in()) {
             return $this->get_info($this->session->userdata('user_id'));
         }
         return false;
     }
+
     function get_info($id) {
         $this->db->from('admin');
         $this->db->where('id', $id);
@@ -57,8 +57,7 @@ class Login_model extends MY_Model {
 
         if ($query->num_rows() == 1) {
             return $query->row();
-        }
-        else {
+        } else {
             //Get empty base parent object, as $user_id is NOT an admin
             $user_obj = parent::get_info(-1);
             //Get all the fields from admin table

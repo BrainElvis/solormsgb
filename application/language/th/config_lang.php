@@ -36,6 +36,7 @@ $lang["config_company_website_url"] = "เว็บไซต์ร้านค�
 $lang["config_currency_side"] = "ด้านขวา";
 $lang["config_currency_symbol"] = "สัญลักษณ์ค่าเงิน";
 $lang["config_currency_decimals"] = "Currency Decimals";
+$lang["config_currency_symbol_required"]="Currency Symbol is a required field";
 $lang["config_custom1"] = "พื้นที่เพิ่มเติม 1";
 $lang["config_custom10"] = "พื้นที่เพิ่มเติม 10";
 $lang["config_custom2"] = "พื้นที่เพิ่มเติม 2";

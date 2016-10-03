@@ -29,7 +29,6 @@ class Admin extends Admin_Controller {
         $this->body_class[] = 'Plain Page';
         $this->render_page('admin/admin/form');
     }
-
     function logout() {
         $this->Login_model->logout();
     }

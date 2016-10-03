@@ -35,6 +35,7 @@ $lang["config_company_required"] = "Nome da empresa é requerido";
 $lang["config_company_website_url"] = "Site da empresa não é uma URL válida (http: // ...)";
 $lang["config_currency_side"] = "Lado Direito";
 $lang["config_currency_symbol"] = "Simbolo moeda";
+$lang["config_currency_symbol_required"]="Currency Symbol is a required field";
 $lang["config_currency_decimals"] = "Decimais moeda";
 $lang["config_custom1"] = "Campo customizado 1";
 $lang["config_custom10"] = "Campo customizado 10";

@@ -2,6 +2,8 @@
 
 class Admin_Controller extends MY_Controller {
 
+    public $admin_info;
+
     /**
      * Site Title
      * 
@@ -38,50 +40,14 @@ class Admin_Controller extends MY_Controller {
     public $assets_css = array(
         'bootstrap.min.css',
         'animate.min.css',
+        'opensourcepos.min.css',
         'custom.css',
-        'icheck/flat/green.css',
-            //'editor/external/google-code-prettify/prettify.css',
-            //'editor/index.css',
-            //'select/select2.min.css',
-            //'switchery/switchery.min.css',
-            //'normalize.css',
-            //'ion.rangeSlider.css',
-            //'ion.rangeSlider.skinFlat.css',
-            //'colorpicker/bootstrap-colorpicker.min.css'
+        'style.css',
+      
     );
     public $assets_js = array(
-        'jquery.min.js',
-        'bootstrap.min.js',
-        'progressbar/bootstrap-progressbar.min.js',
-        'nicescroll/jquery.nicescroll.min.js',
-        'icheck/icheck.min.js',
-        //'moment/moment.min.js',
-        /* Pie and Chart */
-        //'chartjs/chart.min.js',
-        //'easypie/jquery.easypiechart.min.js',
-        //'sparkline/jquery.sparkline.min.js',
-        //'tags/jquery.tagsinput.min.js',
-        //'switchery/switchery.min.js',
-        //'dropzone/dropzone.js',
-        //'wizard/jquery.smartWizard.js',
-        //'editor/bootstrap-wysiwyg.js',
-        //'editor/external/jquery.hotkeys.js',
-        //'editor/external/google-code-prettify/prettify.js',
-        //'select/select2.full.js',
-        //'parsley/parsley.min.js',
-        //'textarea/autosize.min.js',
-        //'autocomplete/countries.js',
-        //'autocomplete/jquery.autocomplete.js',
-        //'datepicker/daterangepicker.js',
-        //'input_mask/jquery.inputmask.js',
-        //'knob/jquery.knob.min.js',
-        //'ion_range/ion.rangeSlider.min.js',
-        //'colorpicker/bootstrap-colorpicker.min.js',
-        //'colorpicker/docs.js',
-        //'cropping/cropper.min.js',
-        //'cropping/main2.js',
-        'validator/validator.js',
-        'pace/pace.min.js',
+        'opensourcepos.js',
+        'jquery.nicescroll.min.js',
         'custom.js',
     );
     public $js_domready = array();
@@ -115,9 +81,10 @@ class Admin_Controller extends MY_Controller {
         parent::__construct();
         $this->load->model('Login_model');
         if (!$this->Login_model->is_logged_in()) {
-            redirect('login');
+            redirect('admin/login');
         }
-        //set layout
+        $this->admin_info = $this->Login_model->get_logged_in_admin_info();
+
         $this->template->set_layout('admin');
         // Site Page Title
         $this->site_title = $this->config->item('app_title');
@@ -185,6 +152,7 @@ class Admin_Controller extends MY_Controller {
         $this->prepare_base_javascript();
         // Set global template vars
         $this->template
+                ->set('admin', ($this->admin_info->description) ? $this->admin_info->description : $this->admin_info->username)
                 ->set('current_section', $this->current_section)
                 ->set('body_class', implode(' ', $this->body_class));
 

@@ -35,6 +35,7 @@ $lang["config_company_required"] = "De bedrijfsnaam moet ingevuld worden";
 $lang["config_company_website_url"] = "De website van het bedrijf is geen geldige URL (http://...)";
 $lang["config_currency_side"] = "Rechterkant";
 $lang["config_currency_symbol"] = "Valuta";
+$lang["config_currency_symbol_required"]="Currency Symbol is a required field";
 $lang["config_currency_decimals"] = "Currency Decimals";
 $lang["config_custom1"] = "Custom Veld 1";
 $lang["config_custom10"] = "Custom Veld 10";

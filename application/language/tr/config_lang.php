@@ -35,6 +35,7 @@ $lang["config_company_required"] = "Şirket Adı zorunlu alandır";
 $lang["config_company_website_url"] = "website adresi yanlış (http://...)";
 $lang["config_currency_side"] = "Sağda";
 $lang["config_currency_symbol"] = "Para Birimi";
+$lang["config_currency_symbol_required"]="Currency Symbol is a required field";
 $lang["config_currency_decimals"] = "Currency Decimals";
 $lang["config_custom1"] = "Özel Alan 1";
 $lang["config_custom10"] = "Özel Alan 10";
