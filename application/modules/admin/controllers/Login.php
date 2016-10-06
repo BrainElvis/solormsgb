@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Login extends MX_Controller {
 
     function __construct() {
@@ -11,7 +13,7 @@ class Login extends MX_Controller {
             redirect('admin');
         } else {
             $this->form_validation->set_rules('username', 'Username', 'required');
-            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
             $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('login');

@@ -1,17 +1,27 @@
 
 <!--------------------------- Slider ---------------------->
-<?php echo $template['partials']['home_slider'] ?>
+<?php if (isset($template['partials']['home_slider'])): ?>
+    <?php echo $template['partials']['home_slider'] ?>
+<?php endif; ?>
 <!--------------------------------------------------------->
 <!----------------------------We Serve -------------------->
-<?php echo $template['partials']['home_weserve'] ?>
-<!--------------------------------------------------------->
+<?php if (isset($template['partials']['home_weserve'])): ?>
+    <?php echo $template['partials']['home_weserve'] ?>
+    <!--------------------------------------------------------->
+<?php endif; ?>
 <!----------------------------Menu Horizontal Slider ------>
-<?php echo $template['partials']['home_menucarousel'] ?>
+<?php if (isset($template['partials']['home_menucarousel'])): ?>
+    <?php echo $template['partials']['home_menucarousel'] ?>
+<?php endif; ?>
 <!--------------------------------------------------------->
 <!----------------------------Our Feature ----------------->
-<?php echo $template['partials']['home_ourfeatures'] ?>
+<?php if (isset($template['partials']['home_ourfeatures'])): ?>
+    <?php echo $template['partials']['home_ourfeatures'] ?>
+<?php endif; ?>
 <!--------------------------------------------------------->
 <!-------------------------Client Testimonials------------->
-<?php echo $template['partials']['home_testimonials'] ?>
+<?php if (isset($template['partials']['home_testimonials'])): ?>
+    <?php echo $template['partials']['home_testimonials'] ?>
+<?php endif; ?>
 <!--------------------------------------------------------->
 

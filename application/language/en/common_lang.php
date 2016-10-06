@@ -56,6 +56,6 @@ $lang["common_export_excel"] = "Excel Export";
 $lang["common_export_excel_yes"] = "Yes";
 $lang["common_export_excel_no"] = "No";
 $lang["common_required"] = "Required";
-$lang["common_copyright"] = "&COPY;2016 Solo RMS Allright Reserved.";
+$lang["common_copyright"] = "Allright Reserved.";
 
 

@@ -7,6 +7,7 @@ class Gallery extends Site_Controller {
         $this->site_title = 'Solo Rms';
         array_push($this->assets_css, 'gallery.css');
         array_push($this->assets_js, 'gallery.js');
+        $this->load->model('Gallery_Model');
     }
     public function index() {
         $this->page_title = 'Gallery';
@@ -14,6 +15,7 @@ class Gallery extends Site_Controller {
         $this->body_class[] = 'home';
         $this->page_meta_keywords = 'Online,order, Restaurant';
         $this->page_meta_description = 'Online Order at Restaurant';
-        $this->render_page('gallery/index');
+        $data['gallery_images']=$this->Gallery_Model->get_by(array('deleted'=>0, 'status'=>1));
+        $this->render_page('gallery/index',$data);
     }
 }

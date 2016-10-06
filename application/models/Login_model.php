@@ -3,13 +3,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login_model extends MY_Model {
-    /* function __construct() {
-      //parent::__construct();
-      //$this->_table_name = 'admin';
-      }
-     */
+
+    function __construct() {
+        parent::__construct();
+    }
+
     /*
-      Attempts to login employee and set session. Returns boolean based on outcome.
+      Attempts to login Admin and set session. Returns boolean based on outcome.
      */
 
     function login($username, $password) {

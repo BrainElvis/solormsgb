@@ -3,9 +3,18 @@
     <fieldset id="config_info">
         <div id="required_fields_message"><?php echo $this->lang->line('common_fields_required_message'); ?></div>
         <ul id="paymnet_error_message_box" class="error_message_box"></ul>
-        
-        
-         <div class="form-group form-group-sm">
+        <div class="form-group form-group-sm">
+            <label class="checkbox-inline">
+                <?php
+                echo form_checkbox(array(
+                    'name' => 'payment_online',
+                    'value' => 'payment_online',
+                    'checked' => $this->config->item('payment_online')));
+                ?>
+                 <?php echo $this->lang->line('config_payment_online'); ?>
+            </label>  
+        </div>
+        <div class="form-group form-group-sm">
             <?php echo form_label($this->lang->line('config_paymnet_gateways'), 'payment_gateway', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-xs-8'>
                 <label class="radio-inline">
@@ -15,7 +24,7 @@
                         'value' => 'Nochex',
                         'checked' => $this->config->item('payment_gateway') === "Nochex"));
                     ?>
-                    <?php echo $this->lang->line('config_nochex')?>
+                    <?php echo $this->lang->line('config_nochex') ?>
                 </label>
                 <label class="radio-inline">
                     <?php
@@ -24,29 +33,29 @@
                         'value' => 'Paypal',
                         'checked' => $this->config->item('payment_gateway') === "Paypal"));
                     ?>
-                   <?php echo $this->lang->line('config_paypal')?>
+                    <?php echo $this->lang->line('config_paypal') ?>
                 </label>
             </div>
         </div>
-        
-        
+
+
         <div class="form-group form-group-sm">	
-            <?php echo form_label($this->lang->line('config_merchant_id'), 'merchant_id', array('class' => 'control-label col-xs-2 required')); ?>
+            <?php echo form_label($this->lang->line('config_merchant_id'), 'payment_merchant_id', array('class' => 'control-label col-xs-2 required')); ?>
             <div class="col-xs-6">
                 <div class="input-group">
                     <span class="input-group-addon input-sm"><span class="glyphicon glyphicon-home"></span></span>
                     <?php
                     echo form_input(array(
-                        'name' => 'merchant_id',
-                        'id' => 'merchant_id',
+                        'name' => 'payment_merchant_id',
+                        'id' => 'payment_merchant_id',
                         'class' => 'form-control input-sm required',
-                        'value' => $this->config->item('merchant_id')));
+                        'value' => $this->config->item('payment_merchant_id')));
                     ?>
                 </div>
             </div>
         </div>
-        
-        
+
+
         <div class="form-group form-group-sm">
             <?php echo form_label($this->lang->line('config_paymnet_mode'), 'payment_mode', array('class' => 'control-label col-xs-2')); ?>
             <div class='col-xs-8'>
@@ -57,7 +66,7 @@
                         'value' => 'Test',
                         'checked' => $this->config->item('payment_mode') === "Test"));
                     ?>
-                    <?php echo $this->lang->line('config_payment_mode_test')?>
+                    <?php echo $this->lang->line('config_payment_mode_test') ?>
                 </label>
                 <label class="radio-inline">
                     <?php
@@ -66,12 +75,25 @@
                         'value' => 'Live',
                         'checked' => $this->config->item('payment_mode') === "Live"));
                     ?>
-                   <?php echo $this->lang->line('config_payment_mode_live')?>
+                    <?php echo $this->lang->line('config_payment_mode_live') ?>
                 </label>
             </div>
+            
         </div>
+        <div class="form-group form-group-sm">
+            <label class="checkbox-inline">
+                <?php
+                echo form_checkbox(array(
+                    'name' => 'payment_cod',
+                    'value' => 'payment_cod',
+                    'checked' => $this->config->item('payment_cod')));
+                ?>
+                <?php echo $this->lang->line('config_payment_cod'); ?>
+            </label>  
+        </div>
+            
         
-
+       
         <div class="form-group form-group-sm">	
             <div class="col-sm-offset-2">
                 <?php
@@ -117,11 +139,11 @@
             },
             rules:
                     {
-                        merchant_id: "required",
+                        payment_merchant_id: "required",
                     },
             messages:
                     {
-                        merchant_id: "<?php echo $this->lang->line('config_merchant_id_required'); ?>"
+                        payment_merchant_id: "<?php echo $this->lang->line('config_merchant_id_required'); ?>"
                     }
         });
     });

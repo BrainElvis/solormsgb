@@ -5,8 +5,7 @@
  * and open the template in the editor.
  */
 
-class MY_Model extends CI_Model
-{
+class MY_Model extends CI_Model {
 
     protected $_table_name = '';
     protected $_primary_key = 'id';
@@ -15,57 +14,46 @@ class MY_Model extends CI_Model
     protected $_rules = array();
     protected $_timestamps = FALSE;
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
     }
 
-    public function get($id = NULL, $single = FALSE)
-    {
-        if ($id != NULL)
-        {
+    public function get($id = NULL, $single = FALSE) {
+        if ($id != NULL) {
             $filter = $this->_primary_filter;
             $id = $filter($id);
             $this->db->where($this->_primary_key, $id);
             $method = 'row';
-        } else if ($single == TRUE)
-        {
+        } else if ($single == TRUE) {
             $method = 'row';
-        } else
-        {
+        } else {
             $method = 'result';
         }
-        if (!count($this->db->ar_orderby))
-        {
+        if (!count($this->db->order_by($this->_order_by))) {
             $this->db->order_by($this->_order_by);
         }
         return $this->db->get($this->_table_name)->$method();
     }
 
-    public function get_by($where, $single = FALSE)
-    {
+    public function get_by($where, $single = FALSE) {
         $this->db->where($where);
         return $this->get(NULL, $single);
     }
 
-    public function save($data, $id = NULL)
-    {
+    public function save($data, $id = NULL) {
         //set Timestamps 
-        if ($this->_timestamps == TRUE)
-        {
+        if ($this->_timestamps == TRUE) {
             $now = date('Y-m-d H:i:s');
             $id || $data['created'] = $now;
             $data['modified'] = $now;
         }
-        if ($id === NULL)
-        {
+        if ($id === NULL) {
             //insert
             !isset($data[$this->_primary_key]) || $data[$this->_primary_key] == NULL;
             $this->db->set($data);
             $this->db->insert($this->_table_name);
             $id = $this->db->insert_id();
-        } else
-        {
+        } else {
             //update
             $filter = $this->_primary_filter;
             $id = $filter($id);
@@ -76,12 +64,10 @@ class MY_Model extends CI_Model
         return $id;
     }
 
-    public function delete($id)
-    {
+    public function delete($id) {
         $filter = $this->_primary_filter;
         $id = $filter($id);
-        if (!$id)
-        {
+        if (!$id) {
             return FALSE;
         }
         $this->db->where($this->_primary_key, $id);

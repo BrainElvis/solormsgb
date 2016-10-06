@@ -1,75 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Meta, title, CSS, favicons, etc. -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Solorms | Login</title>
-        <!-- Bootstrap core CSS -->
-        <link href="<?php echo ASSETS_ADMIN_CSS_PATH ?>bootstrap.min.css" rel="stylesheet">
-        <link href="<?php echo ASSETS_ADMIN_FONTS_PATH ?>css/font-awesome.min.css" rel="stylesheet">
-        <link href="<?php echo ASSETS_ADMIN_CSS_PATH ?>animate.min.css" rel="stylesheet">
-        <!-- Custom styling -->
-        <link href="<?php echo ASSETS_ADMIN_CSS_PATH ?>custom.css" rel="stylesheet">
-        <link href="<?php echo ASSETS_ADMIN_CSS_PATH ?>style.css" rel="stylesheet">
-        <!-- Bootstrap core js -->
-        <script src="<?php echo ASSETS_ADMIN_JS_PATH ?>jquery.min.js"></script>
-        <!-- Bootstrap core js -->
-        <script src="<?php echo ASSETS_ADMIN_JS_PATH ?>bootstrap.min.js"></script>
+        <title><?php echo $this->config->item('company') ?> | <?php echo $this->lang->line('login_login') ?></title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>/css/form-elements.css">
+        <link rel="stylesheet" href="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>css/style.css">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-              <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-              <![endif]-->
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-                <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-                <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-              <![endif]-->
-        <script type="text/javascript">
-            window.onload = function ()
-            {
-                document.getElementById("username").focus();
-            };
-        </script>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>ico/apple-touch-icon-57-precomposed.png">
     </head>
-    <body style="background:#F7F7F7;">
-        <div class="login-form">
-            <a class="hiddenanchor" id="toregister"></a>
-            <a class="hiddenanchor" id="tologin"></a>
-            <div id="wrapper">
-                <div id="login" class="animate form">
-                    <section class="login_content">
-                        <?php echo form_open('admin/login') ?>
-                        <h1>Login Form</h1>
-                        <div align="center" style="color:red"><?php echo validation_errors(); ?></div>
-                        <div>
-                            <?php echo form_input(array('name' => 'username', 'id' => 'username', 'class' => 'form-control', 'size' => '20')); ?>
-                        </div>
-                        <div>
-                            <?php echo form_password(array('name' => 'password', 'id' => 'password', 'class' => 'form-control', 'size' => '20')); ?>
-                        </div>
-                        <div>
-                            <input class="btn btn-primary btn-block" type="submit" name="loginButton" value="Go"/>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="separator">
-                            <div class="clearfix"></div>
-                            <br />
-                            <div>
-                                <h1><i class="fa fa-paw" style="font-size: 26px;"></i>Solo RMS</h1>
-                                <p>©2016 All Rights Reserved. Powered by <a href="http://munchnow.com">munchnow.co.uk</a></p>
+    <body class="admin-login-form">
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row row-centered">
+                        <div class="col-sm-5 col-centered">
+                            <div class="form-box">
+                                <div class="form-top">
+                                    <div class="form-top-left">
+                                        <img class="img-responsive logo col-centered" src="<?php echo site_url() ?>uploads/<?php echo $this->config->item('company_logo') ?>">
+                                    </div>
+                                    <div class="form-top-right">
+                                        <i class="fa fa-lock"></i>
+                                    </div>
+                                </div>
+                                <div class="form-bottom">
+                                    <p><?php echo $this->lang->line('login_header_title') ?></p>
+                                    <?php if (isset($message)): ?>
+                                        <p style="color: #ff0000;"><?php print $message; ?></p>
+                                    <?php endif; ?>
+                                    <?php echo form_open('admin/login', array('role' => 'form', 'method' => 'post', 'class' => 'login-form')) ?>
+                                    <div class="form-group">
+                                        <?php echo form_label($this->lang->line('login_username'), '', array('class' => 'sr-only required', 'for' => 'username')) ?>
+                                        <input type="text" name="username" placeholder="Username..." class="form-username form-control required" id="form-username" value="<?php echo set_value('username'); ?>" >
+                                    </div>
+                                    <div class="form-group">
+                                        <?php echo form_label($this->lang->line('login_password'), '', array('class' => 'sr-only required', 'for' => 'password')) ?>
+                                        <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password required" value="<?php echo set_value('password'); ?>">
+                                    </div>
+                                    <button type="submit" class="btn"><?php echo $this->lang->line('login_go') ?></button>
+                                    <?php echo form_close(); ?>
+                                </div>
                             </div>
                         </div>
-                        <?php echo form_close(); ?>
-                        <!-- form -->
-                    </section>
-                    <!-- content -->
+                    </div>
                 </div>
             </div>
         </div>
-
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <div class="footer-border"></div>
+                        <?php $api_host = explode('//', $this->config->item('api_host')); ?>
+                        <?php $api_host_domain = explode('/', $api_host[1]) ?>
+                        <p>&COPY;<?php echo date('Y') ?>&nbsp;<strong><?php echo $this->config->item('company') ?></strong>.<?php echo $this->lang->line('common_copyright', 'TO DO') ?>&nbsp;<?php echo $this->lang->line('common_powered_by', 'TO DO') ?> <a href="<?php echo $this->config->item('api_host') ?>"><strong><?php echo $api_host_domain[0] ?></strong></a>.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Javascript -->
+        <script src="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>js/jquery-1.11.1.min.js"></script>
+        <script src="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>bootstrap/js/bootstrap.min.js"></script>
+        <script src="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>js/jquery.backstretch.min.js"></script>
+        <script src="<?php echo ASSETS_ADMIN_LOGIN_PATH; ?>js/scripts.js"></script>
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
     </body>
-
 </html>

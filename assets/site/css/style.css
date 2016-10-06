@@ -1,5 +1,7 @@
 
+/*
 @import url(http://fonts.googleapis.com/css?family=Roboto);
+*/
 body {
     padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
@@ -1611,7 +1613,10 @@ input, textarea {
     padding: 0;
     width: 70%;
 }
-.itemname a { color:#393f4d;}
+.itemname a {
+    color: #393f4d;
+    text-decoration: none;
+}
 
 .restaurant-odd ul li span.itemfulldescription span.itemprice {
     color: #262626;
@@ -11838,6 +11843,7 @@ only screen and (min-device-pixel-ratio: 1.5){
     color: #fff;
     top: 5px;
 }
+/*Done by Mr Justin Freeman*/
 
 
 

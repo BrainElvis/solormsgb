@@ -13,16 +13,17 @@
                 <ul class="nav side-menu">
                     <li><a href="<?php echo site_url('admin/config');?>"><i class="fa fa-wrench"></i><?php echo $this->lang->line('setting_menu')?></a></li>
                     
-                    <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-home"></i> <?php echo $this->lang->line('config_homepage'); ?><span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu" style="display: none">
-                            <li><a href="index.html">Dashboard</a>
-                            </li>
-                            <li><a href="index2.html">Dashboard2</a>
-                            </li>
-                            <li><a href="index3.html">Dashboard3</a>
-                            </li>
+                            <li><a href="<?php echo site_url('admin/homepage/slider')?>"><?php echo $this->lang->line('config_homepage_slider')?></a> </li>
+                            <li><a href="<?php echo site_url('admin/homepage/weserve')?>"><?php echo $this->lang->line('config_homepage_wesearve')?></a></li>
+                            <li><a href="<?php echo site_url('admin/homepage/menucarousel')?>"><?php echo $this->lang->line('config_homepage_menucarousel')?></a></li>
+                            <li><a href="<?php echo site_url('admin/homepage/ourfeatures')?>"><?php echo $this->lang->line('config_homepage_ourfeatures')?></a></li>
+                            <li><a href="<?php echo site_url('admin/homepage/testimonials')?>"><?php echo $this->lang->line('config_homepage_testimonials')?></a></li>
                         </ul>
                     </li>
+                    <li><a href="<?php echo site_url('admin/showcase')?>"><i class="fa fa-add"></i> <?php echo $this->lang->line('config_gallery')?></a></li>
+                    
                     <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu" style="display: none">
                             <li><a href="form.html">General Form</a>
@@ -114,12 +115,10 @@
                             </li>
                             <li><a href="pricing_tables.html">Pricing Tables</a>
                             </li>
-
                         </ul>
                     </li>
                 </ul>
             </div>
-
         </div>
         <!-- /sidebar menu -->
     </div>

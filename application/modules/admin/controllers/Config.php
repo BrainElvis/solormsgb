@@ -1,5 +1,5 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Config extends Admin_Controller {
 
     function __construct() {
@@ -56,11 +56,15 @@ class Config extends Admin_Controller {
         $success = $result ? true : false;
         echo json_encode(array('success' => $success, 'message' => $this->lang->line('config_saved_' . ($success ? '' : 'un') . 'successfully')));
     }
+
     function save_payment() {
         $batch_save_data = array(
-            'payment_gateway' => $this->input->post('payment_gateway'),
-            'merchant_id' => $this->input->post('merchant_id'),
-            'payment_mode' => $this->input->post('payment_mode')
+        'payment_online' => $this->input->post('payment_oneline'),
+        'payment_cod' => $this->input->post('payment_cod'),
+        'payment_gateway' => $this->input->post('payment_gateway'),
+        'payment_merchant_id' => $this->input->post('merchant_id'),
+        'payment_mode' => $this->input->post('payment_mode')
+
         );
 
         $result = $this->Appconfig->batch_save($batch_save_data);
@@ -190,14 +194,14 @@ class Config extends Admin_Controller {
         echo json_encode(array('success' => $success, 'message' => $this->lang->line('config_saved_' . ($success ? '' : 'un') . 'successfully')));
     }
 
-    function save_invoice() {
+    function save_homepage() {
         $batch_save_data = array(
-            'invoice_enable' => $this->input->post('invoice_enable') != null,
-            'sales_invoice_format' => $this->input->post('sales_invoice_format'),
-            'recv_invoice_format' => $this->input->post('recv_invoice_format'),
-            'use_invoice_template' => $this->input->post('use_invoice_template') != null,
-            'invoice_default_comments' => $this->input->post('invoice_default_comments'),
-            'invoice_email_message' => $this->input->post('invoice_email_message')
+            'home_slider' => $this->input->post('home_slider'), 
+            'home_weserve' => $this->input->post('home_weserve'),
+            'home_menucarousel' => $this->input->post('home_menucarousel'),
+            'home_ourfeatures' => $this->input->post('home_ourfeatures'),
+            'home_testimonials' => $this->input->post('home_testimonials'),
+            'home_promotime' => $this->input->post('home_promotime')
         );
 
         $result = $this->Appconfig->batch_save($batch_save_data);

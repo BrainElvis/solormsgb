@@ -135,13 +135,8 @@ class Site_Controller extends MY_Controller {
         $this->template
                 ->set('current_section', $this->current_section)
                 ->set('body_class', implode(' ', $this->body_class));
-
         $this->template
-                //->set_partial('flash_messages', 'partials/flash_messages')
                 ->set_partial('header', 'partials/header')
-               // ->set_partial('loginform', 'partials/loginform')
-               // ->set_partial('registrationform', 'partials/registrationform')
-               // ->set_partial('addtocart', 'partials/addtocart')
                 ->set_partial('footer', 'partials/footer');
         // Renders the main layout
         $this->template->build($page, $data);

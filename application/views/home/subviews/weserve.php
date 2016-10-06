@@ -1,9 +1,9 @@
 <div class="whatdobg">
     <?php
-    if (1) {
+    if ($this->config->item('home_weserve') == 'on') {
         echo $this->load->view('home/subviews/service');
     }
-    if (1) {
+    if ($this->config->item('home_promotime') == 'on') {
         echo $this->load->view('home/subviews/promotime');
     }
     ?>

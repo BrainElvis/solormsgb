@@ -22,6 +22,9 @@
                         <li role="presentation">
                             <a data-toggle="tab" href="#locale" title="<?php echo $this->lang->line('config_locale_configuration'); ?>"><?php echo $this->lang->line('config_locale'); ?></a>
                         </li>
+                         <li role="presentation">
+                            <a data-toggle="tab" href="#homepage" title="<?php echo $this->lang->line('config_homepage_configuration'); ?>"><?php echo $this->lang->line('config_homepage'); ?></a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="general">
@@ -35,6 +38,9 @@
                         </div>
                         <div class="tab-pane" id="locale">
                             <?php $this->load->view("config/locale_config"); ?>
+                        </div>
+                        <div class="tab-pane" id="homepage">
+                            <?php $this->load->view("config/homepage_config"); ?>
                         </div>
                     </div>
                 </div>

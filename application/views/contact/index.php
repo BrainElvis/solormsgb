@@ -2,14 +2,14 @@
   <div class="container contactbg">
       <div class="row">
           <div class="col-md-4">
-              <h1><?php echo $this->lang->line('sales_due')?></h1>
+              <h1>Contact Address</h1>
               <p> <?php isset($address) && $address!==''? print $address:'xxx xxx xxxx';?>
                   <br/>
                   Phone : <?php isset($phone) && $phone!==''? print $phone:'xxx xxx xxxx';?>
                   Email : <?php isset($email) && $email!==''? print $email:'xxxxxxxxxx';?>
               </p>
               <div class="sitemap">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d29203.94347007159!2d90.4149573!3d23.8010644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1467212566367" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                  <iframe width="100%" height="575px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=<?php echo str_replace(",", "", str_replace(" ", "+", $address)); ?>&aq=0&ie=UTF8&hq=&hnear=<?php echo str_replace(",", "", str_replace(" ", "+", $address)); ?>&t=m&ll=,&z=12&iwloc=&output=embed"></iframe>
               </div>
           </div>
           <!--------------------------- Form Part ----------------------------------->

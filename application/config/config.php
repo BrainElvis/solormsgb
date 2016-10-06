@@ -525,8 +525,11 @@ $config['proxy_ips'] = '';
 define('ASSETS_SITE_CSS_PATH', $config['base_url'].'assets/site/css/');
 define('ASSETS_SITE_JS_PATH', $config['base_url'].'assets/site/js/');
 define('ASSETS_SITE_IMAGE_PATH', $config['base_url'].'assets/site/images/');
+define('ASSETS_SITE_GALLERY_IMAGE_PATH', $config['base_url'].'uploads/gallery/');
 define('ASSETS_ADMIN_CSS_PATH', $config['base_url'].'assets/admin/css/');
 define('ASSETS_ADMIN_JS_PATH', $config['base_url'].'assets/admin/js/');
 define('ASSETS_ADMIN_IMAGE_PATH', $config['base_url'].'assets/admin/images/');
 define('ASSETS_ADMIN_FONTS_PATH', $config['base_url'].'assets/admin/fonts/');
 define('ADMIN_URL', $config['base_url'].'admin/');
+define('ASSETS_ADMIN_LOGIN_PATH', $config['base_url'].'assets/admin/login/');
+
