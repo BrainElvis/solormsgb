@@ -64,16 +64,9 @@
                                                 }
                                                 $selectionexist = 1;
                                             }
-                                            if ($base ['IsSpecial'] == 1) {                               
-                                                //$result = base_special_criteria($base ['BaseId']);
-                                                 $result = base_special_criteria(3792);
-
-                                                debugPrint($result, 'check');
-                                                if (empty($result)) {
-                                                    continue;
-                                                }
-                                            }
-
+                                            $hlimg = NULL;
+                                            $imgveg = NULL;
+                                            $imgvem = NULL;
                                             if (isset($base->Hotlevel)) {
                                                 $hl = str_split($base->Hotlevel);
                                                 if (sizeof($hl) == 1) {
@@ -113,9 +106,6 @@
                                                     $imgvem = 'nuts.png';
                                                 }
                                             }
-
-
-
                                             //discout code
                                             if ($base['BaseDiscount'] > 0) {
                                                 $basediscount = number_format(($base ['BasePrice'] - ($base ['BasePrice'] * $base ['BaseDiscount'])), 2, '.', '');
@@ -131,10 +121,10 @@
                                                 <ul>
                                                     <li>
                                                         <span class="itemfulldescription">
-                    <?php if ($showonmenu) : ?>
+                                                            <?php if ($showonmenu) : ?>
                                                                 <?php if ($base ['IsSpecial'] == 1): ?>
-                                                                    <span class="itemname" onclick='addspecialtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, 0, "<?= $base['BasePrice'] ?>&<?= $basediscount ?>")'> <a  data-toggle="modal" data-target="#myModal" href="#"><?= $item_no ?><?= html_entity_decode($base ['BaseName'], ENT_QUOTES) ?></a>
-                                                                    <?php if (isset($imgveg)): ?>
+                                                                    <span class="itemname" onclick='addspecialtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, 0, "<?= $base['BasePrice'] ?>&<?= $basediscount ?>")'><?= $item_no ?><?= html_entity_decode($base ['BaseName'], ENT_QUOTES) ?></a>
+                                                                        <?php if (isset($imgveg)): ?>
                                                                             <img src="<?php echo $this->config->item('api_host') ?>assets/admin/images/<?= $imgveg ?>" title="Vegetarian"/>
                                                                         <?php endif; ?>
                                                                         <?php if (isset($hlimg)): ?>
@@ -148,9 +138,9 @@
                                                                             <a  class="photo cboxElement" rel="gal" href="<?= $this->config->item('api_host') ?>assets/uploads/menu_item/base/<?= $base ['base_image'] ?>">
                                                                                 <img src="<?php echo $this->config->item('api_host') ?>assets/admin/images/photo.png" border="0" title="Photo"  width="16" height="16" />
                                                                             </a>
-                            <?php endif; ?>
+                                                                        <?php endif; ?>
                                                                     </span>
-                                                                    <?php else: ?>
+                                                                <?php else: ?>
                                                                     <?php
                                                                     $basePrice = $base ['BasePrice'];
                                                                     $basePriceForSecondaryItem = $basePrice;
@@ -180,7 +170,7 @@
                                                                     $item_no = $base ['ItemNo'] ? $base ['ItemNo'] . ".  " : "  ";
                                                                     ?>
                                                                     <span class="itemname"> <?= $item_no ?><?= html_entity_decode($base ['BaseName'], ENT_QUOTES) ?>
-                                                                    <?php if (isset($imgveg)): ?>
+                                                                        <?php if (isset($imgveg)): ?>
                                                                             <img src="<?php echo $this->config->item('api_host') ?>assets/admin/images/<?= $imgveg ?>" title="Vegetarian"/>
                                                                         <?php endif; ?>
                                                                         <?php if (isset($hlimg)): ?>
@@ -194,12 +184,12 @@
                                                                             <a  class="photo cboxElement" rel="gal" href="<?= $this->config->item('api_host') ?>assets/uploads/menu_item/base/<?= $base ['base_image'] ?>">
                                                                                 <img src="<?php echo $this->config->item('api_host') ?>assets/admin/images/photo.png" border="0" title="Photo"  width="16" height="16" />
                                                                             </a>
-                            <?php endif; ?>
+                                                                        <?php endif; ?>
                                                                     </span>
-                                                                    <?php endif; ?>
+                                                                <?php endif; ?>
                                                             <?php else: ?>
                                                                 <span class="itemname">   <?= $item_no ?><?= html_entity_decode($base ['BaseName'], ENT_QUOTES) ?>
-                                                                <?php if (isset($imgveg)): ?>
+                                                                    <?php if (isset($imgveg)): ?>
                                                                         <img src="<?php echo $this->config->item('api_host') ?>assets/admin/images/<?= $imgveg ?>" title="Vegetarian"/>
                                                                     <?php endif; ?>
                                                                     <?php if (isset($hlimg)): ?>
@@ -213,9 +203,9 @@
                                                                         <a  class="photo cboxElement" rel="gal" href="<?= $this->config->item('api_host') ?>assets/uploads/menu_item/base/<?= $base ['base_image'] ?>">
                                                                             <img src="<?php echo $this->config->item('api_host') ?>assets/admin/images/photo.png" border="0" title="Photo"  width="16" height="16" />
                                                                         </a>
-                        <?php endif; ?>
+                                                                    <?php endif; ?>
                                                                 </span>
-                                                                <?php endif; ?>
+                                                            <?php endif; ?>
                                                             <?php if ($selections [$category ['CatId']] [$base ['BaseId']] != NULl): ?>
                                                                 <?php
                                                                 $primarySelectionExist = 1;
@@ -236,9 +226,9 @@
                                                                     <?php if ($basePriceForSecondaryItem != $discountForSecondaryItem): ?>
                                                                         <span class="itemprice">
                                                                             <span style="text-decoration:line-through;"><?php echo to_currency($basePriceForSecondaryItem) ?></span><br/>
-                                <?php echo to_currency($discountForSecondaryItem) ?>
+                                                                            <?php echo to_currency($discountForSecondaryItem) ?>
                                                                         </span>
-                                                                        <?php else: ?>
+                                                                    <?php else: ?>
                                                                         <span class="itemprice"><?php echo to_currency($discountForSecondaryItem); ?></span>
                                                                     <?php endif; ?>
                                                                     <span class="itembasket"><a class="btn-lg" data-toggle="modal" data-target="#myModal" href=""><img title="" alt="" src="<?php echo ASSETS_SITE_IMAGE_PATH ?>inactive-plus.png"></a> </span>
@@ -279,25 +269,25 @@
                                                                             $baseselprice = $selection['SelectionPrice'];
                                                                             ?>
                                                                             <div class="full-width-container">
-                                                                            <?php if (($restaurant_status == 1) && (count($order_policy) >= 1) && $pre_hide_status == 0) : ?>
+                                                                                <?php if (($restaurant_status == 1) && (count($order_policy) >= 1) && $pre_hide_status == 0) : ?>
                                                                                     <span class="itemname"> 
                                                                                         <span class="itemdescription">
                                                                                             &#8658;&nbsp;&nbsp;<a href="#" class="black"><?= html_entity_decode($selection ['DetailsName'], ENT_QUOTES) ?></a>
                                                                                         </span>
                                                                                     </span>
-                                    <?php else : ?>
+                                                                                <?php else : ?>
                                                                                     <span class="itemname">
                                                                                         <span class="itemdescription">
                                                                                             &#8658;&nbsp;&nbsp;<a href="#" class="black"><?= html_entity_decode($selection ['DetailsName'], ENT_QUOTES) ?></a>
                                                                                         </span>
                                                                                     </span>
-                                    <?php endif; ?>    
+                                                                                <?php endif; ?>    
 
                                                                                 <?php if ($beforediscout != 0) : ?>
                                                                                     <span class="itemprice">
                                                                                         <span style="text-decoration:line-through;"><?= to_currency($beforediscout) ?></span><br/>
-                                        <?= to_currency($printdiscout) ?></span>
-                                                                                    <?php else : ?>
+                                                                                        <?= to_currency($printdiscout) ?></span>
+                                                                                <?php else : ?>
                                                                                     <span class="itemprice"><?= to_currency($printdiscout) ?></span>
                                                                                 <?php endif; ?>
 
@@ -307,9 +297,9 @@
                                                                                     <span class="itembasket">
                                                                                         <a  ><img src="<?= base_url() ?>assets/images/menuplus.png" alt="" title="" /></a>
                                                                                     </span>
-                                    <?php endif; ?>       
+                                                                                <?php endif; ?>       
                                                                             </div>
-                                                                            <?php endif; ?>
+                                                                        <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                 <?php endif; ?>
                                                             <?php else: ?>
@@ -325,8 +315,8 @@
                                                                 <?php if ($beforediscout != 0): ?>
                                                                     <span class="itemprice">
                                                                         <span style="text-decoration:line-through;"><?= to_currency($beforediscout) ?></span><br/>
-                            <?= to_currency($printdiscout) ?></span>
-                                                                    <?php else: ?>
+                                                                        <?= to_currency($printdiscout) ?></span>
+                                                                <?php else: ?>
                                                                     <span class="itemprice"><?= to_currency($printdiscout) ?></span>
                                                                 <?php endif; ?>
 
@@ -350,11 +340,11 @@
                                                 </ul>
                                             </div>
                                             <!--------------------- End Product one --------------------->
-                <?php endforeach; ?>   
+                                        <?php endforeach; ?>   
                                     <?php endif; ?> 
                                 <?php endif; ?>    
                             </div>
-                            <?php endforeach; ?>
+                        <?php endforeach; ?>
                     <?php else: ?>
                         <?php echo $this->lang->line('items_no_items_to_display') ?>
                     <?php endif; ?>

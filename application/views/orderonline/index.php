@@ -9,7 +9,8 @@ if (isset($apiData)) {
         $menuData['order_policy'] = $apiDataArray ['order_policy'];
         $menuData['pre_hide_status'] = $apiDataArray ['pre_hide_status'];
     }
-    debugPrint($menuData);
+    //$menuData['test']=  base_special_criteria(3792);
+   // debugPrint($menuData);
 }
 ?>
 <div class="section service">
