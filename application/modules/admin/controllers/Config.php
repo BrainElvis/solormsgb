@@ -1,5 +1,7 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Config extends Admin_Controller {
 
     function __construct() {
@@ -48,10 +50,11 @@ class Config extends Admin_Controller {
             'api_id' => $this->input->post('api_id'),
             'api_name' => $this->input->post('api_name'),
             'api_website' => $this->input->post('api_website'),
-            'api_key' => $this->input->post('api_key'),
             'api_host' => $this->input->post('api_host'),
+            'api_key' => $this->input->post('api_key'),
+            'api_username' => $this->input->post('api_username'),
+            'api_password' => $this->input->post('api_password'),
         );
-
         $result = $this->Appconfig->batch_save($batch_save_data);
         $success = $result ? true : false;
         echo json_encode(array('success' => $success, 'message' => $this->lang->line('config_saved_' . ($success ? '' : 'un') . 'successfully')));
@@ -59,12 +62,11 @@ class Config extends Admin_Controller {
 
     function save_payment() {
         $batch_save_data = array(
-        'payment_online' => $this->input->post('payment_oneline'),
-        'payment_cod' => $this->input->post('payment_cod'),
-        'payment_gateway' => $this->input->post('payment_gateway'),
-        'payment_merchant_id' => $this->input->post('merchant_id'),
-        'payment_mode' => $this->input->post('payment_mode')
-
+            'payment_online' => $this->input->post('payment_online'),
+            'payment_cod' => $this->input->post('payment_cod'),
+            'payment_gateway' => $this->input->post('payment_gateway'),
+            'payment_merchant_id' => $this->input->post('payment_merchant_id'),
+            'payment_mode' => $this->input->post('payment_mode')
         );
 
         $result = $this->Appconfig->batch_save($batch_save_data);
@@ -196,12 +198,14 @@ class Config extends Admin_Controller {
 
     function save_homepage() {
         $batch_save_data = array(
-            'home_slider' => $this->input->post('home_slider'), 
+            'home_slider' => $this->input->post('home_slider'),
             'home_weserve' => $this->input->post('home_weserve'),
             'home_menucarousel' => $this->input->post('home_menucarousel'),
             'home_ourfeatures' => $this->input->post('home_ourfeatures'),
             'home_testimonials' => $this->input->post('home_testimonials'),
-            'home_promotime' => $this->input->post('home_promotime')
+            'home_promotime' => $this->input->post('home_promotime'),
+            'online_book' => $this->input->post('online_book'),
+            'online_review' => $this->input->post('online_review')
         );
 
         $result = $this->Appconfig->batch_save($batch_save_data);

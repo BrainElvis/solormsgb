@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2016 at 09:32 PM
+-- Generation Time: Oct 08, 2016 at 10:58 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -60,12 +60,16 @@ CREATE TABLE IF NOT EXISTS `config` (
 --
 
 INSERT INTO `config` (`key`, `value`) VALUES
-('address', 'Unit 27\r\nBessemer Market\r\nBessemer Rd \r\nCardiff \r\nCF11 8BE,\r\nVAT Reg No:229 6600 01'),
-('barcode_content', 'number'),
-('barcode_first_row', 'not_show'),
+('address', 'Unit 27, Bessemer Market,Bessemer Rd,Cardiff ,CF11 8BE'),
+('api_host', 'http://localhost/ieat/'),
+('api_id', '14'),
+('api_key', 'a6bc997ee8d1259119b663020813a40252676f1d'),
+('api_name', 'Mama Mia'),
+('api_password', '123456'),
+('api_username', 'zaman'),
+('api_website', 'http://localhost/ieat/menu/mama-mia/'),
 ('barcode_font', 'fontawesome-webfont.ttf'),
 ('barcode_font_size', '10'),
-('barcode_generate_if_empty', '1'),
 ('barcode_height', '120'),
 ('barcode_num_in_row', '10'),
 ('barcode_page_cellspacing', '10'),
@@ -75,21 +79,12 @@ INSERT INTO `config` (`key`, `value`) VALUES
 ('barcode_third_row', 'unit_price'),
 ('barcode_type', 'Code39'),
 ('barcode_width', '300'),
-('company', 'Fortuna Cash & Carry'),
-('company_logo', 'company_logo6.png'),
+('company', 'Ready Food'),
+('company_logo', 'company_logo10.png'),
 ('currency_decimals', '2'),
-('currency_side', '0'),
-('currency_symbol', '£ '),
+('currency_side', '1'),
+('currency_symbol', 'tk'),
 ('custom10_name', ''),
-('custom1_name', ''),
-('custom2_name', ''),
-('custom3_name', ''),
-('custom4_name', ''),
-('custom5_name', ''),
-('custom6_name', ''),
-('custom7_name', ''),
-('custom8_name', ''),
-('custom9_name', ''),
 ('dateformat', 'd/m/Y'),
 ('decimal_point', '.'),
 ('default_sales_discount', '0'),
@@ -100,15 +95,23 @@ INSERT INTO `config` (`key`, `value`) VALUES
 ('default_tax_rate', '8'),
 ('email', 'info@gksoft.co.uk'),
 ('fax', ''),
-('invoice_default_comments', 'Thank you for your oder, Your attention is drawn to our terms and conditions of trading overleaf.'),
-('invoice_email_message', 'Dear $CU, In attachment the receipt for sale $INV'),
-('invoice_enable', '1'),
+('home_menucarousel', 'off'),
+('home_ourfeatures', 'off'),
+('home_promotime', 'on'),
+('home_slider', 'off'),
+('home_testimonials', 'off'),
+('home_weserve', 'on'),
 ('language', 'en'),
 ('lines_per_page', '25'),
 ('msg_msg', 'Thanks for buying with us  '),
 ('msg_pwd', 'ecse100200152'),
 ('msg_src', 'GK-POS'),
 ('msg_uid', 'admin'),
+('payment_cod', 'payment_cod'),
+('payment_gateway', 'Nochex'),
+('payment_merchant_id', ''),
+('payment_mode', 'Live'),
+('payment_online', ''),
 ('phone', '02920 371109'),
 ('print_bottom_margin', '0'),
 ('print_footer', '0'),
@@ -123,16 +126,58 @@ INSERT INTO `config` (`key`, `value`) VALUES
 ('receipt_show_taxes', '1'),
 ('receipt_show_total_discount', '1'),
 ('receiving_calculate_average_price', '0'),
-('recv_invoice_format', '$CO'),
 ('return_policy', 'Thank you for your oder, Your attention is drawn to our terms and conditions of trading overleaf.'),
-('sales_invoice_format', '$CO'),
 ('tax_decimals', '0'),
 ('tax_included', '0'),
 ('thousands_separator', ''),
 ('timeformat', 'H:i:s'),
 ('timezone', 'Europe/Amsterdam'),
-('use_invoice_template', '1'),
+('vatreg', '1212'),
 ('website', 'http://fortunacashcarry.co.uk/');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery_images`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+
+--
+-- Dumping data for table `gallery_images`
+--
+
+INSERT INTO `gallery_images` (`id`, `name`, `deleted`, `status`) VALUES
+(17, 'orderstep3.png', 0, 1),
+(18, 'orderstep2.png', 0, 1),
+(19, 'orderstep4.png', 0, 1),
+(20, 'orderstep1.png', 0, 1),
+(21, 'orderstep2.png', 0, 1),
+(22, 'orderstep3.png', 0, 1),
+(23, 'orderstep2.png', 0, 1),
+(24, 'orderstep1.png', 0, 1),
+(25, 'orderstep3.png', 0, 1),
+(26, 'orderstep4.png', 0, 1),
+(27, 'orderstep1.png', 0, 1),
+(28, 'orderstep2.png', 0, 1),
+(29, 'orderstep3.png', 0, 1),
+(30, 'orderstep4.png', 0, 1),
+(31, 'orderstep2.png', 0, 1),
+(32, 'orderstep1.png', 0, 1),
+(33, 'orderstep3.png', 0, 1),
+(34, 'orderstep4.png', 0, 1),
+(35, 'orderstep3.png', 0, 1),
+(36, 'orderstep3.png', 0, 1),
+(37, 'orderstep4.png', 0, 1),
+(38, 'orderstep3.png', 0, 1),
+(39, 'orderstep2.png', 0, 1),
+(40, 'orderstep4.png', 0, 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

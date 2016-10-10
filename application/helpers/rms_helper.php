@@ -15,35 +15,37 @@ function debugPrint($object, $title = "", $isMarkup = false) {
     echo 'END >>></font>';
 }
 
-function objectToArray($d) {
-    if (is_object($d)) {
-        // Gets the properties of the given object
-        // with get_object_vars function
-        $d = get_object_vars($d);
-    }
+if (!function_exists('objectToArray')) {
 
-    if (is_array($d)) {
-        /*
-         * Return array converted to object
-         * Using __FUNCTION__ (Magic constant)
-         * for recursive call
-         */
-        return array_map(__FUNCTION__, $d);
-    } else {
-        // Return array
-        return $d;
-    }
-}
+    function objectToArray($d) {
+        if (is_object($d)) {
+            // Gets the properties of the given object
+            // with get_object_vars function
+            $d = get_object_vars($d);
+        }
 
-function array_filter_recursive($input) {
-    foreach ($input as &$value) {
-        if (is_array($value)) {
-            $value = array_filter_recursive($value);
+        if (is_array($d)) {
+            /*
+             * Return array converted to object
+             * Using __FUNCTION__ (Magic constant)
+             * for recursive call
+             */
+            return array_map(__FUNCTION__, $d);
+        } else {
+            // Return array
+            return $d;
         }
     }
-    return array_filter($input);
+
 }
-function base_special_criteria($BaseId){
-    $CI= &get_instance();
-    return $CI->Orderonline_Model->get_special_criteria($BaseId);
+if (!function_exists('get_mails')) {
+
+    function get_mails() {
+        $CI = & get_instance();
+        $CI->db->limit(10);
+        $CI->db->order_by('id', 'DESC');
+        return $CI->db->get('contact')->result();
+    }
+
 }
+

@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-6 col-md-offset-4 topfooterbg">
                 <ul>
-                    <li>We Support The Following Payment Methods: </li>
+                    <li><?php echo $this->lang->line('footer_payment_supported')?></li>
                     <li><a href="#"><img src="<?php echo ASSETS_SITE_IMAGE_PATH ?>paypalbg.png"></a></li>
                     <li><a href="#"><img src="<?php echo ASSETS_SITE_IMAGE_PATH ?>vishapng.png"></a></li>
                     <li><a href="#"><img src="<?php echo ASSETS_SITE_IMAGE_PATH ?>mastercardpng.png"></a></li>
@@ -23,16 +23,16 @@
                 <div class="col-md-6">
                     <?php $api_host = explode('//', $this->config->item('api_host')); ?>
                     <?php $api_host_domain = explode('/', $api_host[1]) ?>
-                    <p>&COPY;<?php echo date('Y') ?>&nbsp;<strong><?php echo $this->config->item('company') ?></strong>.<?php echo $this->lang->line('common_copyright', 'TO DO') ?>&nbsp;<?php echo $this->lang->line('common_powered_by', 'TO DO') ?> <a href="<?php echo $this->config->item('api_host') ?>"><strong><?php echo $api_host_domain[0] ?></strong></a>.</p>
+                    <p>&COPY;<?php echo date('Y') ?>&nbsp;<strong><?php echo $this->config->item('company') ?></strong>.&nbsp;<?php echo $this->lang->line('footer_copyright') ?>&nbsp;<?php echo $this->lang->line('common_powered_by', 'TO DO') ?> <a href="<?php echo $this->config->item('api_host') ?>"><strong><?php echo $api_host_domain[0] ?></strong></a>.</p>
                 </div>
                 <!-- .col-md-6 -->
                 <div class="col-md-6">
                     <ul class="footer-nav">
-                        <li><a href="<?php echo base_url() ?>">Home</a></li>
-                        <li><a href="<?php echo base_url() ?>gallery">Photogallery</a></li>
-                        <li><a href="<?php echo base_url() ?>menu">Online Order</a></li>
-                        <li><a href="<?php echo base_url() ?>contact">Contact</a></li>
-                        <li><a href="<?php echo base_url() ?>">Help</a></li>
+                        <li><a href="<?php echo base_url() ?>"><?php echo $this->lang->line('menu_home')?></a></li>
+                        <li><a href="<?php echo base_url() ?>gallery"><?php echo $this->lang->line('menu_photogallery')?></a></li>
+                        <li><a href="<?php echo base_url() ?>menu"><?php echo $this->lang->line('menu_online_order')?></a></li>
+                        <li><a href="<?php echo base_url() ?>contact"><?php echo $this->lang->line('menu_contact')?></a></li>
+                        <li><a href="<?php echo base_url() ?>"><?php echo $this->lang->line('menu_help')?></a></li>
                     </ul>
                 </div>
                 <!-- .col-md-6 -->

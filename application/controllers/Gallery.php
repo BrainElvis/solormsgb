@@ -11,7 +11,7 @@ class Gallery extends Site_Controller {
     }
     public function index() {
         $this->page_title = 'Gallery';
-        $this->current_section = "Photo Gallery";
+        $this->current_section = $this->lang->line('photogallery_heading');
         $this->body_class[] = 'home';
         $this->page_meta_keywords = 'Online,order, Restaurant';
         $this->page_meta_description = 'Online Order at Restaurant';

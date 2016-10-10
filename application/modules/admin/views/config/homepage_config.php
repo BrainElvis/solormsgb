@@ -145,6 +145,54 @@
                 </label>
             </div>
         </div>
+        
+        <div class="form-group form-group-sm">
+            <?php echo form_label($this->lang->line('config_online_book'), 'online_book', array('class' => 'control-label col-xs-2')); ?>
+            <div class='col-xs-8'>
+                <label class="radio-inline">
+                    <?php
+                    echo form_radio(array(
+                        'name' => 'online_book',
+                        'value' => 'on',
+                        'checked' => $this->config->item('online_book') === "on"));
+                    ?>
+                    <?php echo $this->lang->line('config_home_page_option_on') ?>
+                </label>
+                <label class="radio-inline">
+                    <?php
+                    echo form_radio(array(
+                        'name' => 'online_book',
+                        'value' => 'off',
+                        'checked' => $this->config->item('online_book') === "off"));
+                    ?>
+                    <?php echo $this->lang->line('config_home_page_option_off') ?>
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-group form-group-sm">
+            <?php echo form_label($this->lang->line('config_online_review'), 'online_review', array('class' => 'control-label col-xs-2')); ?>
+            <div class='col-xs-8'>
+                <label class="radio-inline">
+                    <?php
+                    echo form_radio(array(
+                        'name' => 'online_review',
+                        'value' => 'on',
+                        'checked' => $this->config->item('online_review') === "on"));
+                    ?>
+                    <?php echo $this->lang->line('config_home_page_option_on') ?>
+                </label>
+                <label class="radio-inline">
+                    <?php
+                    echo form_radio(array(
+                        'name' => 'online_review',
+                        'value' => 'off',
+                        'checked' => $this->config->item('online_review') === "off"));
+                    ?>
+                    <?php echo $this->lang->line('config_home_page_option_off') ?>
+                </label>
+            </div>
+        </div>
 
         <div class="form-group form-group-sm">	
             <div class="col-sm-offset-2">

@@ -17,13 +17,13 @@
           <div class="col-md-9">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right navigationbg">
-                    <li><a href="<?php echo site_url()?>">Home</a></li>
-                    <li><a href="<?php echo site_url('gallery');?>">Photo Gallery</a></li>
-                    <li><a href="<?php echo site_url('orderonline');?>">Online Order</a></li>
-                    <li><a href="<?php echo site_url('contact');?>">Contact</a></li>
-                    <li><a href="<?php echo site_url('customer');?>">My Account</a></li>
-                    <li><button class="registerbg" data-toggle="modal" data-target="#registration"><i class="fa fa-sign-out" aria-hidden="true"></i> Register</button></li>
-                    <li><button class="lgbg" data-toggle="modal" data-target="#login"><i class="fa fa-user" aria-hidden="true"></i> Login</button></li>
+                    <li><a href="<?php echo site_url()?>"><?php echo $this->lang->line('menu_home')?></a></li>
+                    <li><a href="<?php echo site_url('gallery');?>"><?php echo $this->lang->line('menu_photogallery')?></a></li>
+                    <li><a href="<?php echo site_url('orderonline');?>"><?php echo $this->lang->line('menu_online_order')?></a></li>
+                    <li><a href="<?php echo site_url('contact');?>"><?php echo $this->lang->line('menu_contact')?></a></li>
+                    <li><a href="<?php echo site_url('customer');?>"><?php echo $this->lang->line('menu_my_account')?></a></li>
+                    <li><button class="registerbg" data-toggle="modal" data-target="#registration"><i class="fa fa-sign-out" aria-hidden="true"></i><?php echo $this->lang->line('menu_register')?></button></li>
+                    <li><button class="lgbg" data-toggle="modal" data-target="#login"><i class="fa fa-user" aria-hidden="true"></i><?php echo $this->lang->line('menu_login')?></button></li>
                 </ul>             
             </div>
           </div>

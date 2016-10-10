@@ -8,16 +8,18 @@ class Home extends Site_Controller {
         parent::__construct();
         $this->template->set_layout('public');
         $this->site_title = 'Solo Rms';
+        $this->load->model('Apimodel');
     }
 
     public function index() {
+        $data = [];
         $this->page_title = 'Home';
         $this->current_section = "Restaurant Home";
         $this->body_class[] = 'home';
         $this->page_meta_keywords = 'Online,order, Restaurant';
         $this->page_meta_description = 'Online Order at Restaurant';
         //debugPrint($this->config);
-        
+
         if ($this->config->item('home_slider') == 'on') {
             $this->template->set_partial('home_slider', 'home/subviews/slider');
         }
@@ -33,8 +35,11 @@ class Home extends Site_Controller {
         if ($this->config->item('home_testimonials') == 'on') {
             $this->template->set_partial('home_testimonials', 'home/subviews/testimonials');
         }
-
-        $this->render_page('home/index');
+        if ($this->config->item('home_promotime')=='on') {
+            $data['promotime'] = $promotime = objectToArray($this->Apimodel->get_promotime());
+            
+        }
+        $this->render_page('home/index', $data);
     }
 
 }

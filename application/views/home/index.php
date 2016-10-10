@@ -1,4 +1,7 @@
+<?php
+//debugPrint($promotime)
 
+?>
 <!--------------------------- Slider ---------------------->
 <?php if (isset($template['partials']['home_slider'])): ?>
     <?php echo $template['partials']['home_slider'] ?>

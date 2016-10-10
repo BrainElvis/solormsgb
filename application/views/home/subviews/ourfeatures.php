@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row destacados">
             <div class="section-header">
-                <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">A Place For Favorite Food</h2>
+                <h2 class="section-title text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"><?php echo $this->lang->line('homepage_how_we_are')?></h2>
                 <p class="text-center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">Lorem ipsum dolor sit amet, consectetur adipiscing elit quisque mattis lorem ex, in facilisis arcu lacinia vitae, proin porta molestie urna, rhoncusLorem ipsum dolor sit amet, consectetur adipiscing elit quisque mattis lorem ex, in facilisis arcu lacinia vitae, proin porta molestie urna, rhoncus</p>
             </div>
             <div class="col-md-4">

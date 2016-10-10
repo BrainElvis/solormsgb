@@ -6,38 +6,7 @@
                     <div class="info_data_area">
                         <h1>OPENING HOUR :</h1>
                         <div id="opening_time">
-                            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="payment-table">
-                                <tbody>
-                                    <tr class="even">
-                                        <td width="25%" class="bdr-bottom bdr-right">Saturday :</td>
-                                        <td width="75%" class="bdr-bottom">00:00 am - 12:00 pm </td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td width="25%" class="bdr-bottom bdr-right">Sunday :</td>
-                                        <td width="75%" class="bdr-bottom">00:00 am - 12:00 pm </td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td width="25%" class="bdr-bottom bdr-right">Monday :</td>
-                                        <td width="75%" class="bdr-bottom">00:00 am - 12:00 pm </td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td width="25%" class="bdr-bottom bdr-right">Tuesday :</td>
-                                        <td width="75%" class="bdr-bottom">00:00 am - 12:00 pm </td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td width="25%" class="bdr-bottom bdr-right">Wednesday :</td>
-                                        <td width="75%" class="bdr-bottom">00:00 am - 12:00 pm </td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td width="25%" class="bdr-bottom bdr-right">Thursday :</td>
-                                        <td width="75%" class="bdr-bottom">00:00 am - 12:00 pm </td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td width="25%" class="bdr-bottom bdr-right">Friday :</td>
-                                        <td width="75%" class="bdr-bottom">00:00 am - 12:00 pm </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <?php isset($schedule)? print $schedule:'';?>
                         </div>
                     </div>
                 </div>

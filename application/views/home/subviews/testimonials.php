@@ -3,7 +3,7 @@
         <div class='row'>
             <div class='col-md-12'>
                 <div class="section-header">
-                    <h2 class="section-title text-center wow fadeInDown animated clienttextbg" style="visibility: visible; animation-name: fadeInDown;">Client Testimonial</h2>
+                    <h2 class="section-title text-center wow fadeInDown animated clienttextbg" style="visibility: visible; animation-name: fadeInDown;"><?php echo $this->lang->line('homepage_client_testimonial')?></h2>
                 </div>
                 <div class="carousel slide" data-ride="carousel" id="quote-carousel">
                     <!-- Carousel Slides / Quotes -->

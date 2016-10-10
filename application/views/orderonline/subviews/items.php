@@ -1,4 +1,3 @@
-
 <div role="tabpanel" class="tab-pane active" id="restaurantMenu">
     <div class="row" style="min-height: 600px; width: 100%; margin: 0px; padding: 0px; border: 1px solid #eee; ">
         <div class="col-sm-9" style="width: 100%; padding: 0px; margin-top: 15px">
@@ -34,7 +33,7 @@
                                 <div class="topimg"><img src="<?php echo ASSETS_SITE_IMAGE_PATH ?>ordermenuicon.jpg"></div>
                                 <div class="menuheading"><?php echo $category ['CatName'] ?></div>
                                 <div class="menuheading-img">
-                                    <?php if (isset($category['cat_image'])): ?>
+                                    <?php if (isset($category['cat_image']) && $category['cat_image'] !== ''): ?>
                                         <img src="<?php echo $this->config->item('api_host') ?>assets/uploads/menu_item/category/<?= $category ['cat_image'] ?>" width="100%" height="150px" alt="" title="<?= $category ['CatName'] ?>" />
                                     <?php endif; ?>
                                 </div>
@@ -67,8 +66,8 @@
                                             $hlimg = NULL;
                                             $imgveg = NULL;
                                             $imgvem = NULL;
-                                            if (isset($base->Hotlevel)) {
-                                                $hl = str_split($base->Hotlevel);
+                                            if (isset($base ['Hotlevel'])) {
+                                                $hl = str_split($base ['Hotlevel']);
                                                 if (sizeof($hl) == 1) {
                                                     if ($hl [0] == 1)
                                                         $hlimg = 'hot.png';
@@ -149,6 +148,8 @@
                                                                         $basediscount = 0;
                                                                     }
                                                                     if ($selections [$category ['CatId']] [$base ['BaseId']] != NULl) {
+
+
                                                                         $primarySelectionExist = 1;
                                                                         foreach ($selections as $sel) {
                                                                             if (empty($sel)) {
@@ -156,6 +157,9 @@
                                                                             }
                                                                             if (isset($sel [$base ['BaseId']])) {
                                                                                 foreach ($sel [$bas ['BaseId']] as $selection) {
+                                                                                    if (empty($selection)) {
+                                                                                        continue;
+                                                                                    }
                                                                                     if ($selection ['Show']) {
                                                                                         $primarySelectionExist = 0;
                                                                                     }
@@ -188,7 +192,9 @@
                                                                     </span>
                                                                 <?php endif; ?>
                                                             <?php else: ?>
+                                                                <?php ?>
                                                                 <span class="itemname">   <?= $item_no ?><?= html_entity_decode($base ['BaseName'], ENT_QUOTES) ?>
+                                                                    <?php //print_r($base)?>
                                                                     <?php if (isset($imgveg)): ?>
                                                                         <img src="<?php echo $this->config->item('api_host') ?>assets/admin/images/<?= $imgveg ?>" title="Vegetarian"/>
                                                                     <?php endif; ?>
@@ -206,6 +212,11 @@
                                                                     <?php endif; ?>
                                                                 </span>
                                                             <?php endif; ?>
+                                                            <?php
+                                                            if (isset($menus ['selection_attributes'])) {
+                                                                $selection_attributes = $menus ['selection_attributes'];
+                                                            }
+                                                            ?>
                                                             <?php if ($selections [$category ['CatId']] [$base ['BaseId']] != NULl): ?>
                                                                 <?php
                                                                 $primarySelectionExist = 1;
@@ -215,6 +226,9 @@
                                                                     }
                                                                     if (isset($sel [$base['BaseId']])) {
                                                                         foreach ($sel [$base ['BaseId']] as $selection) {
+                                                                            if (empty($selection)) {
+                                                                                continue;
+                                                                            }
                                                                             if ($selection ['Show']) {
                                                                                 $primarySelectionExist = 0;
                                                                             }
@@ -229,79 +243,89 @@
                                                                             <?php echo to_currency($discountForSecondaryItem) ?>
                                                                         </span>
                                                                     <?php else: ?>
-                                                                        <span class="itemprice"><?php echo to_currency($discountForSecondaryItem); ?></span>
+                                                                        <?php if ($discountForSecondaryItem > 0): ?>
+                                                                            <span class="itemprice"><?php echo to_currency($discountForSecondaryItem); ?></span>
+                                                                        <?php endif; ?>
                                                                     <?php endif; ?>
-                                                                    <span class="itembasket"><a class="btn-lg" data-toggle="modal" data-target="#myModal" href=""><img title="" alt="" src="<?php echo ASSETS_SITE_IMAGE_PATH ?>inactive-plus.png"></a> </span>
+                                                                    <?php if (($restaurant_status == 1) && (count($order_policy) >= 2 || (count($order_policy) == 1 && $order_policy [0] ['PolicyId'] != 3)) && $pre_hide_status == 0) : ?>
+                                                                        <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, 0, "<?= $basePriceForSecondaryItem ?>&<?= $discountForSecondaryItem ?>")'  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
+                                                                    <?php else : ?>
+                                                                        <span class="itembasket">
+                                                                            <a  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a>
+                                                                        </span>
+                                                                    <?php endif; ?>
                                                                 <?php endif; ?>
                                                                 <?php if ($base ['BaseDesc']): ?>
                                                                     <span class="itemdescription"id="des<?= $base['BaseId'] ?>"><?= html_entity_decode($base ['BaseDesc'], ENT_QUOTES) ?></span>
                                                                 <?php endif; ?>
                                                             <?php endif; ?>   
                                                             <?php if ($selections [$category ['CatId']] [$base ['BaseId']] != NULl): ?>
-                                                                <?php if (isset($sel [$base ['BaseId']])): ?>
-                                                                    <?php foreach ($sel [$base['BaseId']] as $selection): ?>
-                                                                        <?php
-                                                                        if (empty($selection)) {
-                                                                            continue;
-                                                                        }
-                                                                        ?>
-                                                                        <?php if ($selection ['Show']): ?>
+                                                                <?php foreach ($selections as $sel): ?>
+                                                                    <?php if (isset($sel [$base ['BaseId']])): ?>
+                                                                        <?php foreach ($sel [$base['BaseId']] as $selection): ?>
                                                                             <?php
-                                                                            if ($selection ['SelectionDesc'] != '') {
-                                                                                $desc = $selection['SelectionDesc'];
-                                                                            } else {
-                                                                                $desc = str_replace(',', '|', $base ['BaseDesc']);
+                                                                            if (empty($selection)) {
+                                                                                continue;
                                                                             }
-                                                                            // echo $base->BaseDiscount.'dis'; //discount code
-                                                                            if ($base ['BaseDiscount'] > 0) {
-                                                                                $seldiscount = ($selection ['SelectionPrice']) - ($selection['SelectionPrice']) * $base ['BaseDiscount'];
-                                                                            } else {
-                                                                                $seldiscount = ($selection ['SelectionPrice']) - ($selection['SelectionPrice']) * $category ['CatDiscount'];
-                                                                            }
-                                                                            if ($seldiscount != $selection ['SelectionPrice']) {
-                                                                                $beforediscout = $selection ['SelectionPrice'];
-                                                                                $printdiscout = $seldiscount;
-                                                                            } else {
-                                                                                $beforediscout = 0;
-                                                                                $printdiscout = $selection['SelectionPrice'];
-                                                                            }
-                                                                            // end discount code
-                                                                            $baseselprice = $selection['SelectionPrice'];
                                                                             ?>
-                                                                            <div class="full-width-container">
-                                                                                <?php if (($restaurant_status == 1) && (count($order_policy) >= 1) && $pre_hide_status == 0) : ?>
-                                                                                    <span class="itemname"> 
-                                                                                        <span class="itemdescription">
-                                                                                            &#8658;&nbsp;&nbsp;<a href="#" class="black"><?= html_entity_decode($selection ['DetailsName'], ENT_QUOTES) ?></a>
-                                                                                        </span>
-                                                                                    </span>
-                                                                                <?php else : ?>
-                                                                                    <span class="itemname">
-                                                                                        <span class="itemdescription">
-                                                                                            &#8658;&nbsp;&nbsp;<a href="#" class="black"><?= html_entity_decode($selection ['DetailsName'], ENT_QUOTES) ?></a>
-                                                                                        </span>
-                                                                                    </span>
-                                                                                <?php endif; ?>    
+                                                                            <?php
+                                                                            if ($selection ['Show']) :
+                                                                                if ($selection ['SelectionDesc'] != '') {
+                                                                                    $desc = $selection ['SelectionDesc'];
+                                                                                } else {
+                                                                                    $desc = str_replace(',', '|', $base ['BaseDesc']);
+                                                                                }
+                                                                                // echo $base->BaseDiscount.'dis'; //discount code
+                                                                                if ($base ['BaseDiscount'] > 0) {
+                                                                                    $seldiscount = ($selection ['SelectionPrice']) - ($selection ['SelectionPrice']) * $base['BaseDiscount'];
+                                                                                } else {
+                                                                                    $seldiscount = ($selection ['SelectionPrice']) - ($selection ['SelectionPrice']) * $category ['CatDiscount'];
+                                                                                }
+                                                                                if ($seldiscount != $selection ['SelectionPrice']) {
+                                                                                    $beforediscout = $selection ['SelectionPrice'];
+                                                                                    $printdiscout = $seldiscount;
+                                                                                } else {
+                                                                                    $beforediscout = 0;
+                                                                                    $printdiscout = $selection['SelectionPrice'];
+                                                                                }
 
-                                                                                <?php if ($beforediscout != 0) : ?>
-                                                                                    <span class="itemprice">
-                                                                                        <span style="text-decoration:line-through;"><?= to_currency($beforediscout) ?></span><br/>
-                                                                                        <?= to_currency($printdiscout) ?></span>
-                                                                                <?php else : ?>
-                                                                                    <span class="itemprice"><?= to_currency($printdiscout) ?></span>
-                                                                                <?php endif; ?>
+                                                                                $baseselprice = $selection ['SelectionPrice'];
+                                                                                ?>
+                                                                                <div class="full-width-container">
+                                                                                    <?php if (($restaurant_status == 1) && (count($order_policy) >= 1) && $pre_hide_status == 0) : ?>
+                                                                                        <span class="itemname"> 
+                                                                                            <span class="itemdescription">
+                                                                                                &#8658;&nbsp;&nbsp;<a href="#" class="black"><?= html_entity_decode($selection ['DetailsName'], ENT_QUOTES) ?></a>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                    <?php else : ?>
+                                                                                        <span class="itemname">
+                                                                                            <span class="itemdescription">
+                                                                                                &#8658;&nbsp;&nbsp;<a href="#" class="black"><?= html_entity_decode($selection ['DetailsName'], ENT_QUOTES) ?></a>
+                                                                                            </span>
+                                                                                        </span>
+                                                                                    <?php endif; ?>
 
-                                                                                <?php if (($restaurant_status == 1) && (count($order_policy) >= 2 || (count($order_policy) == 1 && $order_policy [0]->PolicyId != 3)) && $pre_hide_status == 0) : ?>
-                                                                                    <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, <?= $selection ['SelectionId'] ?>, "<?= $baseselprice ?>&<?= $seldiscount ?>")'  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
-                                                                                <?php else: ?>
-                                                                                    <span class="itembasket">
-                                                                                        <a  ><img src="<?= base_url() ?>assets/images/menuplus.png" alt="" title="" /></a>
-                                                                                    </span>
-                                                                                <?php endif; ?>       
-                                                                            </div>
-                                                                        <?php endif; ?>
-                                                                    <?php endforeach; ?>
-                                                                <?php endif; ?>
+                                                                                    <?php if ($beforediscout != 0) : ?>
+                                                                                        <span class="itemprice">
+                                                                                            <span style="text-decoration:line-through;"><?= to_currency($beforediscout) ?></span><br/>
+                                                                                            <?= to_currency($printdiscout) ?>
+                                                                                        </span>
+                                                                                    <?php else : ?>
+                                                                                        <span class="itemprice"><?= to_currency($printdiscout) ?></span>
+                                                                                    <?php endif; ?>
+                                                                                    <?php if (($restaurant_status == 1) && (count($order_policy) >= 2 || (count($order_policy) == 1 && $order_policy [0]['PolicyId'] != 3)) && $pre_hide_status == 0) : ?>
+                                                                                        <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, <?= $selection ['SelectionId'] ?>, "<?= $baseselprice ?>&<?= $seldiscount ?>")'  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
+                                                                                    <?php else: ?>
+                                                                                        <span class="itembasket">
+                                                                                            <a  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a>
+                                                                                        </span>
+                                                                                    <?php endif; ?>
+                                                                                </div>
+                                                                            <?php endif ?>
+                                                                        <?php endforeach; ?>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
                                                             <?php else: ?>
                                                                 <?php
                                                                 if ($basediscount != $base ['BasePrice']) {
@@ -320,12 +344,15 @@
                                                                     <span class="itemprice"><?= to_currency($printdiscout) ?></span>
                                                                 <?php endif; ?>
 
+
                                                                 <?php if ($base['IsSpecial'] == 1): ?>
+
                                                                     <?php if (($restaurant_status == 1) && (count($order_policy) >= 2 || (count($order_policy) == 1 && $order_policy [0]['PolicyId'] != 3)) && $pre_hide_status == 0): ?>
                                                                         <span class="itembasket"><a onclick='addspecialtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, 0, "<?= $base['BasePrice'] ?>&<?= $basediscount ?>")'  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
                                                                     <?php else: ?>
                                                                         <span class="itembasket"><a  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
                                                                     <?php endif; ?>
+
                                                                 <?php else: ?>
                                                                     <?php if (($restaurant_status == 1) && (count($order_policy) >= 2 || (count($order_policy) == 1 && $order_policy [0]['PolicyId'] != 3)) && $pre_hide_status == 0): ?>
                                                                         <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base['BaseId'] ?>, 0, "<?= $base ['BasePrice'] ?>&<?= $basediscount ?>")'  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
@@ -351,21 +378,19 @@
 
                 </div>
             </div>
-
             <div class="col-md-3 yourorderbg">
                 <div style="position: relative; min-height: 0px;" id="scolling-content-cart" class="content-cartspan">
                     <div class="mycart theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; top: 0px;">
                         <div class="cartheading">
-                            <div class="cartheading_text">YOUR ORDER</div>
+                            <div class="cartheading_text"><?php echo $this->lang->line('online_cart_your_ordeer') ?></div>
                             <!--<h2><a href="javascript:void(0);" onclick="cancelcart();">Empty</a></h2>-->
                         </div>
                         <div class="cartdelpick">
                             <ul>
                                 <li>
                                     <span class="delpick">
-                                        <input type="radio" onclick="" id="delivery_type" checked="" value="2" name="deliverytype">Delivery<a class="edit-icon" title="Change Area" onclick="changePostcode(2, & quot; 15 & quot; , 0)" href="javascript:void(0)"></a>
-
-                                        <input type="radio" onclick="" id="collection_type" value="1" name="deliverytype">Pick Up
+                                        <span><input type="radio" onclick="" id="delivery_type"  value="2" name="deliverytype"><?php echo $this->lang->line('online_cart_delivery') ?></span>
+                                        <span><input type="radio" onclick="" id="collection_type" value="1" name="deliverytype"><?php echo $this->lang->line('online_cart_pickup') ?></span>
                                     </span>
                                 </li>
                             </ul>
@@ -374,27 +399,26 @@
                             <div class="jspContainer" style="width: 269px; height: 0px;"><div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 269px;"></div></div>
                         </div>
                         <div class="calculation">
-                            <div class="caltext1">Sub Total</div>
-                            <div class="caltext2">£0.00</div>
+                            <div class="caltext1"><?php echo $this->lang->line('online_cart_sub_total') ?></div>
+                            <div class="caltext2"><?php echo to_currency(0) ?></div>
                         </div>
                         <div class="calculation2">
-                            <div class="caltext3">Discount : </div>
-                            <div class="caltext4">£0.00</div>
+                            <div class="caltext3"><?php echo $this->lang->line('online_cart_discount') ?> </div>
+                            <div class="caltext4"><?php echo to_currency(0) ?></div>
                         </div>
                         <div class="calculation2">
-                            <div class="caltext3">Delivery Fee : </div>
-                            <div class="caltext4">£0.00</div>
+                            <div class="caltext3"><?php echo $this->lang->line('online_cart_delivery_fee') ?></div>
+                            <div class="caltext4"><?php echo to_currency(0) ?></div>
                         </div>
-
                         <div class="calculation2">
-                            <div class="caltext3">TAX : </div>
+                            <div class="caltext3"><?php echo $this->lang->line('online_cart_tax') ?> </div>
                             <div class="caltext4">£0.00</div>
                         </div>
                         <div class="calculation">
-                            <div class="caltext1">Total : </div>
-                            <div class="caltext2">£0.00</div>
+                            <div class="caltext1"><?php echo $this->lang->line('online_cart_total') ?></div>
+                            <div class="caltext2"><?php echo to_currency(0) ?></div>
                         </div>
-                        <div><a href="checkout.html"><input type="submit" value="Checkout" class="checkoutbg"></a></div>
+                        <div><a href="checkout.html"><input type="submit" value="<?php echo $this->lang->line('online_cart_checkout') ?>" class="checkoutbg"></a></div>
                     </div>
                 </div>
             </div>

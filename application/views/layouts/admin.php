@@ -36,6 +36,6 @@
             </div>
         </div>
         <?php echo $template['partials']['notification'] ?>
+        <script type="text/javascript"></script>
     </body>
-
 </html>

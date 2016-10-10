@@ -1,7 +1,7 @@
 <div class="testifoodbg">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title text-center wow fadeInDown animated titlemainbg findmenubg" style="visibility: visible; animation-name: fadeInDown;">Find Our Manu</h2>
+            <h2 class="section-title text-center wow fadeInDown animated titlemainbg findmenubg" style="visibility: visible; animation-name: fadeInDown;"><?php echo $this->lang->line('homepage_rest_menu_glance')?></h2>
             <p class="text-center wow fadeInDown animated bottomtextbgmr" style="visibility: visible; animation-name: fadeInDown;">Lorem ipsum dolor sit amet, consectetur adipiscing elit quisque mattis lorem ex, in facilisis arcu lacinia vitae, proin porta molestie urna, rhoncusLorem ipsum dolor sit amet, consectetur adipiscing elit quisque mattis lorem ex, in facilisis arcu lacinia vitae, proin porta molestie urna, rhoncus</p>
         </div>
         <div class="row">

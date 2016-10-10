@@ -26,8 +26,11 @@ class Orderonline_Model extends MY_Model {
             CURLOPT_POSTFIELDS => $apiRequestedData,
             CURLOPT_FOLLOWLOCATION => true
         ));
+        $output = curl_exec($ch);
         do {
-            $output = curl_exec($ch);
+            if (empty($output)) {
+                $output = curl_exec($ch);
+            }
             return $output;
         } while (!empty($output));
         curl_close($ch);
@@ -36,16 +39,14 @@ class Orderonline_Model extends MY_Model {
     public function get_special_criteria($BaseId) {
         $ch = curl_init();
         curl_setopt_array($ch, array(
-            CURLOPT_URL => $this->config->item('restHost') . 'soloapi/get_special_criteria',
+            CURLOPT_URL => $this->config->item('api_host') . 'soloapi/get_special_criteria',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => array('BaseId'=>$BaseId),
+            CURLOPT_POSTFIELDS => array('BaseId' => $BaseId),
             CURLOPT_FOLLOWLOCATION => true
         ));
-        do {
-            $output = curl_exec($ch);
-            return $output;
-        } while (!empty($output));
+        $output = curl_exec($ch);
+        return $output;
         curl_close($ch);
     }
 

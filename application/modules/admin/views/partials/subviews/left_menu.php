@@ -23,6 +23,7 @@
                         </ul>
                     </li>
                     <li><a href="<?php echo site_url('admin/showcase')?>"><i class="fa fa-add"></i> <?php echo $this->lang->line('config_gallery')?></a></li>
+                    <li><a href="<?php echo site_url('admin/inbox')?>"> <i class="fa fa-envelope-o"></i><?php echo $this->lang->line('config_inbox')?></a></li>
                     
                     <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu" style="display: none">

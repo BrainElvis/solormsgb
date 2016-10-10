@@ -1,6 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+error_reporting(E_ALL);
 
 class Orderonline extends Site_Controller {
 
@@ -11,32 +12,30 @@ class Orderonline extends Site_Controller {
         $this->site_title = 'Solo Rms';
         $this->template->set_layout('public');
         $this->load->model('Orderonline_Model');
-        
-    
-        $apiRequestedData = array(
-            'restId' => $this->config->item('api_id'),
-            'restApiKey' => $this->config->item('api_key'),
-            'cusineName' => '',
-            'testcookie' => 1,
-            'restName' => $this->config->item('api_name'),
-            'restUrl' => $this->config->item('api_website'),
-            'restHost' => $this->config->item('api_host'),
-        );
-        $this->apiReponseData = $this->Orderonline_Model->get_api_data($apiRequestedData);
+        $this->load->model('Apimodel');
     }
 
     public function index() {
+        $data = [];
         $this->page_title = 'Online Order';
         $this->current_section = 'Order Online';
         $this->body_class[] = 'menu-order-online';
         $this->page_meta_keywords = 'Online,order, Restaurant';
         $this->page_meta_description = 'Online Order at Restaurant';
-        $data = [];
-        if (!empty($this->apiReponseData)) {
-            $apiData = $this->apiReponseData;
-            $data['apiData']=$apiData;
-        }
+        $apiData = $this->Apimodel->get_api_data();
+       // debugPrint($apiData);
+        $data['api_status'] = $apiData->status;
+        $data['api_message'] = $apiData->message;
+        $apiData = objectToArray($apiData->data);
+        //$apiData = $apiData->data;
+        $data['apiData'] = $apiData;
         $this->render_page('orderonline/index', $data);
+    }
+
+    public function test() {
+
+        $result = $this->Apimodel->get_test();
+        debugPrint($result);
     }
 
 }
