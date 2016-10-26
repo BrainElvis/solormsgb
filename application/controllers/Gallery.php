@@ -5,8 +5,8 @@ class Gallery extends Site_Controller {
         parent::__construct();
         $this->template->set_layout('public');
         $this->site_title = 'Solo Rms';
-        array_push($this->assets_css, 'gallery.css');
-        array_push($this->assets_js, 'gallery.js');
+        //array_push($this->assets_css, 'gallery.css');
+        //array_push($this->assets_js, 'gallery.js');
         $this->load->model('Gallery_Model');
     }
     public function index() {

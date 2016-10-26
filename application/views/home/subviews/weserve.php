@@ -23,7 +23,8 @@
                             if ($discount < 1) {
                                 $percent_discount = $discount * 100;
                                 $discount_string = (string) $percent_discount . "%";
-                            } else {
+                            }
+                            else {
                                 $fixed_discount = to_currency($discount);
                                 $discount_string = $fixed_discount;
                             }
@@ -48,6 +49,15 @@
                                 </strong>
                             </div>
                         <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="discount alizarin">
+                            <?php echo "No Discount avalable now"; ?>
+                        </div>
+                        <div class="descr">
+                            <strong>
+                                Please wait for our offer <br/>will get soon
+                            </strong>
+                        </div>
                     <?php endif; ?>
 
 
@@ -61,6 +71,13 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="coupon midnight-blue">
+                            <a data-toggle="collapse" href="#code-1" class="open-code"><?php echo $this->lang->line('homepage_get_a_code') ?></a>
+                            <div id="code-1" class="collapse code">
+                                No Vouchers Available Now
+                            </div>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -92,7 +109,7 @@
                     <h4 class="modal-title hourtitlebg"><?php echo $this->lang->line('homepage_head_popup_schedule') ?></h4>
                 </div>
                 <div class="modal-body hourtextbgli">
-                    <?php isset($rest_schedule) ? print $rest_schedule : print''; ?>
+                    <?php isset($rest_schedule) ? print $rest_schedule : print'Restaurant not configured correctly'; ?>
                 </div>
             </div>
         </div>

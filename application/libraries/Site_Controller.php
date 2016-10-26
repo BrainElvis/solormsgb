@@ -34,10 +34,15 @@ class Site_Controller extends MY_Controller {
         'font-awesome.min.css',
         'style.css',
         'responsive.css',
+        'colorbox.css',
+        'jquery.jscrollpane.css'
     );
     public $assets_js = array(
         'jquery.js',
+        'jquery.colorbox-min.js',
         'bootstrap.min.js',
+        'theia-sticky-sidebar.js',
+        'jquery.jscrollpane.min.js'
     );
     public $js_domready = array();
     /**

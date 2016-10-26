@@ -1,4 +1,5 @@
 <?php
+
 $lang['menu_home'] = "Home";
 $lang['menu_photogallery'] = "Photo Gallery";
 $lang['menu_online_order'] = "Online Order";
@@ -30,7 +31,7 @@ $lang['online_info_tab'] = "info";
 $lang['online_opening_time_tab'] = "opening hours";
 $lang['online_review_tab'] = "reviews";
 $lang['online_book_a_table_tab'] = "book a table";
-$lang['online_info_restaurant_overview']="RESTAURANT OVERVIEW";
+$lang['online_info_restaurant_overview'] = "RESTAURANT OVERVIEW";
 $lang["online_info_address"] = "Address";
 $lang["online_info_cuisines"] = "Cuisines";
 $lang["online_info_delivery_fee"] = "Delivery Fee";
@@ -52,13 +53,15 @@ $lang["online_cart_checkout"] = "Checkout";
 $lang["contact_address"] = "Contact Address";
 $lang["contact_fill_form"] = "Contact Form";
 $lang["contact_fill_form_overview"] = "Please feel free to send us your mesage,comments or any feedbacks";
-$lang["contact_textarea_holder"]="Write your message here...";
-$lang["contact_mail_sent_success"]="Thank you, we got your mail successfully";
-$lang["contact_mail_sent_failed"]="Sorry, There is some problems in sending mail. Please try again...";
-
-
-
-
+$lang["contact_textarea_holder"] = "Write your message here...";
+$lang["contact_mail_sent_success"] = "Thank you, we got your mail successfully";
+$lang["contact_mail_sent_failed"] = "Sorry, There is some problems in sending mail. Please try again...";
+$lang['res_close_day'] = 'It is not currently possible to order from this restaurant, Please check back soon.';
+$lang['res_pri_not'] = 'It is not currently possible to order from this restaurant, Please check back soon.';
+$lang['delivery_status'] = 'Delivery';
+$lang['collection_status'] = 'Pick Up';
+$lang['order_free']='Free';
+$lang['handling_fee_new']='Handling Fees:';
 
 
 

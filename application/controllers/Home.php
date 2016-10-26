@@ -36,17 +36,21 @@ class Home extends Site_Controller {
         }
         $restaurant_status = $this->data->get_rest_status();
         $rest_schedule = $this->data->get_rest_schedule();
-        if (!isset($restaurant_status) && !isset($rest_schedule)) {
+        if (!$restaurant_status && !$rest_schedule) {
             $this->data->clear_home_session();
             if ($this->config->item('home_promotime') == 'on') {
                 if ($this->data->get_rest_status() == '' || $this->data->get_rest_schedule() == '') {
                     $promotime = $this->Apimodel->get_promotime();
-                    $this->data->set_api_status($promotime->status);
-                    $this->data->set_api_message($promotime->message);
-                    $this->data->set_rest_status($promotime->data->restaurant_status);
-                    $this->data->set_rest_schedule($promotime->data->rest_schedule);
-                    $this->data->set_rest_promotion($promotime->data->rest_promotion);
-                    $this->data->set_rest_vouchers($promotime->data->rest_vouchers);
+                    if (isset($promotime->status) && isset($promotime->message)) {
+                        $this->data->set_api_status($promotime->status);
+                        $this->data->set_api_message($promotime->message);
+                    }
+                    if (!empty($promotime->data)) {
+                        $this->data->set_rest_status($promotime->data->restaurant_status);
+                        $this->data->set_rest_schedule($promotime->data->rest_schedule);
+                        $this->data->set_rest_promotion($promotime->data->rest_promotion);
+                        $this->data->set_rest_vouchers($promotime->data->rest_vouchers);
+                    }
                 }
             }
         }

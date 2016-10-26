@@ -62,7 +62,7 @@ class Data {
 
     function get_rest_promotion() {
         if (!$this->CI->session->userdata('rest_promotion'))
-            $this->set_cart(array());
+            $this->set_rest_promotion(array());
 
         return $this->CI->session->userdata('rest_promotion');
     }
@@ -77,7 +77,7 @@ class Data {
 
     function get_rest_vouchers() {
         if (!$this->CI->session->userdata('rest_vouchers'))
-            $this->set_cart(array());
+            $this->set_rest_vouchers(array());
 
         return $this->CI->session->userdata('rest_vouchers');
     }
@@ -149,7 +149,7 @@ class Data {
 
     public function get_cuisines() {
         if (!$this->CI->session->userdata('cuisines'))
-            $this->set_cart(array());
+            $this->set_cuisines(array());
 
         return $this->CI->session->userdata('cuisines');
     }
@@ -164,7 +164,7 @@ class Data {
 
     public function get_deliverypolicy() {
         if (!$this->CI->session->userdata('deliverypolicy'))
-            $this->set_cart(array());
+            $this->set_deliverypolicy(array());
 
         return $this->CI->session->userdata('deliverypolicy');
     }
@@ -179,7 +179,7 @@ class Data {
 
     public function get_deliveryarea() {
         if (!$this->CI->session->userdata('deliveryarea'))
-            $this->set_cart(array());
+            $this->set_deliveryarea(array());
 
         return $this->CI->session->userdata('deliveryarea');
     }
@@ -194,7 +194,7 @@ class Data {
 
     public function get_delarea() {
         if (!$this->CI->session->userdata('delarea'))
-            $this->set_cart(array());
+            $this->set_delarea(array());
 
         return $this->CI->session->userdata('delarea');
     }
@@ -209,7 +209,7 @@ class Data {
 
     public function get_schedule() {
         if (!$this->CI->session->userdata('schedule'))
-            $this->set_cart(array());
+            $this->set_schedule(array());
 
         return $this->CI->session->userdata('schedule');
     }
@@ -264,7 +264,186 @@ class Data {
     }
 
     public function clear_selections() {
+        $this->CI->session->unset_userdata('selection_category');
+    }
+
+    public function get_selection_category() {
+        if (!$this->CI->session->userdata('selection_category'))
+            $this->set_selection_category(array());
+
+        return $this->CI->session->userdata('selection_category');
+    }
+
+    public function set_selection_category($selection_category) {
+        $this->CI->session->set_userdata('selection_category', $selection_category);
+    }
+
+    public function clear_selection_category() {
         $this->CI->session->unset_userdata('selections');
+    }
+
+    public function get_selcategory() {
+        if (!$this->CI->session->userdata('selcategory'))
+            $this->set_selcategory(array());
+
+        return $this->CI->session->userdata('selcategory');
+    }
+
+    public function set_selcategory($selcategory) {
+        $this->CI->session->set_userdata('selcategory', $selcategory);
+    }
+
+    public function clear_selcategory() {
+        $this->CI->session->unset_userdata('selcategory');
+    }
+
+    public function get_cities() {
+        if (!$this->CI->session->userdata('cities'))
+            $this->set_cities(array());
+
+        return $this->CI->session->userdata('cities');
+    }
+
+    public function set_cities($cities) {
+        $this->CI->session->set_userdata('cities', $cities);
+    }
+
+    public function clear_cities() {
+        $this->CI->session->unset_userdata('cities');
+    }
+
+    public function get_areas() {
+        if (!$this->CI->session->userdata('areas'))
+            $this->set_areas(array());
+
+        return $this->CI->session->userdata('areas');
+    }
+
+    public function set_areas($areas) {
+        $this->CI->session->set_userdata('areas', $areas);
+    }
+
+    public function clear_areas() {
+        $this->CI->session->unset_userdata('areas');
+    }
+
+    public function get_policy() {
+        if (!$this->CI->session->userdata('policy'))
+            $this->set_policy(array());
+
+        return $this->CI->session->userdata('policy');
+    }
+
+    public function set_policy($policy) {
+        $this->CI->session->set_userdata('policy', $policy);
+    }
+
+    public function clear_policy() {
+        $this->CI->session->unset_userdata('policy');
+    }
+
+    public function get_globaldiscount() {
+        if (!$this->CI->session->userdata('globaldiscount'))
+            $this->set_globaldiscount(array());
+
+        return $this->CI->session->userdata('globaldiscount');
+    }
+
+    public function set_globaldiscount($globaldiscount) {
+        $this->CI->session->set_userdata('globaldiscount', $globaldiscount);
+    }
+
+    public function clear_globaldiscount() {
+        $this->CI->session->unset_userdata('globaldiscount');
+    }
+
+    public function get_menu_attributes_collection() {
+        if (!$this->CI->session->userdata('menu_attributes_collection'))
+            $this->set_menu_attributes_collection(array());
+
+        return $this->CI->session->userdata('menu_attributes_collection');
+    }
+
+    public function set_menu_attributes_collection($menu_attributes_collection) {
+        $this->CI->session->set_userdata('menu_attributes_collection', $menu_attributes_collection);
+    }
+
+    public function clear_menu_attributes_collection() {
+        $this->CI->session->unset_userdata('menu_attributes_collection');
+    }
+
+    public function get_special_criteria_details() {
+        if (!$this->CI->session->userdata('special_criteria_details'))
+            $this->set_policy(array());
+
+        return $this->CI->session->userdata('special_criteria_details');
+    }
+
+    public function set_special_criteria_details($special_criteria_details) {
+        $this->CI->session->set_userdata('special_criteria_details', $special_criteria_details);
+    }
+
+    public function clear_special_criteria_details() {
+        $this->CI->session->unset_userdata('special_criteria_details');
+    }
+
+    public function get_menu_base() {
+        if (!$this->CI->session->userdata('menu_base'))
+            $this->set_menu_base(array());
+
+        return $this->CI->session->userdata('menu_base');
+    }
+
+    public function set_menu_base($menu_base) {
+        $this->CI->session->set_userdata('menu_base', $menu_base);
+    }
+
+    public function clear_menu_base() {
+        $this->CI->session->unset_userdata('menu_base');
+    }
+
+    public function get_menu_selection() {
+        if (!$this->CI->session->userdata('menu_selection'))
+            $this->set_menu_selection(array());
+
+        return $this->CI->session->userdata('menu_selection');
+    }
+
+    public function set_menu_selection($menu_selection) {
+        $this->CI->session->set_userdata('menu_selection', $menu_selection);
+    }
+
+    public function clear_menu_selection() {
+        $this->CI->session->unset_userdata('menu_selection');
+    }
+
+    public function get_menu_attributes_configuration() {
+        if (!$this->CI->session->userdata('menu_attributes_configuration'))
+            $this->set_menu_attributes_configuration(array());
+         return $this->CI->session->userdata('menu_attributes_configuration');
+    }
+
+    public function set_menu_attributes_configuration($menu_attributes_configuration) {
+        $this->CI->session->set_userdata('menu_attributes_configuration', $menu_attributes_configuration);
+    }
+
+    public function clear_menu_attributes_configuration() {
+        $this->CI->session->unset_userdata('menu_attributes_configuration');
+    }
+    
+     public function get_raw_openingtime() {
+        if (!$this->CI->session->userdata('raw_openingtime'))
+            $this->set_raw_openingtime(array());
+
+        return $this->CI->session->userdata('raw_openingtime');
+    }
+
+    public function set_raw_openingtime($raw_openingtime) {
+        $this->CI->session->set_userdata('raw_openingtime', $raw_openingtime);
+    }
+
+    public function clear_raw_openingtime() {
+        $this->CI->session->unset_userdata('raw_openingtime');
     }
 
     function clear_home_session() {
@@ -289,6 +468,15 @@ class Data {
         $this->clear_categories();
         $this->clear_bases();
         $this->clear_selections();
+        $this->clear_cities();
+        $this->clear_areas();
+        $this->clear_policy();
+        $this->clear_globaldiscount();
+        $this->clear_menu_base();
+        $this->clear_menu_selection();
+        $this->clear_menu_attributes_collection();
+        $this->clear_menu_attributes_configuration();
+        $this->clear_special_criteria_details();
     }
 
 }

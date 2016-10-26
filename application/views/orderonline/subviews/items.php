@@ -248,10 +248,10 @@
                                                                         <?php endif; ?>
                                                                     <?php endif; ?>
                                                                     <?php if (($restaurant_status == 1) && (count($order_policy) >= 2 || (count($order_policy) == 1 && $order_policy [0] ['PolicyId'] != 3)) && $pre_hide_status == 0) : ?>
-                                                                        <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, 0, "<?= $basePriceForSecondaryItem ?>&<?= $discountForSecondaryItem ?>")'  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
+                                                                        <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, 0, "<?= $basePriceForSecondaryItem ?>&<?= $discountForSecondaryItem ?>")'  ><img src="<?= ASSETS_SITE_IMAGE_PATH. 'menuplus.png'?>" alt="ADD TO CART" title="ADD TO CART" /></a></span>
                                                                     <?php else : ?>
                                                                         <span class="itembasket">
-                                                                            <a  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a>
+                                                                            <a  onclick="alert('Restaurant is closed. No order taken now')"><img src="<?= ASSETS_SITE_IMAGE_PATH. 'menuplus.png'?>" alt="ADD TO CART" title="ADD TO CART" /></a>
                                                                         </span>
                                                                     <?php endif; ?>
                                                                 <?php endif; ?>
@@ -315,10 +315,10 @@
                                                                                         <span class="itemprice"><?= to_currency($printdiscout) ?></span>
                                                                                     <?php endif; ?>
                                                                                     <?php if (($restaurant_status == 1) && (count($order_policy) >= 2 || (count($order_policy) == 1 && $order_policy [0]['PolicyId'] != 3)) && $pre_hide_status == 0) : ?>
-                                                                                        <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, <?= $selection ['SelectionId'] ?>, "<?= $baseselprice ?>&<?= $seldiscount ?>")'  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
+                                                                                        <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, <?= $selection ['SelectionId'] ?>, "<?= $baseselprice ?>&<?= $seldiscount ?>")'  ><img src="<?= ASSETS_SITE_IMAGE_PATH. 'menuplus.png'?>" alt="ADD TO CART" title="ADD TO CART" /></a></span>
                                                                                     <?php else: ?>
                                                                                         <span class="itembasket">
-                                                                                            <a  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a>
+                                                                                            <a onclick="alert('Restaurant is closed. No order taken now')"><img src="<?= ASSETS_SITE_IMAGE_PATH. 'menuplus.png'?>" alt="ADD TO CART" title="ADD TO CART" /></a>
                                                                                         </span>
                                                                                     <?php endif; ?>
                                                                                 </div>
@@ -348,16 +348,16 @@
                                                                 <?php if ($base['IsSpecial'] == 1): ?>
 
                                                                     <?php if (($restaurant_status == 1) && (count($order_policy) >= 2 || (count($order_policy) == 1 && $order_policy [0]['PolicyId'] != 3)) && $pre_hide_status == 0): ?>
-                                                                        <span class="itembasket"><a onclick='addspecialtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, 0, "<?= $base['BasePrice'] ?>&<?= $basediscount ?>")'  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
+                                                                        <span class="itembasket"><a onclick='addspecialtocart("",<?= $base ['CatId'] ?>,<?= $base ['BaseId'] ?>, 0, "<?= $base['BasePrice'] ?>&<?= $basediscount ?>")'  ><img src="<?= ASSETS_SITE_IMAGE_PATH. 'menuplus.png'?>" alt="ADD TO CART" title="ADD TO CART" /></a></span>
                                                                     <?php else: ?>
-                                                                        <span class="itembasket"><a  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
+                                                                        <span class="itembasket"><a onclick="alert('Restaurant is closed. No order taken now')" ><img src="<?= ASSETS_SITE_IMAGE_PATH. 'menuplus.png'?>" alt="ADD TO CART" title="ADD TO CART" /></a></span>
                                                                     <?php endif; ?>
 
                                                                 <?php else: ?>
                                                                     <?php if (($restaurant_status == 1) && (count($order_policy) >= 2 || (count($order_policy) == 1 && $order_policy [0]['PolicyId'] != 3)) && $pre_hide_status == 0): ?>
-                                                                        <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base['BaseId'] ?>, 0, "<?= $base ['BasePrice'] ?>&<?= $basediscount ?>")'  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>
+                                                                        <span class="itembasket"><a onclick='addtocart("",<?= $base ['CatId'] ?>,<?= $base['BaseId'] ?>, 0, "<?= $base ['BasePrice'] ?>&<?= $basediscount ?>")'  ><img src="<?= ASSETS_SITE_IMAGE_PATH. 'menuplus.png'?>" alt="ADD TO CART" title="ADD TO CART" /></a></span>
                                                                     <?php else: ?>
-                                                                        <span class="itembasket"><a  ><img src="<?= $this->config->item('api_host') ?>assets/images/menuplus.png" alt="" title="" /></a></span>        
+                                                                        <span class="itembasket"><a onclick="alert('Restaurant is closed. No order taken now')"><img src="<?= ASSETS_SITE_IMAGE_PATH. 'menuplus.png'?>" alt="ADD TO CART" title="ADD TO CART" /></a></span>        
                                                                     <?php endif; ?>
                                                                 <?php endif; ?>
                                                                 <span class="itemdescription"><?php isset($base->BaseDesc) ? print html_entity_decode($base->BaseDesc, ENT_QUOTES) : print '' ?></span>
@@ -379,47 +379,10 @@
                 </div>
             </div>
             <div class="col-md-3 yourorderbg">
-                <div style="position: relative; min-height: 0px;" id="scolling-content-cart" class="content-cartspan">
-                    <div class="mycart theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; top: 0px;">
-                        <div class="cartheading">
-                            <div class="cartheading_text"><?php echo $this->lang->line('online_cart_your_ordeer') ?></div>
-                            <!--<h2><a href="javascript:void(0);" onclick="cancelcart();">Empty</a></h2>-->
-                        </div>
-                        <div class="cartdelpick">
-                            <ul>
-                                <li>
-                                    <span class="delpick">
-                                        <span><input type="radio" onclick="" id="delivery_type"  value="2" name="deliverytype"><?php echo $this->lang->line('online_cart_delivery') ?></span>
-                                        <span><input type="radio" onclick="" id="collection_type" value="1" name="deliverytype"><?php echo $this->lang->line('online_cart_pickup') ?></span>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="cartscroll" style="overflow: hidden; padding: 0px; width: 270px;">
-                            <div class="jspContainer" style="width: 269px; height: 0px;"><div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 269px;"></div></div>
-                        </div>
-                        <div class="calculation">
-                            <div class="caltext1"><?php echo $this->lang->line('online_cart_sub_total') ?></div>
-                            <div class="caltext2"><?php echo to_currency(0) ?></div>
-                        </div>
-                        <div class="calculation2">
-                            <div class="caltext3"><?php echo $this->lang->line('online_cart_discount') ?> </div>
-                            <div class="caltext4"><?php echo to_currency(0) ?></div>
-                        </div>
-                        <div class="calculation2">
-                            <div class="caltext3"><?php echo $this->lang->line('online_cart_delivery_fee') ?></div>
-                            <div class="caltext4"><?php echo to_currency(0) ?></div>
-                        </div>
-                        <div class="calculation2">
-                            <div class="caltext3"><?php echo $this->lang->line('online_cart_tax') ?> </div>
-                            <div class="caltext4">£0.00</div>
-                        </div>
-                        <div class="calculation">
-                            <div class="caltext1"><?php echo $this->lang->line('online_cart_total') ?></div>
-                            <div class="caltext2"><?php echo to_currency(0) ?></div>
-                        </div>
-                        <div><a href="checkout.html"><input type="submit" value="<?php echo $this->lang->line('online_cart_checkout') ?>" class="checkoutbg"></a></div>
-                    </div>
+                 <div class="content-cartspan" id="scolling-content-cart" style="position: relative; min-height: 0px;">
+                <!--<div style="position: relative; min-height: 0px;" id="scolling-content-cart" class="content-cartspan">-->
+                    <?php echo $showcartdata; ?>
+                    <input type="hidden" value="" id="generationId" name="generationId">  
                 </div>
             </div>
         </div>

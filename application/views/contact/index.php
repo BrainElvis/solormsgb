@@ -1,5 +1,4 @@
 <!-------------------------------------- Contact Page --------------------------------------->
-<?php debugPrint($this->session->userdata('contact_data')) ?>
 <div class="container contactbg">
     <div class="row">
         <div class="col-md-4">
