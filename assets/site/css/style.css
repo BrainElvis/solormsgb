@@ -7117,11 +7117,6 @@ footer {
     font-size: 11px;
     padding: 15px 0;
 }
-.modal-header2 {
-    background: #66ad45 none repeat scroll 0 0;
-    border-bottom: 2px solid #468d25;
-    padding: 1px 0 14px;
-}
 .close2 {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
@@ -7220,15 +7215,6 @@ footer {
     .fl-page .btn-download { float: none; margin-bottom: 1em; }
 }	
 
-.modal-content {
-    background-clip: padding-box;
-    background-color: #fff;
-    border: 15px solid #000;
-    border-radius: 0;
-    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-    outline: 0 none;
-    position: relative;
-}
 .modal-title2 {
     font-family: arial;
     font-size: 24px;
@@ -7340,13 +7326,6 @@ footer {
     overflow: hidden;
     padding: 20px;
 }
-#form-section1 p {
-    border-bottom: 1px dashed #2d3538;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 15px 0;
-    padding-bottom: 15px;
-}
 span.register-numbering {
     background-color: #a7e902;
     border-radius: 3px;
@@ -7354,72 +7333,13 @@ span.register-numbering {
     margin-right: 10px;
     padding: 2px 8px;
 }
-span.register-numbering-text {
-    color: #000;
-    text-transform: uppercase;
-}
 #form-section1 li {
     list-style: outside none none;
 }
 #form-section1 li label {
     list-style: outside none none;
 }
-.left-column {
-    float: left;
-    width: 48%;
-}
-#form-section1 label span {
-    color: #000;
-    cursor: pointer;
-    display: block;
-    font-size: 14px;
-    font-weight: normal;
-    margin: 5px 0;
-    width: 400px;
-}
-#form-section1 input {
-    border: 1px solid #cdd8dc;
-    color: #5f5f5f;
-    font-size: 13px;
-    margin: 0 0 6px;
-    padding: 9px 5%;
-    width: 100%;
-}
-.right-column {
-    float: right;
-    width: 48%;
-}
-#form-section1 select {
-    border: 1px solid #cdd8dc;
-    color: #b0b0b0;
-    font-size: 13px;
-    margin: 0 0 5px;
-    padding: 8px 2%;
-    width: 96%;
-}
-#form-section1 button[type="submit"] {
-    background: #1d84e0 none repeat scroll 0 0;
-    border: medium none;
-    border-radius: 3px;
-    box-shadow: 0 3px 0 #0054b0;
-    color: #fff;
-    cursor: pointer;
-    display: block;
-    font-size: 14px;
-    height: 48px;
-    line-height: 36px;
-    margin: 20px 0 5px;
-    width: 100%;
-}
-#form-section1 input[type="checkbox"] {
-    background: #2d3538 none repeat scroll 0 0;
-    border: 1px solid #3d484c;
-    color: #ffffff;
-    font-size: 13px;
-    margin: 0 0 5px;
-    padding: 8px 2%;
-    width: auto;
-}
+
 
 .first-leftpart h3  { font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#000; font-weight:normal; text-transform:uppercase;}
 .first-leftpart ul li {
@@ -12675,6 +12595,7 @@ Responsive Popup ends -------------------*/
   text-decoration: none;
 }
 .input_format1 {
+  color: #000;
   height: 30px;
   width: 100%;
 }
@@ -12682,12 +12603,12 @@ textarea.qty_text {
   border: 1px solid #dddddd;
   border-radius: 4px;
   color: #666666;
-  font-size: 16px;
-  font-weight: bolder;
+  font-size: 12px;
+  font-weight: normal;
   height: 75px;
   margin: 0 15px 0 0;
   padding: 3px;
-  text-align: center;
+  text-align: left;
   width: 30px;
 }
 #popup_new1 {
@@ -12696,4 +12617,7 @@ textarea.qty_text {
 }
 #popup_new1 ul li{
     list-style: none;
+}
+.paymentarea .additional-textarea {
+  height: auto;
 }

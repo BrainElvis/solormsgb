@@ -9,12 +9,13 @@
             <div class="loginmodal-container">
                 <h1>Login to Your Account</h1><br>
                 <form>
-                    <input type="text" placeholder="Username" name="user">
-                    <input type="password" placeholder="Password" name="pass">
-                    <input type="submit" value="Login" class="login loginmodal-submit" name="login">
+                    <input type="text" placeholder="Username" name="login" id="loginCustEmail">
+                    <input type="password" placeholder="Password" name="loginCustPassword" id="loginCustPassword">
+                    <input type="hidden" name="isPopup" id="isPopup" value="yes"/>
+                    <div class="btn btn-success"  onclick="login();">Login</div>
                 </form>
                 <div class="login-help">
-                    <a href="#">Register</a> - <a href="#">Forgot Password</a>
+                    <a href="#" data-toggle="modal" data-target="#registration"><?php echo $this->lang->line('menu_register') ?></a> - <a href="#">Forgot Password</a>
                 </div>
             </div>
         </div>

@@ -39,14 +39,16 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
-            return json_decode($output);
-            //debugPrint($output);
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             curl_close($ch);
+            return json_decode($output);
         }
     }
 
@@ -62,15 +64,16 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
-            return json_decode($output);
-            //debugPrint($output);
-            //exit();
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             curl_close($ch);
+            return json_decode($output);
         }
     }
 
@@ -89,13 +92,16 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
-            return $output;
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             curl_close($ch);
+            return $output;
         }
     }
 
@@ -114,13 +120,16 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
-            return $output;
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             curl_close($ch);
+            return $output;
         }
     }
 
@@ -137,13 +146,16 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
-            return $output;
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             curl_close($ch);
+            return $output;
         }
     }
 
@@ -159,11 +171,14 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             return json_decode($output);
             curl_close($ch);
         }
@@ -182,11 +197,14 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             return json_decode($output);
             curl_close($ch);
         }
@@ -227,11 +245,14 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             return json_decode($output);
             curl_close($ch);
         }
@@ -240,7 +261,8 @@ class Apimodel extends CI_Model {
     function rearrange_cart_item() {
         if (isset($this->session->userdata['cart'])) {
             
-        } else {
+        }
+        else {
             return;
         }
         $baseitem = $this->session->userdata('cart');
@@ -260,7 +282,8 @@ class Apimodel extends CI_Model {
         if (strpos($baseitem[$lastindex_base], "@") === false) {
             $issp = 0;
             $last_base_genid = substr($baseitem[$lastindex_base], strrpos($baseitem[$lastindex_base], "/") + 1);
-        } else {
+        }
+        else {
             $issp = 1;
             $last_base_genid = substr($baseitem[$lastindex_base], strrpos($baseitem[$lastindex_base], "@") + 1);
         }
@@ -270,7 +293,8 @@ class Apimodel extends CI_Model {
             $sel_arr = $total_sel_arr[1];
             $sel_val_arr = $total_sel_arr[2];
             $exp_sel = explode(":", $sel_val_arr);
-        } else
+        }
+        else
             $total_sel = 0;
         $total_attr_arr = $this->attribute_count($baseitem[$lastindex_base]);
         $total_attr = $total_attr_arr[0];
@@ -282,7 +306,8 @@ class Apimodel extends CI_Model {
             $baseitem[$lastindex_base] = $samegenid;
             $session_data['cart'] = $baseitem;
             $this->session->set_userdata($session_data);
-        } else if ($total_sel == 0 && $total_attr > 0) {
+        }
+        else if ($total_sel == 0 && $total_attr > 0) {
             $samegenid = "";
             $found = 0;
             foreach ($baseitem as $key => $val) {
@@ -290,7 +315,8 @@ class Apimodel extends CI_Model {
                     if (strpos($baseitem[$lastindex_base], $val) === false) {
                         continue;
                     }
-                } else {
+                }
+                else {
                     if (strpos($val, $baseitem[$lastindex_base]) == 0)
                         continue;
                 }
@@ -313,7 +339,8 @@ class Apimodel extends CI_Model {
                 $session_data['cart'] = $baseitem;
                 $this->session->set_userdata($session_data);
             }
-        } else if ($total_sel > 0 && $total_attr == 0) {
+        }
+        else if ($total_sel > 0 && $total_attr == 0) {
             $samegenid = "";
             $found = 0;
             foreach ($baseitem as $key => $val) {
@@ -321,7 +348,8 @@ class Apimodel extends CI_Model {
                     if (strpos($baseitem[$lastindex_base], $val) === false) {
                         continue;
                     }
-                } else {
+                }
+                else {
                     if (strpos($val, $baseitem[$lastindex_base]) == 0) {
                         if ($this->reference1ForAttr($val) == 0) {
                             continue;
@@ -351,7 +379,8 @@ class Apimodel extends CI_Model {
                     $this->session->set_userdata($session_data);
                 }
             }
-        } else if ($total_sel > 0 && $total_attr > 0) {
+        }
+        else if ($total_sel > 0 && $total_attr > 0) {
             $samegenid = "";
             $found = 0;
             foreach ($baseitem as $key => $val) {
@@ -359,7 +388,8 @@ class Apimodel extends CI_Model {
                     if (strpos($baseitem[$lastindex_base], $val) === false) {
                         continue;
                     }
-                } else {
+                }
+                else {
                     if (strpos($val, $baseitem[$lastindex_base]) == 0) {
                         if ($this->reference2ForAttrMatching($baseitem[$lastindex_base], $val) > '0') {
                             continue;
@@ -407,7 +437,8 @@ class Apimodel extends CI_Model {
         foreach ($selitem as $key => $val) {
             if (strpos($key, $newgen) === false || strpos($key, $newgen) > 0) {
                 continue;
-            } else {
+            }
+            else {
                 array_push($arr, $key);
                 foreach ($val as $nkey => $nval) {
                     $count++;
@@ -432,7 +463,8 @@ class Apimodel extends CI_Model {
         foreach ($attritem as $key => $val) {
             if (strpos($val, $genid) === false || strpos($val, $genid) > 0) {
                 continue;
-            } else {
+            }
+            else {
                 $count++;
                 array_push($arr, $key);
                 if ($count > 1)
@@ -489,7 +521,8 @@ class Apimodel extends CI_Model {
                 $arrayHashes[$hash] = $hash;
                 if ($preserveKeys) {
                     $arrayRewrite[$key] = $item;
-                } else {
+                }
+                else {
                     $arrayRewrite[] = $item;
                 }
             }
@@ -502,7 +535,8 @@ class Apimodel extends CI_Model {
         foreach ($attritem as $key => $val) {
             if (strpos($val, $oldgen) === false) {
                 continue;
-            } else {
+            }
+            else {
                 if (strpos($val, $oldgen) == 0) {
                     
                 }
@@ -520,7 +554,8 @@ class Apimodel extends CI_Model {
             $c++;
             if (strpos($attr, $baseitemIndex) === false) {
                 
-            } else {
+            }
+            else {
                 if (strpos($attr, $baseitemIndex) == 0) {
                     $countattr++;
                 }
@@ -536,7 +571,8 @@ class Apimodel extends CI_Model {
         foreach ($attritem as $attr) {
             if (strpos($attr, $baseitemIndex) === false) {
                 
-            } else {
+            }
+            else {
                 if (strpos($attr, $baseitemIndex) == 0) {
                     $data = explode("|", $attr);
                     $retdata .= end($data) . ':';
@@ -551,7 +587,8 @@ class Apimodel extends CI_Model {
         foreach ($attritem as $attr) {
             if (strpos($attr, $val) === false) {
                 
-            } else {
+            }
+            else {
                 if (strpos($attr, $val) == 0) {
                     $data1 = explode("|", $attr);
                     $retdata1 .= end($data1) . ':';
@@ -563,7 +600,8 @@ class Apimodel extends CI_Model {
         $common = array_intersect($retdata00, $retdata11);
         if ((count($retdata00) == count($common)) && (count($retdata11) == count($common))) {
             return count($common);
-        } else {
+        }
+        else {
             return '0';
         }
     }
@@ -573,7 +611,8 @@ class Apimodel extends CI_Model {
         foreach ($attritem as $key => $val) {
             if (strpos($val, $oldgen) === false) {
                 continue;
-            } else {
+            }
+            else {
                 if (strpos($val, $oldgen) == 0) {
                     $existence = $this->referenceCartExistence($oldgen);
                     if ($existence == '1') {
@@ -592,7 +631,8 @@ class Apimodel extends CI_Model {
         foreach ($selitem as $key => $val) {
             if (strpos($key, $newgen) === false) {
                 continue;
-            } else {
+            }
+            else {
                 if (strpos($key, $newgen) == 0) {
                     unset($selitem[$key]);
                 }
@@ -614,7 +654,8 @@ class Apimodel extends CI_Model {
         $id = $this->input->post('deliveryid');
         if ($id == 3) {
             return '1';
-        } else {
+        }
+        else {
             $raw_openingtime = array();
             if ($this->session->userdata('raw_openingtime')) {
                 $raw_openingtime = $this->session->userdata('raw_openingtime');
@@ -622,10 +663,10 @@ class Apimodel extends CI_Model {
                     if ($rot->PolicyId == $id && $rot->WeekDay == strtolower((date('D')))) {
                         $rotRow = $rot;
                         if (!$rotRow && $id == 2) {
-                            return  'Delivery';
+                            return 'Delivery';
                         }
                         if (!$rotRow && $id == 1) {
-                            return  'Pick Up';
+                            return 'Pick Up';
                         }
                     }
                 }
@@ -704,13 +745,16 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
-            return  json_decode($output);
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             curl_close($ch);
+            return json_decode($output);
         }
     }
 
@@ -727,11 +771,14 @@ class Apimodel extends CI_Model {
         $output = curl_exec($ch);
         if (empty($output)) {
             $hitcounter = 1;
-            do {
+            do
+                {
                 $output = curl_exec($ch);
                 $hitcounter++;
-            } while (!empty($output) || $hitcounter < 3);
-        } else {
+                }
+            while (!empty($output) || $hitcounter < 3);
+        }
+        else {
             echo json_decode($output);
             curl_close($ch);
         }
@@ -754,6 +801,91 @@ class Apimodel extends CI_Model {
             }
         }
         return $val_arr;
+    }
+
+    public function customer_resgistration($data) {
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $this->config->item('api_host') . 'api/customer_resgistration',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_FOLLOWLOCATION => true
+        ));
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+    }
+
+    public function activate($data) {
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $this->config->item('api_host') . 'api/activate',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_FOLLOWLOCATION => true
+        ));
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+    }
+
+    //Customer Address Book
+    function update_primary_address($data) {
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $this->config->item('api_host') . 'api/update_primary_address/' . $id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_FOLLOWLOCATION => true
+        ));
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+    }
+
+    function add_address($data) {
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $this->config->item('api_host') . 'api/add_address',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_FOLLOWLOCATION => true
+        ));
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+    }
+
+    function update_address($data) {
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $this->config->item('api_host') . 'api/update_address/',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_FOLLOWLOCATION => true
+        ));
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+    }
+
+    function delete_address($data) {
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $this->config->item('api_host') . 'api/delete_address/',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_FOLLOWLOCATION => true
+        ));
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
     }
 
 }

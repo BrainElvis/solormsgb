@@ -1,5 +1,4 @@
 <?php
-
 $lang["config_address"] = "Restaurant Address";
 $lang["config_address_required"] = "Restaurant address is a required field";
 $lang["config_backup_button"] = "Backup";
@@ -103,7 +102,6 @@ $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
 $lang[''] = "";
-
 $lang["config_saved_successfully"] = "Configuration saved successfully";
 $lang["config_saved_unsuccessfully"] = "Configuration saved unsuccessfully";
 

@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+$lang["common_address"] = "Address";
+$lang["common_area"] = "Area";
 $lang["common_address_1"] = "Address 1";
 $lang["common_address_2"] = "Address 2";
 $lang["common_city"] = "City";
@@ -12,7 +15,7 @@ $lang["common_print"] = "Print";
 $lang["common_det"] = "details";
 $lang["common_edit"] = "edit";
 $lang["common_email"] = "Email";
- $lang["common_message"] = "Message";
+$lang["common_message"] = "Message";
 $lang["common_email_invalid_format"] = "The email address is not in the proper format";
 $lang["common_fields_required_message"] = "Fields in red are required";
 $lang["common_first_name"] = "First Name";
@@ -33,6 +36,7 @@ $lang["common_new"] = "New";
 $lang["common_no_persons_to_display"] = "There are no people to display";
 $lang["common_or"] = "OR";
 $lang["common_phone_number"] = "Phone";
+$lang["common_mobile_number"] = "Mobile";
 $lang["common_phone_number_required"] = "";
 $lang["common_please_visit_my"] = "Please visit my";
 $lang["common_powered_by"] = "Powered by";
@@ -50,7 +54,7 @@ $lang["common_website"] = "website";
 $lang["common_welcome"] = "Welcome";
 $lang["common_welcome_message"] = "Welcome to Fortuna Cash & Carry, click an Icon below to get started!";
 $lang["common_you_are_using_ospos"] = "You are using Gk Online Cash And Carry System";
-$lang["common_zip"] = "Zip";
+$lang["common_postcode"] = "Postcode";
 $lang["common_import"] = "Import";
 $lang["common_download_import_template"] = "Download Import Excel Template (CSV)";
 $lang["common_import_excel"] = "Excel Import";
@@ -62,3 +66,5 @@ $lang["common_export_excel"] = "Excel Export";
 $lang["common_export_excel_yes"] = "Yes";
 $lang["common_export_excel_no"] = "No";
 $lang["common_required"] = "Required";
+$lang['common_password'] = "Password";
+$lang['common_confirm_password'] = "Confirm Password";

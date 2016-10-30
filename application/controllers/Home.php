@@ -34,6 +34,7 @@ class Home extends Site_Controller {
         if ($this->config->item('home_testimonials') == 'on') {
             $this->template->set_partial('home_testimonials', 'home/subviews/testimonials');
         }
+        //$this->data->clear_home_session();
         $restaurant_status = $this->data->get_rest_status();
         $rest_schedule = $this->data->get_rest_schedule();
         if (!$restaurant_status && !$rest_schedule) {
@@ -50,6 +51,8 @@ class Home extends Site_Controller {
                         $this->data->set_rest_schedule($promotime->data->rest_schedule);
                         $this->data->set_rest_promotion($promotime->data->rest_promotion);
                         $this->data->set_rest_vouchers($promotime->data->rest_vouchers);
+                        $this->data->set_cities($promotime->data->cities);
+                        $this->data->set_areas($promotime->data->areas);
                     }
                 }
             }

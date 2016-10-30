@@ -62,6 +62,25 @@ $lang['delivery_status'] = 'Delivery';
 $lang['collection_status'] = 'Pick Up';
 $lang['order_free']='Free';
 $lang['handling_fee_new']='Handling Fees:';
+/*Registration form specific language*/
+$lang['registration_header_title']='Registration Form';
+$lang['registration_basic_info']="Basic Information";
+$lang['registration_success']="Your registration has been completed. Please check your email for further details.";
+$lang['registration_location_details']="Location Details";
+$lang['registration_account_credential']="Account Credentials";
+$lang['select_zone']="Select Your Zone...";
+$lang['ip_blocked']='Your IP is now blocked';
+$lang['email_blocked']='Your Email is now blocked';
+$lang['phone_blocked']='Your Telephone is now blocked';
+$lang['ip_email_phone_blocked']=' Your IP, Email and Telephone is now blocked';
+$lang['ip_phone_blocked']='Your IP and Telephone is now blocked';
+$lang['ip_email_blocked']='Your IP and Email is now blocked';
+$lang['phone_email_blocked']='Your Email and Telephone is now blocked';
+$lang['account_suspended']='Your account is now suspended';
+$lang['invalid_user_pass']='Invalid user name or password!';
+$lang['error_mess']='No user exists with the email';
+$lang['empty_email']='Email is a required field!, Please enter valid email address';
+$lang['pass_subject_mess1'] = 'password request!';
 
 
 

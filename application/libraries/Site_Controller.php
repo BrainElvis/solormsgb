@@ -35,14 +35,18 @@ class Site_Controller extends MY_Controller {
         'style.css',
         'responsive.css',
         'colorbox.css',
-        'jquery.jscrollpane.css'
+        'jquery.jscrollpane.css',
+        'login/css/loginform1.css'
     );
     public $assets_js = array(
         'jquery.js',
         'jquery.colorbox-min.js',
         'bootstrap.min.js',
         'theia-sticky-sidebar.js',
-        'jquery.jscrollpane.min.js'
+        'jquery.jscrollpane.min.js',
+        'jquery.mobilemenu.js',
+        'custom.js',
+        'login_script.js'
     );
     public $js_domready = array();
     /**

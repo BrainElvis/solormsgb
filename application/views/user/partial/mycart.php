@@ -14,8 +14,7 @@ if ($this->session->userdata('deliverypolicy')) {
 
 if (!$this->session->userdata('customer')) {
     $page = base_url() . 'user/login/';
-}
-else {
+} else {
     $page = base_url() . 'user/checkout/';
 }
 $deliverytype = 1;
@@ -106,8 +105,7 @@ $total_tax = 0.0;
                         if ($ord_plc[0]->PolicyId == 1) {
                             ?> Pick up only  <?php } ?>
                         <?php if ($ord_plc[0]->PolicyId == 2) { ?> Delivery Only  <a href='javascript:void(0)' onclick='changePostcode(2, "<?= $this->config->item('api_id') ?>", 0)'  title='Change Area' class='edit-icon'></a><?php } ?>
-                    <?php }
-                    else { ?>
+                    <?php } else { ?>
                         <?php
                         $clck = '';
                         $dvck = '';
@@ -118,11 +116,12 @@ $total_tax = 0.0;
                             $dvck = 'checked';
                         }
                         ?>
-    <?php isset($areaid) ? $areaid = $areaid : $areaid = '' ?>
-                        <input type='radio' name='deliverytype' value='2' <?= $dvck ?> id='delivery_type' onclick='changemenucard(2, "<?= $this->config->item('api_id') ?>", "<?= $areaid ?>")' /><?= $this->lang->line('delivery_status') ?> 
+                        <?php isset($areaid) ? $areaid = $areaid : $areaid = '' ?>
+                        <!--<input type='radio' name='deliverytype' value='2' <?= $dvck ?> id='delivery_type' onclick='changemenucard(2, "<?= $this->config->item('api_id') ?>", "<?= $areaid ?>")' /><?= $this->lang->line('delivery_status') ?>-->
+                        <input type='radio' name='deliverytype' value='2' <?= $dvck ?> id='delivery_type' onclick='getDeliveryArea()' /><?= $this->lang->line('delivery_status') ?>
                         <!--<a href='javascript:void(0)' onclick='changePostcode(2, "<?= $this->config->item('api_id') ?>", 0)'  title='Change Area' class='edit-icon'>&nbsp;Edit&nbsp;</a>-->
                         <input type='radio' name='deliverytype' value='1' <?= $clck ?> id='collection_type' onclick='changemenucard(1, "<?= $this->config->item('api_id') ?>", "<?= $areaid ?>")'/> <?= $this->lang->line('collection_status') ?> 
-<?php } ?>
+                    <?php } ?>
                 </span>
             </li>
         </ul>
@@ -136,8 +135,8 @@ $total_tax = 0.0;
             krsort($unique);
         }
         ?>
-<?php if (!empty($unique)): ?>
-    <?php foreach ($unique as $key => $un) : ?>  
+        <?php if (!empty($unique)): ?>
+            <?php foreach ($unique as $key => $un) : ?>  
                 <div class="cartitem">
                     <span  class="loading centered" id="ajaxLoadingShowcart" style="display:none;"><img src="<?php echo ASSETS_SITE_IMAGE_PATH . 'ajax-loader.gif' ?>" alt="Loading..."/></span>
                     <ul>
@@ -161,8 +160,7 @@ $total_tax = 0.0;
 
                                             if (trim($spbasenameget, '\n') == trim($spselnameget->SpItemName, '\n')) {
                                                 $data111.= "[" . $spselnameget->SpItemName . "]";
-                                            }
-                                            else {
+                                            } else {
                                                 $data111.= "[" . $spbasenameget . " - " . $spselnameget->SpItemName . "]";
                                             }
                                             if (isset($attribute_sets) && !empty($attribute_sets)) {
@@ -200,8 +198,7 @@ $total_tax = 0.0;
 
                                                                     if ($attrdetails[0]->defaultlock == 1) {
                                                                         $attrtable.="-Remove: $attrname - " . $attrdetails[0]->AttrPrice;
-                                                                    }
-                                                                    else {
+                                                                    } else {
                                                                         $attrtable.="<a title='Remove this topping' style='color: #4f5151; font-size:11px;' href='javascript:void(0)' onclick='removeattr(\"$unkeys\")'>-Remove: $attrname - " . $attrdetails[0]->AttrPrice . "</a>";
                                                                     }
                                                                     $attrcnt = $attrcnt + 1;
@@ -240,8 +237,7 @@ $total_tax = 0.0;
                             $p_p_u = $ppu_arr[1];
                             if ($ppu_arr[0] == $ppu_arr[1]) {
                                 $com_status = 0;
-                            }
-                            else {
+                            } else {
                                 $com_status = 1;
                             }
                             $flag = 1;
@@ -258,8 +254,7 @@ $total_tax = 0.0;
                             $p_p_u = $ppu_arr[1];
                             if ($ppu_arr[0] == $ppu_arr[1]) {
                                 $com_status = 0;
-                            }
-                            else {
+                            } else {
                                 $com_status = 1;
                             }
                             $flag = 0;
@@ -281,8 +276,7 @@ $total_tax = 0.0;
                         $total_for_tax += $p_p_u * $no_of_ins;
                         if ($com_status == "1") {
                             $total_com = $total_com + $p_p_u * $no_of_ins;
-                        }
-                        else {
+                        } else {
                             $total_wcom = $total_wcom + $p_p_u * $no_of_ins;
                         }
 
@@ -294,8 +288,7 @@ $total_tax = 0.0;
                             if (trim($selection_name_a[1], '\n') == trim($selection_name_a[0], '\n')) {
                                 $basenameget = $this->Apimodel->getbasename_by_id($selection_name_a[0]);
                                 $name = $basenameget . "";
-                            }
-                            else {
+                            } else {
 
                                 $basenameget = $this->Apimodel->getbasename_by_id($selection_name_a[0]);
                                 $name = $basenameget;
@@ -305,8 +298,7 @@ $total_tax = 0.0;
                                 }
                                 $name .= "";
                             }
-                        }
-                        else {
+                        } else {
                             $basenameget = $this->Apimodel->getbasename_by_id($selection_name_a[0]);
                             $name = $basenameget . "";
                         }
@@ -318,40 +310,24 @@ $total_tax = 0.0;
                         }
                         $position = NULL;
                         ?>
-                                    <?php if ($position != NULL): ?>
-                                        <?php if ($un[$position - 1] == 0): ?>
+                        <?php if ($position != NULL): ?>
+                            <?php if ($un[$position - 1] == 0): ?>
                                 <li>
                                     <span class="itemdesc">
                                         <div class="itemname"><?= $name ?></div>
                                         <div class="itemqty">Quantity : <span class="qtyred"><?= $no_of_ins ?>*<?= to_currency($p_p_u) ?></span></div>
-                                        <div class="itemcount">
-                                            <span class="plus"><a href='javascript:void(0)' onclick='addone("<?= $id_item ?>");'>+</a></span>
-                                            <span class="minus"><a href='javascript:void(0)' onclick='lessone("<?= $id_item ?>");'>-</a></span>
-                                            <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>");'>x</a></span>
-                                <?php if ($_SESSION['comments'][$un]): ?> 
-                                                <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>");' title="<?= $_SESSION['comments'][$un] ?>">&Mellintrf;</a></span>
-                <?php endif; ?>
-                                        </div>
                                     </span>
                                     <span class="itemprice">
                                         <div class="pricefont1"><?= to_currency($total) ?></div>
                                     </span>
                                 </li>
-            <?php endif; ?>
-                                        <?php if ($un[$position - 1] == 1) : ?>
+                            <?php endif; ?>
+                            <?php if ($un[$position - 1] == 1) : ?>
                                 <li>
                                     <span class="itemdesc">
                                         <div class="itemname"><?= $name ?></div>
                                         <!-- <div class="itemdesc"></div>-->
                                         <div class="itemqty">Quantity : <span class="qtyred"><?= $no_of_ins ?>*<?= to_currency($p_p_u) ?></span></div>
-                                        <div class="itemcount">
-                                            <span class="plus"><a href='javascript:void(0)' onclick='addone("<?= $id_item ?>");'>+</a></span>
-                                            <span class="minus"><a href='javascript:void(0)' onclick='lessone("<?= $id_item ?>");'>-</a></span>
-                                            <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>");'>x</a></span>
-                                <?php if ($_SESSION['comments'][$un]): ?> 
-                                                <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>");' title="<?= $_SESSION['comments'][$un] ?>">&Mellintrf;</a></span>
-                                <?php endif; ?>
-                                        </div>
                                     </span>
                                     <span class="itemprice">
                                         <div class="pricefont1"><?= to_currency($total) ?></div>
@@ -378,8 +354,7 @@ $total_tax = 0.0;
                                         $catId = 0;
                                         $vals = explode('/', $val[0]);
                                         $catId = array_pop($vals);
-                                    }
-                                    else if (count($val) == 5) {
+                                    } else if (count($val) == 5) {
                                         $selectionId = (implode(',', explode('==', $val[2])));
                                         $selectionId = preg_replace('/,/', '', $selectionId, 1);
                                         $baseId = $val[1];
@@ -395,8 +370,7 @@ $total_tax = 0.0;
                                                 if (!empty($strsql)) {
                                                     $level = 1;
                                                     $selectionId = 0;
-                                                }
-                                                else {
+                                                } else {
                                                     $selection = explode(',', $selectionId);
                                                     $selectionId = array_pop($selection);
                                                 }
@@ -414,8 +388,7 @@ $total_tax = 0.0;
                                             }
                                             if (!empty($menuAttributsConfig) && count($menuAttributsConfig) > 0) {
                                                 $attribuesfreecount[$un . '|' . $attrdetails[0]->AttrCatId . '|totalfree'] = $menuAttributsConfig->free_attributes;
-                                            }
-                                            else {
+                                            } else {
                                                 $attribuesfreecount[$un . '|' . $attrdetails[0]->AttrCatId . '|totalfree'] = 0;
                                             }
                                             $attribuesfreecount[$un . '|' . $attrdetails[0]->AttrCatId . '|count'] = 0;
@@ -459,8 +432,7 @@ $total_tax = 0.0;
                                                     $attrtable1.="<br/>";
                                                 if ($attrdetails[0]->defaultlock == 1) {
                                                     $attrtable1.="-Remove: $attrname - " . $attrdetails[0]->AttrPrice;
-                                                }
-                                                else {
+                                                } else {
                                                     $attrtable1.="<a title='Remove this topping' class='item-remove-title' href='javascript:void(0)' onclick='removeattr(\"$unkeys\")'>-Remove: $attrname - " . $attrdetails[0]->AttrPrice . "</a>";
                                                 }
                                                 $attrcnt = $attrcnt + 1;
@@ -475,16 +447,14 @@ $total_tax = 0.0;
                             }
                             if ($attrtable1 && isset($attrtable1)) {
                                 $attrtable = $attrtable . $attrtable1 . $attrtable2;
-                            }
-                            else {
+                            } else {
                                 $attrtable = '';
                             }
                             $grand_total+=$total;
 
                             if ($com_status == "1") {
                                 $total_com = $total_com + $total_attr;
-                            }
-                            else {
+                            } else {
                                 $total_wcom = $total_wcom + $total_attr;
                             }
 
@@ -509,27 +479,18 @@ $total_tax = 0.0;
                                     <div class="itemname"><?= $name ?></div>
                                     <div class="itemdesc"><?= $attr_sel ?></div>
                                     <div class="itemqty">Quantity : <span class="qtyred"><?= $no_of_ins ?>*<?= to_currency($p_p_u) ?></span></div>
-                                    <div class="itemcount">
-                                        <span class="plus"><a href='javascript:void(0)' onclick='addone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(' ', '-', $name) ?>");'>+</a></span>
-                                        <span class="minus"><a href='javascript:void(0)' onclick='lessone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(' ', '-', $name) ?>");'>-</a></span>
-                                        <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(' ', '-', $name) ?>");'>x</a></span>
-                                        <span  class="loading centered" id="ajaxLoading-<?php echo str_replace(' ', '-', $name) ?>" style="display:none;"><img src="<?php echo ASSETS_SITE_IMAGE_PATH . 'ajax-loader.gif' ?>" alt="Loading..."/></span>
-                    <?php if ($_SESSION['comments'][$un]): ?> 
-                                            &nbsp;&nbsp;&nbsp;<span class="reduce"><img src="<?php echo ASSETS_SITE_IMAGE_PATH ?>comment.png" title="<?= $_SESSION['comments'][$un] ?>" alt="Comment"/></span>
-            <?php endif; ?>
-                                    </div>
                                 </span>
                                 <span class="itemprice">
                                     <div class="pricefont1"><?= to_currency($total) ?></div>
                                 </span>
                             </li>
-            <?php endif; ?>
-            <?php //endif;  ?>
-            <?php $total_tax += $total_for_tax * ($cat_tax > 0 ? $cat_tax / 100 : 0); ?>         
+                        <?php endif; ?>
+                        <?php //endif;  ?>
+                        <?php $total_tax += $total_for_tax * ($cat_tax > 0 ? $cat_tax / 100 : 0); ?>         
                     </ul>
                 </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
     </div>
     <div class="calculation">
@@ -555,8 +516,7 @@ $total_tax = 0.0;
             }
             $newDiscount_total = ($grand_total * $rpromo / 100);
             $tdiscount = $gdiscount_total + $newDiscount_total;
-        }
-        else {
+        } else {
             foreach ($restPromotions as $promoObj) {
                 if ($total_wcom >= $promoObj->MinAmount) {
                     $rpromo = $promoObj->Discount * 100;
@@ -567,9 +527,12 @@ $total_tax = 0.0;
             $tdiscount = $gdiscount_total + $newDiscount_total;
         }
     }
-    if ($this->session->userdata('promocodediscount')) {
+    $this->session->set_userdata('cart_item_total', number_format($grand_total, 2, '.', ''));
+    if($this->session->userdata('promocodediscount')){
         $tdiscount+=$this->session->userdata('promocodediscount');
     }
+     //echo "zaman". $this->session->userdata('promocodediscount');
+    
     $new_total = $grand_total - $tdiscount;
     ?>
     <div class="calculation2">
@@ -593,15 +556,13 @@ $total_tax = 0.0;
             'delivery_cost' => $delivery_plan->delivery_cost,
             'total_order' => $new_total
         );
-       
-    }
-    else {
+    } else {
         $dcost = 0;
         $ftotal = $new_total;
     }
-     $this->session->set_userdata('delivery_cost', $dcost);
+      $this->session->set_userdata('delivery_cost', $dcost);
     ?>
-<?php if ($deliverytype == 2) : ?>
+    <?php if ($deliverytype == 2) : ?>
         <div class="calculation2">
             <div class="caltext3"><?php echo $this->lang->line('online_cart_delivery_fee') ?></div>
             <div class="caltext4"><?php echo to_currency($dcost) ?></div>
@@ -610,7 +571,7 @@ $total_tax = 0.0;
 
     <?php $_SESSION['carttax'] = $total_tax; ?>
     <?php if ($deliverytype == 2) : ?>
-    <?php $total_tax = $total_tax + ($delivery_plan->delivery_cost * $delivery_plan->taxOnDeliveryCharge) / 100; ?>
+        <?php $total_tax = $total_tax + ($delivery_plan->delivery_cost * $delivery_plan->taxOnDeliveryCharge) / 100; ?>
         <div class="calculation2">
             <div class="caltext3"><?php echo $this->lang->line('online_cart_tax') ?></div>
             <div class="caltext4"><?= to_currency($total_tax) ?></div>
@@ -620,20 +581,20 @@ $total_tax = 0.0;
             <div class="caltext3"><?php echo $this->lang->line('online_cart_tax') ?></div>
             <div class="caltext4"><?= to_currency($total_tax) ?></div>
         </div>
-<?php endif; ?>
+    <?php endif; ?>
 
     <?php
     $ftotal = $ftotal + $total_tax;
     ?>
-<?php if ($globaldiscountObj->HFee > 0) : ?>
-    <?php $ftotal = $ftotal + $globaldiscountObj->HFee; ?>	
+    <?php if ($globaldiscountObj->HFee > 0) : ?>
+        <?php $ftotal = $ftotal + $globaldiscountObj->HFee; ?>	
         <div class="calculation2">
             <div class="caltext3"><?= $this->lang->line('handling_fee') ?> : </div>
             <div class="caltext4"><?= to_currency($globaldiscountObj->HFee) ?></div>
         </div>
-<?php endif; ?>
-<?php if ($grand_total > 0) : ?>
-    <?php if ($deliverytype == 1) : ?>
+    <?php endif; ?>
+    <?php if ($grand_total > 0) : ?>
+        <?php if ($deliverytype == 1) : ?>
             <?php $grand_total_without_del_cost = ($delivery_plan && $delivery_plan->delivery_cost > 0) ? (($ftotal - $delivery_plan->delivery_cost)) : $ftotal; ?>
             <div class="calculation">
                 <div class="caltext1"><?php echo $this->lang->line('online_cart_total') ?></div>
@@ -645,30 +606,29 @@ $total_tax = 0.0;
                 <div class="caltext1"><?php echo $this->lang->line('online_cart_total') ?> </div>
                 <div class="caltext2"><?= to_currency($ftotal) ?></div>
             </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
     <?php else: ?>
         <div class="calculation">
             <div class="caltext1"><?php echo $this->lang->line('online_cart_total') ?> </div>
             <div class="caltext2"><?= (to_currency($grand_total)) ?></div>
         </div>
-<?php endif; ?>
-<?php
-$minorder = 0;
-if ($delivery_plan && $delivery_plan->MinOrder > 0 && $deliverytype == 2) {
-    $minorder = $delivery_plan->MinOrder;
-}
-?>
-<?php if ($minorder <= $grand_total && $grand_total > 0) : ?>
+    <?php endif; ?>
+    <?php
+    $minorder = 0;
+    if ($delivery_plan && $delivery_plan->MinOrder > 0 && $deliverytype == 2) {
+        $minorder = $delivery_plan->MinOrder;
+    }
+    ?>
         <div class="checkoutarea">
             <div class="btncheckout">
-                <a href="<?= $page ?>">CHECKOUT</a>
+                <a href="<?= site_url('orderonline') ?>">BACK TO MENU</a>
             </div>
         </div>
-<?php endif; ?>
+
 </div>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         var deliveryType = "<?php echo $this->session->userdata('deliverytype') ?>";
         if (deliveryType == 2) {
             jQuery('#delivery_type').attr('checked', true);

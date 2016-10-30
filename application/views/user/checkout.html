@@ -1,0 +1,429 @@
+<div class="container">
+    <div class="row accountbg">
+        <div class="col-md-9">
+            <div class="commoncontentarea">
+                <form onsubmit="return chaeckvalidation()" id="checkout_payment" name="checkout_payment" method="post" action="http://gksoft.co.uk/ieat_new_2/user/process/18">
+                    <input value="1" id="dareaok" name="dareaok" type="hidden">
+                    <input value="0" id="totalprice" name="totalprice" type="hidden">
+                    <input value="0.00" id="hfee" name="hfee" type="hidden">
+                    <div class="paymentarea">
+                        <div class="panmentspan3">
+                            <h1 style="display:none;" class="delivery_status_type">
+                                Delivery Address:
+                                <span id="address_list_container_orderplace" class="float_right">
+                                    <div style="float:left; font-size: 15px">Select Address&nbsp;&nbsp;</div>
+                                    <select style="background-color:#fff;" class="dropdown" onchange="changeaddress()" id="addlabel" name="addlabel">
+                                        <option selected="" value="2">Primary </option>
+                                        <option value="1">address_1</option>
+                                        <option value="2">address_2 </option>
+                                        <option value="4">address_3 </option>
+                                        <option value="20">Test Address </option>
+                                        <option value="addnew">Add New Address</option>
+                                    </select>
+                                </span>
+                            </h1>
+                            <h1 class="collection_status_type">Pickup Address:</h1>
+                            <!--    For Delivery Segment [ Start ]  -->
+                            <div style="display:none;" class="delivery_status_type" id="customer_buyer">
+                                <span>Where would you like your food to be deliverd?</span>
+                                <table class="payment-table" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                    <input value="0" name="as_new_add" id="as_new_add" type="hidden">
+                                    <tbody>
+                                        <tr style="display: none" class="even">
+                                            <td class="bdr-bottom bdr-right" width="40%">First Name :</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <input value="Brian" id="cust_fname" name="cust_fname" class="textfield" type="text">
+                                            </td>
+                                        </tr>
+                                        <tr style="display: none" class="odd">
+                                            <td class="bdr-bottom bdr-right" width="40%">Last Name :</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <input value="Elvis" id="cust_lname" name="cust_lname" class="textfield" type="text">
+                                            </td>
+                                        </tr>
+                                        <tr class="even">
+                                            <td class="bdr-bottom bdr-right" width="40%">Address:</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <input readonly="readonly" value="71 pethybridge Road" id="customers_address1" name="customers_address1" class="textfield cl_op_field" type="text">
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="bdr-bottom bdr-right" width="40%">Phone Number :</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <input readonly="readonly" value="123 123 123" id="customers_telephone" name="customers_telephone" class="textfield cl_op_field" type="text">
+                                            </td>
+                                        </tr>
+                                        <tr class="even">
+                                            <td class="bdr-bottom bdr-right" width="40%">City :</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <select onchange="area_zone_selector(this.value)" name="customers_town" id="customers_town" class="dropdown cl_op_field">
+                                                    <option value="">Select Area</option>
+                                                    <option selected="selected" value="1">Birmingham</option>
+                                                    <option value="2">Leeds</option>
+                                                    <option value="3">Liverpool </option>
+                                                    <option value="4">Cardiff</option>
+                                                    <option value="5">London</option>
+                                                    <option value="6">Manchester</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="odd">
+                                            <td class="bdr-bottom bdr-right" width="40%">Area :</td>
+                                            <td id="area_zone_selector_div" name="area_zone_selector_div" class="bdr-bottom" width="60%">
+                                                <select name="customers_area" id="customers_area" class="dropdown cl_op_field cl_op_field_area">
+                                                    <option value="">Select Area</option>
+                                                    <option selected="selected" value="1">Bromford</option>
+                                                    <option value="2">Lozzels</option>
+                                                    <option value="10">Aston</option>
+                                                    <option value="11">Great-Bar</option>
+                                                    <option value="12">zone1</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr class="even">
+                                            <td class="bdr-bottom bdr-right" width="40%">Postcode:</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <input readonly="readonly" value=" " id="customers_postcode" name="customers_postcode" class="textfield cl_op_field" type="text">
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="bdr-bottom bdr-right" width="40%">Address Label :</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <input readonly="readonly" value="Primary" id="customers_address_label" name="customers_address_label" class="textfield cl_op_field" type="text">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--    For Delivery Segment [ End ]  -->
+                            <!--    For Collection Segment [ Start ]  -->
+                            <div class="collection_status_type" id="customer_buyer_recever">
+                                <span>You are required to collect this order from restaurant.</span>
+                                <table class="payment-table" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                    <tbody>
+                                        <tr class="even">
+                                            <td class="bdr-bottom bdr-right" width="40%">Restaurant Name :</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <input class="textfield" value="Bagnla Town" readonly="TRUE" type="text">
+                                            </td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="bdr-bottom bdr-right" width="40%">Address:</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <textarea readonly="readonly" class="additional-textarea" name="rece_lname_new" id="rece_lname_new">52 Wilson Road, cf5 4le, Cardiff, Oxford Street</textarea>
+                                            </td>
+                                        </tr>
+                                        <tr class="even">
+                                            <td class="bdr-bottom bdr-right" width="40%">Phone Number:</td>
+                                            <td class="bdr-bottom" width="60%">
+                                                <input class="textfield" value="02920 599 5255 " readonly="TRUE" type="text">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--    For Collection Segment [ End ]  -->
+                        </div>
+                        <div id="deliverytype_timetable" class="panmentspan3">
+                            <div class="global_gap"></div>
+                            <h1 class="delivery_status_type">When to deliver ? :</h1>
+                            <h1 class="collection_status_type">When to Pick Up ? :</h1>
+                            <table class="payment-table" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                    <tr class="even">
+                                        <td class="bdr-bottom bdr-right" width="40%">Time of Delivery :</td>
+                                        <td class="bdr-bottom" width="60%">
+                                            <span onclick="disable_time_ddl();" class="lbl_radio_button_checked">
+                                                <input checked="checked" value="asap" id="ortime" name="time_type" type="radio">&nbsp;&nbsp;Now
+                                                <input value="asap" id="ortime" name="ortime" type="hidden">
+                                            </span>
+                                            <span onclick="enable_time_ddl();" class="lbl_radio_button">
+                                                <input onclick="" value="2" name="time_type" id="time_type2" type="radio">&nbsp;&nbsp;Later
+                                            </span> <!--<span>&nbsp;&nbsp;<input type="radio" />Later</span>-->
+                                            <div class="global_gap"></div>
+                                            <div id="scheduletime">
+                                                <div id="scheduletime1">
+                                                    <select id="order_time" name="order_time" class="dropdown" disabled="disabled">
+                                                        <option value="1469722947">5:22 PM Today</option>
+                                                        <option value="1469723247">5:27 PM Today</option>
+                                                        <option value="1469723547">5:32 PM Today</option>
+                                                        <option value="1469723847">5:37 PM Today</option>
+                                                        <option value="1469724147">5:42 PM Today</option>
+                                                        <option value="1469724447">5:47 PM Today</option>
+                                                        <option value="1469724747">5:52 PM Today</option>
+                                                        <option value="1469725047">5:57 PM Today</option>
+                                                        <option value="1469725347">6:02 PM Today</option>
+                                                        <option value="1469725647">6:07 PM Today</option>
+                                                        <option value="1469725947">6:12 PM Today</option>
+                                                        <option value="1469726247">6:17 PM Today</option>
+                                                        <option value="1469726547">6:22 PM Today</option>
+                                                        <option value="1469726847">6:27 PM Today</option>
+                                                        <option value="1469727147">6:32 PM Today</option>
+                                                        <option value="1469727447">6:37 PM Today</option>
+                                                        <option value="1469727747">6:42 PM Today</option>
+                                                        <option value="1469728047">6:47 PM Today</option>
+                                                        <option value="1469728347">6:52 PM Today</option>
+                                                        <option value="1469728647">6:57 PM Today</option>
+                                                        <option value="1469728947">7:02 PM Today</option>
+                                                        <option value="1469729247">7:07 PM Today</option>
+                                                        <option value="1469729547">7:12 PM Today</option>
+                                                        <option value="1469729847">7:17 PM Today</option>
+                                                        <option value="1469730147">7:22 PM Today</option>
+                                                        <option value="1469730447">7:27 PM Today</option>
+                                                        <option value="1469730747">7:32 PM Today</option>
+                                                        <option value="1469731047">7:37 PM Today</option>
+                                                        <option value="1469731347">7:42 PM Today</option>
+                                                        <option value="1469731647">7:47 PM Today</option>
+                                                        <option value="1469731947">7:52 PM Today</option>
+                                                        <option value="1469732247">7:57 PM Today</option>
+                                                        <option value="1469732547">8:02 PM Today</option>
+                                                        <option value="1469732847">8:07 PM Today</option>
+                                                        <option value="1469733147">8:12 PM Today</option>
+                                                        <option value="1469733447">8:17 PM Today</option>
+                                                        <option value="1469733747">8:22 PM Today</option>
+                                                        <option value="1469734047">8:27 PM Today</option>
+                                                        <option value="1469734347">8:32 PM Today</option>
+                                                        <option value="1469734647">8:37 PM Today</option>
+                                                        <option value="1469734947">8:42 PM Today</option>
+                                                        <option value="1469735247">8:47 PM Today</option>
+                                                        <option value="1469735547">8:52 PM Today</option>
+                                                        <option value="1469735847">8:57 PM Today</option>
+                                                        <option value="1469736147">9:02 PM Today</option>
+                                                        <option value="1469736447">9:07 PM Today</option>
+                                                        <option value="1469736747">9:12 PM Today</option>
+                                                        <option value="1469737047">9:17 PM Today</option>
+                                                        <option value="1469737347">9:22 PM Today</option>
+                                                        <option value="1469737647">9:27 PM Today</option>
+                                                        <option value="1469737947">9:32 PM Today</option>
+                                                        <option value="1469738247">9:37 PM Today</option>
+                                                        <option value="1469738547">9:42 PM Today</option>
+                                                        <option value="1469738847">9:47 PM Today</option>
+                                                        <option value="1469739147">9:52 PM Today</option>
+                                                        <option value="1469739447">9:57 PM Today</option>
+                                                        <option value="1469739747">10:02 PM Today</option>
+                                                        <option value="1469740047">10:07 PM Today</option>
+                                                        <option value="1469740347">10:12 PM Today</option>
+                                                        <option value="1469740647">10:17 PM Today</option>
+                                                        <option value="1469740947">10:22 PM Today</option>
+                                                        <option value="1469741247">10:27 PM Today</option>
+                                                        <option value="1469741547">10:32 PM Today</option>
+                                                        <option value="1469741847">10:37 PM Today</option>
+                                                        <option value="1469742147">10:42 PM Today</option>
+                                                        <option value="1469742447">10:47 PM Today</option>
+                                                        <option value="1469742747">10:52 PM Today</option>
+                                                        <option value="1469743047">10:57 PM Today</option>
+                                                        <option value="1469743347">11:02 PM Today</option>
+                                                        <option value="1469743647">11:07 PM Today</option>
+                                                        <option value="1469743947">11:12 PM Today</option>
+                                                        <option value="1469744247">11:17 PM Today</option>
+                                                        <option value="1469744547">11:22 PM Today</option>
+                                                        <option value="1469744847">11:27 PM Today</option>
+                                                        <option value="1469745147">11:32 PM Today</option>
+                                                        <option value="1469745447">11:37 PM Today</option>
+                                                        <option value="1469745747">11:42 PM Today</option>
+                                                        <option value="1469746047">11:47 PM Today</option>
+                                                        <option value="1469746347">11:52 PM Today</option>
+                                                        <option value="1469746647">11:57 PM Today</option>
+                                                        <option value="1469746800">12:00 AM Next Day</option>
+                                                    </select><input value="1469722947" id="asap" name="asap" type="hidden">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panmentspan3 overflow_auto">
+                            <div class="global_gap"></div>
+                            <h1>Payment Information :</h1>
+                            <table class="payment-table" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                    <tr class="odd">
+                                        <td class="bdr-bottom cod_text" width="100%">
+                                            <span id="mod_span_cod">
+                                                <input onclick="" value="cod" id="pmt-cod" name="pay_mathod" checked="checked" type="radio">&nbsp; Cash On Delivery
+                                                <label for="pmt-cod">Cash On Delivery</label>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="bdr-bottom helcim_text" width="100%">
+                                            <span onclick="show_helcim(); show_cc_fee();" id="mod_span_helcim">
+                                                <input onclick="" value="Helcim" id="pmt-helcim" name="pay_mathod" checked="checked" type="radio">&nbsp; Cash On Delivery
+                                                <label for="pmt-helcim">Helcim</label>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="bdr-bottom paypal_text" width="100%">
+                                            <span onclick="show_paypal(); show_cc_fee();" id="mod_span_paypal">
+                                                <input onclick="" value="PayPal" id="pmt-paypal" name="pay_mathod" checked="checked" type="radio">&nbsp; Cash On Delivery
+                                                <label for="pmt-paypal">PayPal</label>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panmentspan1">
+                            <div class="global_gap"></div>
+                            <h1>Special Comments :</h1>
+                            <textarea id="delivery_note" name="delivery_note" placeholder="Anything extra to tell the restaurant" class="additional-textarea"></textarea>
+                        </div>
+                        <div class="panmentspan2">
+                            <div class="global_gap"></div>
+                            <h1>Do you have a voucher ? :</h1>
+                            <div class="discount-btnapply"><input value="Apply" onclick="usepromocode()" type="button"></div>
+                            <input id="txtpromocode" name="txtpromocode" placeholder="Enter discount code" class="discount-input" type="text">
+                        </div>
+                        <div id="id_cod_details" style="display:none" class="panmentspan2">
+                            <div class="global_gap"></div>
+                            <div class="div_voucher_rem" style="display:none">
+                                <input value="Remove Voucher" onclick="remove_voucher()" type="button">
+                            </div>
+                            <div class="div_voucher_app">
+                                <h1>Do you have a voucher? :</h1>
+                                <div class="discount-btnapply"><input value="Apply" onclick="usepromocode()" type="button"></div>
+                                <input id="txtpromocode" name="txtpromocode" placeholder="Enter discount code" class="discount-input" type="text">
+                            </div>
+                        </div>
+                        <div class="payment_cash_details_area" id="id_helcim_details" style="display: none;">
+                            <div id="tbl_pay_Helcim" class="crcard_area">
+                                <div style="margin:8px 0 0 60px;" class="cr_form_element">
+                                    <label>Name on card:</label>
+                                    <div><input onfocus="methodSelect('pmt-Helcim')" id="Helcim-cc-owner" class="register_input02" value="" name="helcim_cc_owner" type="text"></div>
+                                </div>
+                                <div style="margin:8px 0 0 60px;" class="cr_form_element">
+                                    <label>Card number:</label>
+                                    <div><input onfocus="methodSelect('pmt-Helcim')" id="Helcim-cc-number" class="register_input02" value="" name="helcim_cc_number" type="text"></div>
+                                </div>
+                                <div style="margin:8px 0 0 60px;" class="cr_form_element">
+                                    <label>Expiry date:</label>
+                                    <div>
+                                        <select onfocus="methodSelect('pmt-Helcim')" id="Helcim-cc-expires-month" style="width:105px;" class="register_select01" name="helcim_cc_expires_month">
+                                            <option value="01">January - (01)</option>
+                                            <option value="02">February - (02)</option>
+                                            <option value="03">March - (03)</option>
+                                            <option value="04">April - (04)</option>
+                                            <option value="05">May - (05)</option>
+                                            <option value="06">June - (06)</option>
+                                            <option value="07">July - (07)</option>
+                                            <option value="08">August - (08)</option>
+                                            <option value="09">September - (09)</option>
+                                            <option value="10">October - (10)</option>
+                                            <option value="11">November - (11)</option>
+                                            <option value="12">December - (12)</option>
+                                        </select>&nbsp;<select onfocus="methodSelect('pmt-Helcim')" id="Helcim-cc-expires-year" style="width:72px;height:26px;" class="register_select02" name="helcim_cc_expires_year">
+                                            <option value="16">2016</option>
+                                            <option value="17">2017</option>
+                                            <option value="18">2018</option>
+                                            <option value="19">2019</option>
+                                            <option value="20">2020</option>
+                                            <option value="21">2021</option>
+                                            <option value="22">2022</option>
+                                            <option value="23">2023</option>
+                                            <option value="24">2024</option>
+                                            <option value="25">2025</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="margin:8px 0 0 60px;" class="cr_form_element">
+                                    <label>CV2:</label>
+                                    <div><input onfocus="methodSelect('pmt-Helcim')" id="Helcim-cc-cvv" class="register_input02" value="" name="helcim_cc_cvv" type="text"></div>
+                                </div>
+                                <div style="margin:8px 0 0 60px;" class="cr_form_element">
+                                    <label>Address Line1:</label>
+                                    <div><input onfocus="methodSelect('pmt-Helcim')" id="Helcim-address1" class="register_input02" value="" name="helcim_address1" type="text"></div>
+                                </div>
+                                <div style="margin:8px 0 0 60px;" class="cr_form_element">
+                                    <label>Address Line2:</label>
+                                    <div><input onfocus="methodSelect('pmt-Helcim')" id="Helcim-address2" class="register_input02" value="" name="helcim_address2" type="text"></div>
+                                </div>
+
+                                <div style="margin:8px 0 0 60px;" class="cr_form_element">
+                                    <label>Post code:</label>
+                                    <div><input onfocus="methodSelect('pmt-Helcim')" id="Helcim-postcode" class="register_input02" value="" name="helcim_postcode" type="text"></div>
+                                </div>
+                            </div>
+                            <div class="panmentspan2">
+                                <div class="global_gap"></div>
+                                <div class="div_voucher_rem">
+                                    <input value="Remove Voucher" onclick="remove_voucher()" type="button">
+                                </div>
+                                <div class="div_voucher_app">
+                                    <h1>Do you have a voucher? :</h1>
+                                    <div class="discount-btnapply"><input value="Apply" onclick="usepromocode()" type="button"></div>
+                                    <input id="txtpromocode" name="txtpromocode" placeholder="Enter discount code" class="discount-input" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="payment_cash_details_area" id="id_paypal_details" style="display: none;">
+                            <div class="panmentspan2">
+                                <div class="global_gap"></div>
+                                <div class="div_voucher_rem">
+                                    <input value="Remove Voucher" onclick="remove_voucher()" type="button">
+                                </div>
+                                <div class="div_voucher_app">
+                                    <h1>Do you have a voucher? :</h1>
+                                    <div class="discount-btnapply"><input value="Apply" onclick="usepromocode()" type="button"></div>
+                                    <input id="txtpromocode" name="txtpromocode" placeholder="Enter discount code" class="discount-input" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="global_gap"></div>
+                        <div class="panmentspan3">
+                            <div class="processpayment">
+                                <input value="Process Payment" class="btn-processpayment paymenttbg" type="submit">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div style="position: relative; min-height: 0px; padding-top: 15px;" id="scolling-content-cart" class="content-cartspan">
+                <div class="mycart theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; top: 0px;">
+                    <div class="cartheading">
+                        <div class="cartheading_text">YOUR ORDER</div>
+                        <!--<h2><a href="javascript:void(0);" onclick="cancelcart();">Empty</a></h2>-->
+                    </div>
+                    <div class="cartdelpick">
+                        <ul>
+                            <li>
+                                <span class="delpick">
+                                    <input onclick="changemenucard(2, & quot; 15 & quot; , & quot; & quot; )" id="delivery_type" checked="" value="2" name="deliverytype" type="radio">Delivery<a class="edit-icon" title="Change Area" onclick="changePostcode(2, & quot; 15 & quot; , 0)" href="javascript:void(0)"></a>
+                                    <input onclick="changemenucard(1, & quot; 15 & quot; , & quot; & quot; )" id="collection_type" value="1" name="deliverytype" type="radio">Pick Up
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cartscroll" style="overflow: hidden; padding: 0px; width: 270px;">
+                        <div class="jspContainer" style="width: 269px; height: 0px;"><div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 269px;"></div></div>
+                    </div>
+                    <div class="calculation">
+                        <div class="caltext1">Sub Total</div>
+                        <div class="caltext2">£0.00</div>
+                    </div>
+                    <div class="calculation2">
+                        <div class="caltext3">Discount : </div>
+                        <div class="caltext4">£0.00</div>
+                    </div>
+                    <div class="calculation2">
+                        <div class="caltext3">Delivery Fee : </div>
+                        <div class="caltext4">£0.00</div>
+                    </div>
+                    <div class="calculation2">
+                        <div class="caltext3">TAX : </div>
+                        <div class="caltext4">£0.00</div>
+                    </div>
+                    <div class="calculation">
+                        <div class="caltext1">Total : </div>
+                        <div class="caltext2">£0.00</div>
+                    </div>
+                    <div><a href="onlineorder.html"><input value="Back To Menu" class="checkoutbg" type="submit"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

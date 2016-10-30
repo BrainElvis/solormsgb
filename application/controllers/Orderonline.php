@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(E_ALL);
 
@@ -17,6 +16,7 @@ class Orderonline extends Site_Controller {
     }
 
     public function index() {
+       // debugPrint($this->session->userdata);
         $data = [];
         $this->page_title = 'Online Order';
         $this->current_section = 'Order Online';
@@ -29,7 +29,7 @@ class Orderonline extends Site_Controller {
         // $this->session->unset_userdata('cart');
         //$this->session->unset_userdata('sp_details');
         if (empty($restinfo) || empty($order_policy)) {
-            //$this->data->clear_menupage_session();
+            $this->data->clear_menupage_session();
             $apiData = $this->Apimodel->get_api_data();
             if (isset($apiData->status) && isset($apiData->message)) {
                 $this->data->set_api_status($apiData->status);
@@ -69,7 +69,6 @@ class Orderonline extends Site_Controller {
         $data['restaurant_status'] = $this->data->get_rest_status();
         $data['rest_info'] = objectToArray($this->data->get_rest_info());
         $data['order_policy'] = objectToArray($this->data->get_order_policy());
-        //$data['membership'] = objectToArray($this->data->get_membership());
         $data['pre_hide_status'] = $this->data->get_pre_hide_status();
         $data['cuisines'] = objectToArray($this->data->get_cuisines());
         $data['deliverypolicy'] = objectToArray($this->data->get_deliverypolicy());
@@ -79,42 +78,18 @@ class Orderonline extends Site_Controller {
         $data['categories'] = objectToArray($this->data->get_categories());
         $data['bases'] = objectToArray($this->data->get_bases());
         $data['selections'] = objectToArray($this->data->get_selections());
-        // $data['selection_category'] = $this->data->get_selection_category();
-        // $data['selcategory'] = $this->data->get_selcategory();
         $data['cities'] = $this->data->get_cities();
         $data['areas'] = $this->data->get_areas();
         $data['policy'] = $this->data->get_policy();
-        // $data['globaldiscount'] = objectToArray($this->data->get_globaldiscount());
-        // $data['menu_base'] = objectToArray($this->data->get_menu_base());
-        //$data['menu_attributes_collection'] = objectToArray($this->data->get_menu_attributes_collection());
-        //$data['menu_selection'] = objectToArray($this->data->get_menu_selection());
-        // $data['special_criteria_details'] = objectToArray($this->data->get_special_criteria_details());
-        // $data['menu_attributes_configuration'] = objectToArray($this->data->get_menu_attributes_configuration());
-        // $data['raw_openingtime'] = $this->data->get_raw_openingtime();
-        //debugPrint($data);
-        //exit();
         $cartdata = $this->Apimodel->showcart();
         $showcartdata = explode('@@', $cartdata);
         $data['showcartdata'] = $showcartdata[0];
-        // debugPrint($this->session->userdata('menu_attributes_collection'));
         $this->render_page('orderonline/index', $data);
     }
 
     public function menupopup() {
         $basicpopup = $this->Apimodel->get_basicpopup();
         echo $basicpopup;
-    }
-
-    public function addtocart() {
-        $comments = $this->input->post('comments');
-        $quantityOfItem = $this->input->post('quantityOfItem');
-        $name = $this->input->post('name');
-        $cat = $this->input->post('cat');
-        $base = $this->input->post('base');
-        $sel = $this->input->post('sel');
-        $price = $this->input->post('price');
-        $attritemid = $this->input->post('attritemid');
-        $current_res_id = $this->input->post('current_res_id');
     }
 
     public function ajaxcall() {
@@ -721,5 +696,4 @@ class Orderonline extends Site_Controller {
             $this->session->set_userdata('attrcart', $attributesarray);
         }
     }
-
 }
