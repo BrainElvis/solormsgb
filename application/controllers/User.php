@@ -78,8 +78,6 @@ class User extends Site_Controller {
     }
 
     public function process() {
-        debugPrint($_POST);
-        exit();
         $custid = $this->session->userdata('CustId');
         if ($custid) {
             $abc = $this->User_Model->getdataforid('CustId', $custid, 'customers');
@@ -225,7 +223,7 @@ class User extends Site_Controller {
            $this->User_Model->modify_customer_address($cust_info, $this->input->post('as_new_add')); 
         }
         
-        $orderid = $this->Usermodel->order_generate($deltime, $paymethod, $new_total, $hfee, $from_balance, $Promocode, $PromocodeProvider, $voucher_cost, $_POST['delivery_note'], $cc_fee, $del_cost, $order_total_discount, $vat, $final_charity_id, $cust_info);
+        $orderid = $this->User_Model->order_generate($deltime, $paymethod, $new_total, $hfee, $from_balance, $Promocode, $PromocodeProvider, $voucher_cost, $_POST['delivery_note'], $cc_fee, $del_cost, $order_total_discount, $vat, $final_charity_id, $cust_info);
         debugPrint($orderid);
         //debugPrint($globaldiscountObj);
         debugPrint(array($final_promo_discount, $subtotal, $final_total, $final_del_cost, $vat, $data));
@@ -315,8 +313,6 @@ class User extends Site_Controller {
         $data = [];
         $isPopup = 'no';
         if ($this->input->post()) {
-            debugPrint($_POST);
-
             $this->form_validation->set_rules('CustEmail', 'User Name', 'required');
             $this->form_validation->set_rules('CustPassword', 'Password', 'required');
             $this->form_validation->set_error_delimiters('<div class="error" style="background:#ffffff; color:#FF0000;padding:5px">', '</div>');

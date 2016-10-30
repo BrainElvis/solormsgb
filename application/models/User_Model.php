@@ -113,5 +113,62 @@ class User_Model extends MY_Model {
             }
         }
     }
+    function order_generate($deltime, $paymethod, $total, $hfee, $decuction_from_balance = '0', $Promocode = NULL, $PromocodeProvider = NULL, $voucher_cost = NULL, $del_note = '', $cc_fee, $del_cost, $order_total_discount, $vat, $charity_id, $cust_info = NULL) {
+        $aff_order = 0;
+        if ($this->session->userdata('aff_order') != NULL) {
+            $aff_order = $this->session->userdata('aff_order');
+        }
+        $date = date("Y-m-d H:i:s");
+        if ($total == NULL)
+            $total = 0.0;
+        if ($hfee == 0)
+            $hfee = 0.0;
+        if ($this->session->userdata('deliverytype') == null)
+            $deltype = 1;
+        else
+            $deltype = $this->session->userdata('deliverytype');
+        $data = array(
+            'CustId' => $this->session->userdata('CustId'),
+            'RestId' => $this->config->item('api_id'),
+            'OrderPolicyId' => $deltype,
+            'CustFirstName' => $cust_info->CustFirstName,
+            'CustLastName' => $cust_info->CustLastName,
+            'CustTelephone' => $cust_info->CustTelephone,
+            'OrderAdd1' => $cust_info->CustAdd1,
+            'OrderAdd2' => $cust_info->CustAdd2,
+            'CustBuild' => $this->session->userdata('CustBuild'),
+            'CustFloor' => $this->session->userdata('CustFloor'),
+            'CustDoorbell' => $this->session->userdata('CustDoorbell'),
+            'CustComments1' => $this->session->userdata('CustComments'),
+            'OrderAddTown' => $cust_info->CustTown,
+            'OrderAddState' => isset($cust_info->CustState)?$cust_info->CustState:'',
+            'OrderAddCountry' => "",
+            'OrderAddPostcode' => $cust_info->CustPostcode,
+            'OrderAddArea' => $this->session->userdata('CustArea'),
+            'OrderDate' => $date,
+            'DeliveryTime' => $deltime,
+            'PaymentMethod' => $paymethod,
+            'total_price' => $total,
+            'BalanceDeduction' => $decuction_from_balance,
+            'HandlingFee ' => $hfee,
+            'CCFee' => $cc_fee,
+            'DeliveryCost' => $del_cost,
+            'OrderTotalDiscount' => $order_total_discount,
+            'Vat' => $vat,
+            'charity_id' => $charity_id,
+            'aff_from_res' => $aff_order,
+            'Promocode' => $Promocode,
+            'PromocodeProvider' => $PromocodeProvider,
+            'PromocodePrice' => $voucher_cost,
+            'ord_ip' => $this->session->userdata('ip_address'),
+            'OrderLang' => $this->config->item('language'),
+            'CustComments' => $del_note
+        );
+        if ($this->db->insert('customer_order_busket', $data)) {
+            return $this->db->insert_id();
+        } else {
+            return false;
+        }
+    }
 
 }
