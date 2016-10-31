@@ -420,7 +420,7 @@ class Data {
     public function get_menu_attributes_configuration() {
         if (!$this->CI->session->userdata('menu_attributes_configuration'))
             $this->set_menu_attributes_configuration(array());
-         return $this->CI->session->userdata('menu_attributes_configuration');
+        return $this->CI->session->userdata('menu_attributes_configuration');
     }
 
     public function set_menu_attributes_configuration($menu_attributes_configuration) {
@@ -430,8 +430,8 @@ class Data {
     public function clear_menu_attributes_configuration() {
         $this->CI->session->unset_userdata('menu_attributes_configuration');
     }
-    
-     public function get_raw_openingtime() {
+
+    public function get_raw_openingtime() {
         if (!$this->CI->session->userdata('raw_openingtime'))
             $this->set_raw_openingtime(array());
 
@@ -444,6 +444,34 @@ class Data {
 
     public function clear_raw_openingtime() {
         $this->CI->session->unset_userdata('raw_openingtime');
+    }
+
+    public function get_rest_service() {
+        if (!$this->CI->session->userdata('rest_service'))
+            $this->set_rest_service(array());
+        return $this->CI->session->userdata('rest_service');
+    }
+
+    public function set_rest_service($rest_service) {
+        $this->CI->session->set_userdata('rest_service', $rest_service);
+    }
+
+    public function clear_rest_service() {
+        $this->CI->session->unset_userdata('rest_service');
+    }
+
+    public function get_rest_fees_commission() {
+        if (!$this->CI->session->userdata('rest_fees_commission'))
+            $this->set_rest_fees_commission(array());
+        return $this->CI->session->userdata('rest_fees_commission');
+    }
+
+    public function set_rest_fees_commission($rest_fees_commission) {
+        $this->CI->session->set_userdata('rest_fees_commission', $rest_fees_commission);
+    }
+
+    public function clear_rest_fees_commission() {
+        $this->CI->session->unset_userdata('rest_fees_commission');
     }
 
     function clear_home_session() {
@@ -477,6 +505,8 @@ class Data {
         $this->clear_menu_attributes_collection();
         $this->clear_menu_attributes_configuration();
         $this->clear_special_criteria_details();
+        $this->clear_rest_service();
+        $this->clear_rest_fees_commission();
     }
 
 }

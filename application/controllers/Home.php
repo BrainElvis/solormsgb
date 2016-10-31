@@ -7,7 +7,7 @@ class Home extends Site_Controller {
     function __construct() {
         parent::__construct();
         $this->template->set_layout('public');
-        $this->site_title = 'Solo Rms';
+        $this->site_title = $this->config->item('company');
         $this->load->model('Apimodel');
         $this->load->library('data');
     }

@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(E_ALL);
 
@@ -16,7 +17,7 @@ class Orderonline extends Site_Controller {
     }
 
     public function index() {
-       // debugPrint($this->session->userdata);
+        // debugPrint($this->session->userdata);
         $data = [];
         $this->page_title = 'Online Order';
         $this->current_section = 'Order Online';
@@ -26,7 +27,7 @@ class Orderonline extends Site_Controller {
         $restinfo = $this->data->get_rest_info();
         $order_policy = $this->data->get_order_policy();
         //$this->data->clear_menupage_session();
-        // $this->session->unset_userdata('cart');
+        //$this->session->unset_userdata('cart');
         //$this->session->unset_userdata('sp_details');
         if (empty($restinfo) || empty($order_policy)) {
             $this->data->clear_menupage_session();
@@ -62,6 +63,8 @@ class Orderonline extends Site_Controller {
                 $this->data->set_menu_attributes_configuration($apiData->data->menu_attributes_configuration);
                 $this->data->set_raw_openingtime($apiData->data->raw_openingtime);
                 $this->data->set_rest_promotion($this->data->get_rest_promotion());
+                $this->data->set_rest_service($apiData->data->resturant_service);
+                $this->data->set_rest_fees_commission($apiData->data->restaurant_fees_commission);
             }
         }
         $data['api_status'] = $this->data->get_api_status();
@@ -84,6 +87,7 @@ class Orderonline extends Site_Controller {
         $cartdata = $this->Apimodel->showcart();
         $showcartdata = explode('@@', $cartdata);
         $data['showcartdata'] = $showcartdata[0];
+        //debugPrint($this->session->userdata);
         $this->render_page('orderonline/index', $data);
     }
 
@@ -156,7 +160,8 @@ class Orderonline extends Site_Controller {
                         }
 
                         //$attrlist = $this->Apimodel->getallattributesforcat($resultcat['CatId'], $resultbase['BaseId'], $resultselection['SelectionId'], $this->config->item('api_id'));
-                    } else {
+                    }
+                    else {
                         return;
                         //$attrlist = $this->Apimodel->getallattributesforcat($resultcat['CatId'], $resultbase['BaseId'], 0, $this->config->item('api_id'));
                     }
@@ -169,7 +174,8 @@ class Orderonline extends Site_Controller {
                         $newcart = count($this->session->userdata['attrcart']);
                         $sessionattr_data['attrcart'][$newcart] = $genid;
                         $this->session->set_userdata($sessionattr_data);
-                    } else {
+                    }
+                    else {
                         $sessionattr_data['attrcart'][0] = $genid;
                         $this->session->set_userdata($sessionattr_data);
                     }
@@ -226,12 +232,14 @@ class Orderonline extends Site_Controller {
                                 $specialdatainarray['sp_details'] = $this->session->userdata('sp_details');
                                 $specialdatainarray['sp_details'][$spgenid] = $sp_details;
                                 $this->session->set_userdata($specialdatainarray);
-                            } else {
+                            }
+                            else {
                                 $special_details['sp_details'][$spgenid] = $sp_details;
                                 $this->session->set_userdata($special_details);
                             }
                         }
-                    } else {
+                    }
+                    else {
                         for ($i = 0; $i <= ( $numberOfQuantity - 1 ); $i++) {
                             $co = '';
                             for ($j = 1; $j < ( $i + $existence1 + 1 ); $j++) {
@@ -243,7 +251,8 @@ class Orderonline extends Site_Controller {
                                 $specialdatainarray['sp_details'] = $this->session->userdata('sp_details');
                                 $specialdatainarray['sp_details'][$spgenid] = $sp_details;
                                 $this->session->set_userdata($specialdatainarray);
-                            } else {
+                            }
+                            else {
                                 $special_details['sp_details'][$spgenid] = $sp_details;
                                 $this->session->set_userdata($special_details);
                             }
@@ -301,13 +310,16 @@ class Orderonline extends Site_Controller {
                     if ($selexists[1]) {
                         if ($this->input->post('sel') != 0) {
                             $genid = str_replace("'", "", $this->input->post('cat')) . '|' . str_replace("'", "", $this->input->post('base')) . '|' . str_replace("'", "", $selname) . "==" . $this->input->post('sel') . '|' . $price;
-                        } else {
+                        }
+                        else {
                             $genid = str_replace("'", "", $this->input->post('cat')) . '|' . str_replace("'", "", $this->input->post('base')) . '|' . str_replace("'", "", $selname) . '|' . $price;
                         }
-                    } else {
+                    }
+                    else {
                         $genid = str_replace("'", "", $this->input->post('cat')) . '|' . str_replace("'", "", $this->input->post('base')) . '|' . $this->input->post('sel') . '|' . $price;
                     }
-                } else {
+                }
+                else {
                     $genid = str_replace("'", "", $this->input->post('cat')) . '|' . str_replace("'", "", $this->input->post('base')) . '|' . $price;
                 }
                 if (isset($this->session->userdata['cart'])) {
@@ -418,12 +430,14 @@ class Orderonline extends Site_Controller {
         if (1) {
             $strarray = explode('@@', $this->showcart($genid));
             $cartContent = $strarray[0];
-        } else {
+        }
+        else {
             $cartContent = '';
         }
         if (array_key_exists(1, $strarray) && array_key_exists(2, $strarray)) {
             echo $cartContent . '@@' . $strarray[1] . '@@' . $genid . '@@' . $strarray[2] . '@@' . $geniditem;
-        } else {
+        }
+        else {
             echo $cartContent . '@@' . $genid . '@@' . $geniditem;
         }
     }
@@ -457,7 +471,8 @@ class Orderonline extends Site_Controller {
                             $newcart = count($this->session->userdata['attrcart']);
                             $sessionattr_data['attrcart'][$newcart] = $newgenid;
                             $this->session->set_userdata($sessionattr_data);
-                        } else {
+                        }
+                        else {
                             $sessionattr_data['attrcart'][0] = $newgenid;
                             $this->session->set_userdata($sessionattr_data);
                         }
@@ -556,7 +571,8 @@ class Orderonline extends Site_Controller {
                 );
                 $this->session->set_userdata('udata', $udata);
                 echo $str = $deliveryarea[0]->DeliveryAreaId . '*@*' . to_currency($deliveryarea[0]->DeliveryCharge) . '*@*' . to_currency($deliveryarea[0]->MinOrder) . '*@*' . $deliveryarea[0]->DelTime . ' MIN';
-            } else {
+            }
+            else {
                 echo $str = "0*@*0*@*0*@*0";
             }
         }
@@ -674,7 +690,8 @@ class Orderonline extends Site_Controller {
                                 $newcart = count($this->session->userdata['attrcart']);
                                 $sessionattr_data['attrcart'][$newcart] = $newgenid;
                                 $this->session->set_userdata($sessionattr_data);
-                            } else {
+                            }
+                            else {
                                 $sessionattr_data['attrcart'][0] = $newgenid;
                                 $this->session->set_userdata($sessionattr_data);
                             }
@@ -696,4 +713,5 @@ class Orderonline extends Site_Controller {
             $this->session->set_userdata('attrcart', $attributesarray);
         }
     }
+
 }

@@ -10,7 +10,7 @@
   <body class="<?php echo $body_class ?>">
     <?php echo $template['partials']['header'] ?>
     <div class="container">
-      <?php echo $template['partials']['flash_messages'] ?>
+      <?php //echo $template['partials']['flash_messages'] ?>
       <?php echo $template['body'] ?>
       <?php echo $template['partials']['footer'] ?>
     </div> <!-- /container -->

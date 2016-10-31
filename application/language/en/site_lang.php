@@ -81,7 +81,7 @@ $lang['invalid_user_pass']='Invalid user name or password!';
 $lang['error_mess']='No user exists with the email';
 $lang['empty_email']='Email is a required field!, Please enter valid email address';
 $lang['pass_subject_mess1'] = 'password request!';
-
+$lang['request_accomplished'] = 'Confirmed!';
 
 
 

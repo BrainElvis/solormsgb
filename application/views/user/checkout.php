@@ -209,7 +209,7 @@
                                                             <option value="">Select Time</option>                           
                                                         </select>
                                                     <?php endif; ?>              
-                                                    <input type="hidden" name="asap" id="asap" value="<?php echo $order_times[0]; ?>" />                                  
+                                                    <input type="hidden" name="asap" id="asap" value="<?php isset($order_times[0])? print $order_times[0]:print'' ; ?>" />                                  
                                                 </div>
                                             </div>
                                         </td>

@@ -674,6 +674,16 @@ class Apimodel extends CI_Model {
         }
     }
 
+    function getcatname_by_id($id) {
+        $categories = $this->session->userdata('categories');
+        foreach ($categories as $cat) {
+            if ($cat->CatId == $id) {
+                return $cat->CatName;
+                break;
+            }
+        }
+    }
+
     function getspselname_by_id($id) {
         $special_criteria_details = $this->session->userdata('special_criteria_details');
         foreach ($special_criteria_details as $scd) {
@@ -689,6 +699,16 @@ class Apimodel extends CI_Model {
         foreach ($menu_base as $menuBase) {
             if ($menuBase->BaseId == $id) {
                 return $menuBase->BaseName;
+                break;
+            }
+        }
+    }
+
+    public function get_free_attr_by_baseid($id) {
+        $menu_base = $this->session->userdata('menu_base');
+        foreach ($menu_base as $menuBase) {
+            if ($menuBase->BaseId == $id) {
+                return $menuBase->FreeAttr;
                 break;
             }
         }
@@ -881,6 +901,25 @@ class Apimodel extends CI_Model {
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $data,
+            CURLOPT_FOLLOWLOCATION => true
+        ));
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+    }
+
+    function makeRemotCODorder($customerBusket, $customerOrderDetailBusket, $customerOrderDetailAttrBusket,$CustEmail) {
+       
+        $data['customer_order'] = objectToArray($customerBusket);
+        $data['order_detail'] = objectToArray($customerOrderDetailBusket);
+        $data['order_attribute'] = objectToArray($customerOrderDetailAttrBusket);
+        $data['CustEmail']=$CustEmail;
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $this->config->item('api_host') . 'api/makeRemotCODorder/',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => http_build_query($data),
             CURLOPT_FOLLOWLOCATION => true
         ));
         $output = curl_exec($ch);

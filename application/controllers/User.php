@@ -85,7 +85,7 @@ class User extends Site_Controller {
             $order_busket = $this->User_Model->getdataforid('CustId', $custid, 'customer_order_busket');
             if (!empty($order_busket)) {
                 $orderid = $order_busket[0]->OrderId;
-                $order_details_busket = $this->getdataforid->getdataforid('OrderId', $orderid, 'order_detail_busket');
+                $order_details_busket = $this->User_Model->getdataforid('OrderId', $orderid, 'order_detail_busket');
                 if (!empty($order_details_busket) && isset($order_details_busket[0]->OrderItermId)) {
                     $orderdetailsid = $order_details_busket[0]->OrderItermId;
                     $this->User_Model->deletedata('OrderDetailId', $orderdetailsid, 'order_attribute_basket');
@@ -219,14 +219,69 @@ class User extends Site_Controller {
             $cust_info->CustTelephone = $customers_info->CustTelephone;
             $cust_info->CustAddLabel = $customers_info->CustAddLabel;
         }
-        if($this->input->post('as_new_add')!=0){
-           $this->User_Model->modify_customer_address($cust_info, $this->input->post('as_new_add')); 
+        if ($this->input->post('as_new_add') != 0) {
+            $this->User_Model->modify_customer_address($cust_info, $this->input->post('as_new_add'));
         }
-        
+
         $orderid = $this->User_Model->order_generate($deltime, $paymethod, $new_total, $hfee, $from_balance, $Promocode, $PromocodeProvider, $voucher_cost, $_POST['delivery_note'], $cc_fee, $del_cost, $order_total_discount, $vat, $final_charity_id, $cust_info);
-        debugPrint($orderid);
-        //debugPrint($globaldiscountObj);
-        debugPrint(array($final_promo_discount, $subtotal, $final_total, $final_del_cost, $vat, $data));
+        $curr_busket = $this->db->query("select * from customer_order_busket where OrderId='$orderid'")->result();
+        $order = $curr_busket[0];
+        $restaurantFeesCommission = $this->session->userdata('rest_fees_commission');
+        $globalcomm = $globaldiscountObj;
+        $rest_service = $this->session->userdata('rest_service');
+        $res_comm = array();
+        $default_comm = 0;
+        if (!empty($rest_service)) {
+            $res_comm = $rest_service;
+        }
+        if (count($res_comm) > 0) {
+            $default_comm = 0;
+        }
+        else {
+            if (!empty($restaurantFeesCommission)) {
+                $default_comm = ( $restaurantFeesCommission->commissionType == 1 ) ? $restaurantFeesCommission->Commission : 0;
+            }
+            else {
+                $default_comm = $globalcomm->Commission;
+            }
+        }
+        $res_vat = $globalcomm->Vat;
+        $final_vat = 0;
+        $com_amount = $order->total_price - $order->OrderTotalDiscount;
+        $acc_credit = 0;
+        $res_comm1 = 0;
+        if (strtolower($paymethod) == 'cod') {
+            if (!empty($res_comm)) {
+                $res_comm1 = $final_vat = $res_comm->Commission_Cash + $default_comm;
+            }
+        }
+        else {
+            if (!empty($res_comm)) {
+                $res_comm1 = $final_vat = $res_comm->Commission + $default_comm;
+            }
+        }
+        $order_comm = ( $com_amount ) * $res_comm1 / 100;
+        $actual_comm = number_format($order_comm + ( $order_comm * $res_vat / 100 ), 2, '.', '');
+
+        if ($order->PromocodeProvider == 'owner') {
+            $acc_credit = $order->PromocodePrice + $order->BalanceDeduction - $order->HandlingFee;
+        }
+        else {
+            $acc_credit = $order->BalanceDeduction - $order->HandlingFee;
+        }
+        $actual_balance = $acc_credit - $actual_comm;
+        $actual_balance = $actual_balance + $order->rest_aff_amount;
+        $sqlStr = "update customer_order_busket set GrandTotal='$final_total', OrderCommission='$actual_comm',CreditAmount='$acc_credit', ComAmount='$com_amount' , ActualBalance='$actual_balance',ComRate='$final_vat',VatRate='$res_vat' where OrderId='$orderid'";
+        $query2 = $this->db->query($sqlStr);
+        $busket_id_data = array(
+            'busket_id' => $orderid
+        );
+        $this->session->set_userdata($busket_id_data);
+        $this->User_Model->insert_order_items($orderid);
+        $this->db->set('last_paypal_orderid', 0);
+        $this->db->where('CustId', $this->session->userdata('CustId'));
+        $this->db->update('customers');
+        redirect('order/process/' . $orderid);
     }
 
     function userpromocode() {

@@ -48,4 +48,12 @@ if (!function_exists('get_mails')) {
     }
 
 }
+function show_date($date, $time_stamp = false, $format = "d/m/Y") {
+    if ($time_stamp) {
+        return date($format, $date);
+    }
+    else {
+        return date($format, strtotime($date));
+    }
+}
 

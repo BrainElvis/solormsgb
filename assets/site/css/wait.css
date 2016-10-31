@@ -1,0 +1,248 @@
+.thanks_page_area {
+	margin: 0 0 0 0;
+	padding: 0 0 15px 0;
+	float: left;
+	overflow: hidden;
+	width: 705px;
+	height: auto;
+	border: 1px solid #999999;
+	border-radius: 4px;
+}
+
+.thanks_img_border {
+	margin: 20px 0 10px 20px;
+	border: 1px solid #999999;
+	border-radius: 4px;
+}
+
+.thanks_page_area h1 {
+	margin: 0px 0 0 20px;
+	padding: 0 0 0 0;
+	float: left;
+	overflow: hidden;
+	color: #432a1f;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	width: 705px;
+	height: auto;
+}
+
+.thanks_page_area span {
+	margin: 5px 0 0 23px;
+	padding: 0 0 0 0;
+	float: left;
+	overflow: hidden;
+	color: #E06020;
+	font-family: "Trebuchet MS", "Century Gothic";
+	font-size: 12px;
+	font-weight: bold;
+	width: 705px;
+	height: auto;
+}
+
+.thanks_heading {
+	margin: 10px 0 0 20px;
+	padding: 0 0 0 0;
+	float: left;
+	overflow: hidden;
+	background: url(images/restaurantdetail_headerpattern.png) repeat
+		scroll 0 0 transparent;
+	/*background-color:#EBE9E8;*/
+	width: 665px;
+	height: auto;
+	border-radius: 4px;
+}
+
+.thanks_heading h1 {
+	margin: 0 0 0 10px;
+	padding: 10px 0 10px 0;
+	float: left;
+	overflow: hidden;
+	color: #432A1F;
+	font-family: "Trebuchet MS", "Century Gothic";
+	font-size: 15px;
+	font-weight: normal;
+	width: auto;
+	height: auto;
+	text-transform: uppercase;
+}
+
+.thanks_page_area h2 {
+	margin: 10px 0 10px 30px;
+	padding: 0 0 0 0;
+	float: left;
+	overflow: hidden;
+	color: #432A1F;
+	font-family: "Trebuchet MS", "Century Gothic";
+	font-size: 12px;
+	font-weight: normal;
+	width: 600px;
+	height: auto;
+}
+
+.thanks_page_area p {
+	margin: 10px 0 0 30px;
+	padding: 0 0 0 0;
+	display: block;
+	overflow: hidden;
+	color: #432a1f;
+	font-family: "Trebuchet MS", "Century Gothic";
+	font-size: 12px;
+	font-weight: normal;
+	height: auto;
+	width: 645px;
+}
+
+.thanks_sub_area {
+	margin: 20px 0 0 0;
+	padding: 0 0 0 0;
+	float: left;
+	overflow: hidden;
+	width: 705px;
+	height: auto;
+}
+
+.thanks_sub_area_left {
+	margin: 3px 0 0 30px;
+	padding: 0 0 0 0;
+	float: left;
+	overflow: hidden;
+	width: auto;
+	height: auto;
+}
+
+.thanks_sub_area_right {
+	margin: 0px 0 0 10px;
+	padding: 0 0 0 0;
+	float: left;
+	overflow: hidden;
+	width: 508px;
+	height: auto;
+}
+
+.thanks_sub_area_right h3 {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	display: block;
+	overflow: hidden;
+	color: #432a1f;
+	font-family: "Trebuchet MS", "Century Gothic";
+	font-size: 15px;
+	font-weight: normal;
+	height: auto;
+	width: 508px;
+	text-transform: uppercase;
+}
+
+.thanks_sub_area_right p {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	display: block;
+	overflow: hidden;
+	color: #432a1f;
+	font-family: "Trebuchet MS", "Century Gothic";
+	font-size: 12px;
+	font-weight: normal;
+	height: auto;
+	text-align: justify;
+	width: 508px;
+}
+
+#menu_popup_area 
+{
+padding: 0 0 0px;
+width: 615px;
+height: auto;
+}
+
+.menu_popup_area_top 
+{
+margin: 10px 0 0 10px;
+padding: 0 15px 0 0;
+background:url(images/restaurantdetail_headerpattern.png) repeat-x;
+border-bottom: 1px solid #CACACA;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+width: 580px;
+height: 49px;
+}
+
+
+.menu_popup_area_top h1 
+{
+margin: 16px 0 0 15px;
+padding: 0 0 0 0;
+color: #432A1F;
+float: left;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 15px;
+font-weight: normal;
+text-transform: uppercase;
+text-align:left;
+}
+
+.menu_popup_area_top h2 
+{
+margin: 16px 0 0 15px;
+padding: 0 0 0 0;
+color: #432A1F;
+float: right;
+font-family: "Trebuchet MS","Century Gothic";
+font-size: 15px;
+font-weight: normal;
+text-transform: uppercase;
+text-align:right;
+}
+
+.menu_popup_area_bottom 
+{
+margin: 0 0 0 10px;
+padding: 0 15px 20px 0;
+background-color: #E9E9E9;
+border-bottom-left-radius: 5px;
+border-bottom-right-radius: 5px;
+width: 580px;
+height: auto;
+overflow: hidden;
+}
+
+.menu_popup_area_bottom h1 
+{
+margin: 5px 0 0 15px;
+padding: 0 0 15px 0;
+color: #432A1F;
+float: left;
+font-family: "Trebuchet MS","Century Gothic";
+font-size: 13px;
+font-weight: normal;
+text-align:left;
+width:565px;
+height:auto;
+}
+
+.wait-font1
+{
+margin:0 0 0 16px;
+padding:5px;
+top:0;
+font-size:14px;
+font-family: "Trebuchet MS","Century Gothic";
+font-weight:normal;
+color:#432A1F;
+background-color:#EBE9E8;
+text-align:center;
+}
+
+.wait-font2
+{
+margin:0 0 0 16px;
+padding:5px;
+top:0;
+font-size:12px;
+font-family: "Trebuchet MS","Century Gothic";
+font-weight:normal;
+color:#432A1F;
+background-color:#EBE9E8;
+text-align:center;
+}
