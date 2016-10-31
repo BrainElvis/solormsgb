@@ -82,6 +82,13 @@ $lang['error_mess']='No user exists with the email';
 $lang['empty_email']='Email is a required field!, Please enter valid email address';
 $lang['pass_subject_mess1'] = 'password request!';
 $lang['request_accomplished'] = 'Confirmed!';
-
+$lang['order_total']='Order Total';
+$lang['promocode_discount']='Discount';
+$lang['delivery_cost']='Delivery Charge';
+$lang['subtotal']='Sub Total';
+$lang['vat']='Tax';
+$lang['handling_fee']='Handling Fees';
+$lang['credit_card_fees']='Credit Card Fees';
+$lang['grand_total']='Grand Total';
 
 

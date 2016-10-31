@@ -129,6 +129,7 @@ class User_Model extends MY_Model {
         else
             $deltype = $this->session->userdata('deliverytype');
         $data = array(
+            'Status'=>'0',
             'CustId' => $this->session->userdata('CustId'),
             'RestId' => $this->config->item('api_id'),
             'OrderPolicyId' => $deltype,

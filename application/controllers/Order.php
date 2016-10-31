@@ -11,8 +11,12 @@ class Order extends Site_Controller {
     }
 
     public function process($busket_order = False) {
-        $custInfo = $this->get_where('customers', array('CustId' => $this->session->userdata('CustId')))->row();
+        if (!$this->session->userdata('CustId')) {
+            redirect('home');
+        }
+        $custInfo = $this->db->get_where('customers', array('CustId' => $this->session->userdata('CustId')))->row();
         $CustEmail = $custInfo->CustEmail;
+
         if ($busket_order && $busket_order == $this->session->userdata('busket_id')) {
             $customerBusket = $this->Order_Model->get_customer_order_busket($busket_order);
             $customerOrderDetailBusket = $this->Order_Model->get_customer_order_detail_busket($busket_order);
@@ -26,9 +30,9 @@ class Order extends Site_Controller {
                 }
             }
             if ($customerBusket->PaymentMethod == 'cod') {
-                $orderid = $this->_makeCODorder($customerBusket, $customerOrderDetailBusket, $customerOrderDetailAttrBusket);
                 $MNOID = $this->Apimodel->makeRemotCODorder($customerBusket, $customerOrderDetailBusket, $customerOrderDetailAttrBusket, $CustEmail);
-                if ($MNOID) {
+                $orderid = $this->_makeCODorder($customerBusket, $customerOrderDetailBusket, $customerOrderDetailAttrBusket);
+                 if ($MNOID) {
                     $this->db->update('customer_order', array('MNOID' => $MNOID), array('OrderId' => $orderid));
                 }
                 $session_data['cart'] = NULL;
@@ -107,7 +111,9 @@ class Order extends Site_Controller {
         $this->body_class[] = 'order-wait';
         $this->page_meta_keywords = 'Online,order, Restaurant';
         $this->page_meta_description = 'Online Order at Restaurant';
-        $this->render_page('order/wait');
+        $orderid = $this->session->userdata('orderid');
+        $order = $this->db->get_where('customer_order', array('OrderId' => $orderid, 'CustId' => $this->session->userdata('CustId')))->row();
+        $this->render_page('order/wait', $order);
     }
 
     function confirmatin_status() {

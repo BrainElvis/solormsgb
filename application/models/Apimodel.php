@@ -890,8 +890,10 @@ class Apimodel extends CI_Model {
             CURLOPT_FOLLOWLOCATION => true
         ));
         $output = curl_exec($ch);
-        curl_close($ch);
+        debugPrint($output);
+        exit();
         return $output;
+        curl_close($ch);
     }
 
     function delete_address($data) {
@@ -908,12 +910,12 @@ class Apimodel extends CI_Model {
         return $output;
     }
 
-    function makeRemotCODorder($customerBusket, $customerOrderDetailBusket, $customerOrderDetailAttrBusket,$CustEmail) {
-       
+    function makeRemotCODorder($customerBusket, $customerOrderDetailBusket, $customerOrderDetailAttrBusket, $CustEmail) {
+
         $data['customer_order'] = objectToArray($customerBusket);
         $data['order_detail'] = objectToArray($customerOrderDetailBusket);
         $data['order_attribute'] = objectToArray($customerOrderDetailAttrBusket);
-        $data['CustEmail']=$CustEmail;
+        $data['CustEmail'] = $CustEmail;
         $ch = curl_init();
         curl_setopt_array($ch, array(
             CURLOPT_URL => $this->config->item('api_host') . 'api/makeRemotCODorder/',

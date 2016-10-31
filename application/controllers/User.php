@@ -24,6 +24,9 @@ class User extends Site_Controller {
         $data['cust_address'] = $this->Customer_Model->get_customeraddress($this->session->userdata['CustId']);
         $order_prepared_time = 0;
         $raw_openingtime = $this->session->userdata('raw_openingtime');
+        if(!$this->session->userdata('deliverytype')){
+            $this->session->set_userdata('deliverytype',1);
+        }
         $opening_time = array();
         foreach ($raw_openingtime as $ro) {
             if ($ro->PolicyId == $this->session->userdata('deliverytype')) {

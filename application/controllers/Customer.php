@@ -202,9 +202,24 @@ class Customer extends Site_Controller {
 
     public function orderlist() {
         $this->page_title = 'Dashboard';
-        $this->current_section = "Customer Orderlist";
+        $this->current_section = "Customer Order List";
         $this->body_class[] = 'customer-dashboard customer-orderlist';
-        $this->render_page('customer/orderlist');
+        $orders = $this->Customer_Model->get_order_list();
+        $data['orders'] = $orders;
+        $this->render_page('customer/orderlist', $data);
+    }
+
+    public function orderdetail($id) {
+        $this->page_title = 'Dashboard';
+        $this->current_section = "Customer Order List";
+        $this->body_class[] = 'customer-dashboard customer-orderdetail';
+        $data['rest_info'] = objectToArray($this->session->userdata('rest_info'));
+        $data['customer'] = $this->db->get_where('customers', array('CustId' => $this->session->userdata('CustId')))->row_array();
+        $data['customer_order'] = $this->db->get_where('customer_order', array('OrderId' => $id))->row_array();
+        $data['order_detail'] = $this->db->get_where('order_detail', array('OrderId' => $id))->result();
+        $data['order_attribute'] = $this->Customer_Model->get_attributes($id);
+        //debugPrint($data);
+        $this->render_page('customer/orderdetail', $data);
     }
 
     public function orderreview() {

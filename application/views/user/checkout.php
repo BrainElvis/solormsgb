@@ -164,6 +164,7 @@
                                     <tr class="even">
                                         <td class="bdr-bottom bdr-right" width="40%">Time of Delivery :</td>
                                         <td width="60%" class="bdr-bottom">
+      
                                             <?php if ($order_times) : ?>
                                                 <span class="lbl_radio_button_checked" onclick="disable_time_ddl();">
                                                     <input name="time_type" type="radio" id="ortime" value="asap"  checked="checked" />&nbsp;&nbsp;Now 

@@ -30,20 +30,38 @@ class Customer_Model extends MY_Model {
         $this->_table_name = 'customer_address';
         $this->_primary_key = 'CustAddId';
         return $this->save($data);
-        
     }
-     function updateCustomerAdd($data,$id) {
+
+    function updateCustomerAdd($data, $id) {
         $this->_table_name = 'customer_address';
         $this->_primary_key = 'CustAddId';
-        return $this->save($data,$id);
-        
+        return $this->save($data, $id);
     }
+
     function deleteCustomerAdd($id) {
         $this->_table_name = 'customer_address';
         $this->_primary_key = 'CustAddId';
         return $this->delete($id);
-        
-        
+    }
+
+    public function get_order_list() {
+        $this->_table_name = 'customer_order';
+        $this->_primary_key = 'OrderId';
+        return $this->get_by(array('CustId' => $this->session->userdata('CustId')));
+    }
+
+    function get_attributes($id) {
+        $sqlStr = "SELECT `order_attribute`.*
+			FROM
+			`order_attribute`
+			INNER JOIN `order_detail` ON `order_attribute`.`OrderDetailId`=`order_detail`.`OrderItermId`
+			WHERE `order_detail`.`OrderId`=$id
+			";
+        $query = $this->db->query($sqlStr);
+        if ($query)
+            return $query->result();
+        else
+            return 0;
     }
 
 }
