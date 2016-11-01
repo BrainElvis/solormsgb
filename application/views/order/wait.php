@@ -45,7 +45,7 @@
             If you want to cancel the order then contact <?php echo $this->config->item('company') ?> as fast as possible on email: <?php $this->config->item('website') != '' ? print $this->config->item('website') : $this->config->item('company') ?><br /><br />
         </p>
         <p>
-            <b><a href="<?php echo $this->config->site_url(array("customer", "orderdetails", $OrderId)) ?>">Click here to see your order details</a></b><br />
+            <b><a href="<?php echo $this->config->site_url(array("customer", "orderdetail", $OrderId)) ?>">Click here to see your order details</a></b><br />
         </p>
     </div>
 </div>

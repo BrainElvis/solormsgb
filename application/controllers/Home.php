@@ -53,6 +53,7 @@ class Home extends Site_Controller {
                         $this->data->set_rest_vouchers($promotime->data->rest_vouchers);
                         $this->data->set_cities($promotime->data->cities);
                         $this->data->set_areas($promotime->data->areas);
+                         $this->data->set_rest_info($promotime->data->rest_info);
                     }
                 }
             }

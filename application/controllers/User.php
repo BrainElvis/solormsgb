@@ -24,8 +24,8 @@ class User extends Site_Controller {
         $data['cust_address'] = $this->Customer_Model->get_customeraddress($this->session->userdata['CustId']);
         $order_prepared_time = 0;
         $raw_openingtime = $this->session->userdata('raw_openingtime');
-        if(!$this->session->userdata('deliverytype')){
-            $this->session->set_userdata('deliverytype',1);
+        if (!$this->session->userdata('deliverytype')) {
+            $this->session->set_userdata('deliverytype', 1);
         }
         $opening_time = array();
         foreach ($raw_openingtime as $ro) {
@@ -160,17 +160,23 @@ class User extends Site_Controller {
         $subtotal = $order_total_d - $voucher_cost;
         $final_total = $subtotal;
         $delivery_plan = $this->Apimodel->get_delivery_plan_new($this->session->userdata('sinput'), $grand_total);
-        $final_del_cost = $del_cost = $delivery_plan->delivery_cost;
+
+        $final_del_cost = 0;
         $vat = 0;
-        if ($this->session->userdata('deliverytype') == 2) {
-            $final_total += $final_del_cost;
-            $vat = $_SESSION['carttax'] + ( $delivery_plan->delivery_cost * $delivery_plan->taxOnDeliveryCharge ) / 100;
+        $del_cost=0;
+        if (!empty($delivery_plan)) {
+            $final_del_cost = $del_cost = $delivery_plan->delivery_cost;
+            if ($this->session->userdata('deliverytype') == 2) {
+                $final_total += $final_del_cost;
+                $vat = $_SESSION['carttax'] + ( $delivery_plan->delivery_cost * $delivery_plan->taxOnDeliveryCharge ) / 100;
+            }
         }
-        else {
+        if ($this->session->userdata('deliverytype') == 1) {
             $final_del_cost = 0;
             $del_cost = 0;
             $vat = $_SESSION['carttax'];
         }
+       
         $final_total += $vat;
         $paymethod = 'cod';
         if (isset($_POST['pay_mathod'])) {
@@ -479,13 +485,14 @@ class User extends Site_Controller {
         $data = [];
         if ($this->input->post()) {
             $data = $this->prepareRegistrationData();
-            $data['CustAddLabe'] = "Primary";
+            $data['CustAddLabel'] = "Primary";
             $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
             if ($this->form_validation->run('customer_registration') == FALSE) {
                 $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
                 echo validation_errors();
             }
             else {
+
                 if ($this->User_Model->save($data)) {
                     $this->Apimodel->customer_resgistration($data);
                     $notification = $this->Notification->get_configuration('EMAIL_CUSTOMER_REGISTRATION');

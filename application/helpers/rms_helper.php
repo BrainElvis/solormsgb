@@ -9,7 +9,8 @@ function debugPrint($object, $title = "", $isMarkup = false) {
         echo "<pre>";
         print_r($object);
         echo "</pre>";
-    } else {
+    }
+    else {
         echo htmlspecialchars($object);
     }
     echo 'END >>></font>';
@@ -31,7 +32,8 @@ if (!function_exists('objectToArray')) {
              * for recursive call
              */
             return array_map(__FUNCTION__, $d);
-        } else {
+        }
+        else {
             // Return array
             return $d;
         }
@@ -48,6 +50,7 @@ if (!function_exists('get_mails')) {
     }
 
 }
+
 function show_date($date, $time_stamp = false, $format = "d/m/Y") {
     if ($time_stamp) {
         return date($format, $date);
@@ -57,3 +60,29 @@ function show_date($date, $time_stamp = false, $format = "d/m/Y") {
     }
 }
 
+function get_city_name($id) {
+    $CI = & get_instance();
+    $cities = $CI->session->userdata('cities');
+    foreach ($cities as $city) {
+        if ($city->CityId == $id) {
+            return $city->CityName;
+        }
+    }
+}
+
+function get_area_name($id) {
+    $CI = & get_instance();
+    $areas = $CI->session->userdata('areas');
+    foreach ($areas as $area) {
+        if ($area->AreaId == $id) {
+            return $area->AreaName;
+        }
+    }
+}
+if (!function_exists('order_id')) {
+
+    function order_id($id) {
+        return sprintf("%06s", $id);
+    }
+
+}

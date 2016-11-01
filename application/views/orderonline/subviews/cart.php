@@ -106,8 +106,10 @@ $total_tax = 0.0;
                         if ($ord_plc[0]->PolicyId == 1) {
                             ?> Pick up only  <?php } ?>
                         <?php if ($ord_plc[0]->PolicyId == 2) { ?> Delivery Only  <a href='javascript:void(0)' onclick='changePostcode(2, "<?= $this->config->item('api_id') ?>", 0)'  title='Change Area' class='edit-icon'></a><?php } ?>
-                    <?php }
-                    else { ?>
+                        <?php
+                    }
+                    else {
+                        ?>
                         <?php
                         $clck = '';
                         $dvck = '';
@@ -118,11 +120,11 @@ $total_tax = 0.0;
                             $dvck = 'checked';
                         }
                         ?>
-    <?php isset($areaid) ? $areaid = $areaid : $areaid = '' ?>
+                        <?php isset($areaid) ? $areaid = $areaid : $areaid = '' ?>
                         <input type='radio' name='deliverytype' value='2' <?= $dvck ?> id='delivery_type' onclick='changemenucard(2, "<?= $this->config->item('api_id') ?>", "<?= $areaid ?>")' /><?= $this->lang->line('delivery_status') ?> 
                         <!--<a href='javascript:void(0)' onclick='changePostcode(2, "<?= $this->config->item('api_id') ?>", 0)'  title='Change Area' class='edit-icon'>&nbsp;Edit&nbsp;</a>-->
                         <input type='radio' name='deliverytype' value='1' <?= $clck ?> id='collection_type' onclick='changemenucard(1, "<?= $this->config->item('api_id') ?>", "<?= $areaid ?>")'/> <?= $this->lang->line('collection_status') ?> 
-<?php } ?>
+                    <?php } ?>
                 </span>
             </li>
         </ul>
@@ -136,8 +138,8 @@ $total_tax = 0.0;
             krsort($unique);
         }
         ?>
-<?php if (!empty($unique)): ?>
-    <?php foreach ($unique as $key => $un) : ?>  
+        <?php if (!empty($unique)): ?>
+            <?php foreach ($unique as $key => $un) : ?>  
                 <div class="cartitem">
                     <span  class="loading centered" id="ajaxLoadingShowcart" style="display:none;"><img src="<?php echo ASSETS_SITE_IMAGE_PATH . 'ajax-loader.gif' ?>" alt="Loading..."/></span>
                     <ul>
@@ -318,39 +320,39 @@ $total_tax = 0.0;
                         }
                         $position = NULL;
                         ?>
-                                    <?php if ($position != NULL): ?>
-                                        <?php if ($un[$position - 1] == 0): ?>
+                        <?php if ($position != NULL): ?>
+                            <?php if ($un[$position - 1] == 0): ?>
                                 <li>
                                     <span class="itemdesc">
                                         <div class="itemname"><?= $name ?></div>
                                         <div class="itemqty">Quantity : <span class="qtyred"><?= $no_of_ins ?>*<?= to_currency($p_p_u) ?></span></div>
                                         <div class="itemcount">
-                                            <span class="plus"><a href='javascript:void(0)' onclick='addone("<?= $id_item ?>");'>+</a></span>
-                                            <span class="minus"><a href='javascript:void(0)' onclick='lessone("<?= $id_item ?>");'>-</a></span>
-                                            <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>");'>x</a></span>
-                                <?php if ($_SESSION['comments'][$un]): ?> 
+                                            <span class="plus"><a href='javascript:void(0)' onclick='addone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(array('&', ';', '(', ')', ' '), '-', $name) ?>");'>+</a></span>
+                                            <span class="minus"><a href='javascript:void(0)' onclick='lessone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(array('&', ';', '(', ')', ' '), '-', $name) ?>");'>-</a></span>
+                                            <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(array('&', ';', '(', ')', ' '), '-', $name) ?>");'>x</a></span>
+                                            <?php if ($_SESSION['comments'][$un]): ?> 
                                                 <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>");' title="<?= $_SESSION['comments'][$un] ?>">&Mellintrf;</a></span>
-                <?php endif; ?>
+                                            <?php endif; ?>
                                         </div>
                                     </span>
                                     <span class="itemprice">
                                         <div class="pricefont1"><?= to_currency($total) ?></div>
                                     </span>
                                 </li>
-            <?php endif; ?>
-                                        <?php if ($un[$position - 1] == 1) : ?>
+                            <?php endif; ?>
+                            <?php if ($un[$position - 1] == 1) : ?>
                                 <li>
                                     <span class="itemdesc">
                                         <div class="itemname"><?= $name ?></div>
                                         <!-- <div class="itemdesc"></div>-->
                                         <div class="itemqty">Quantity : <span class="qtyred"><?= $no_of_ins ?>*<?= to_currency($p_p_u) ?></span></div>
                                         <div class="itemcount">
-                                            <span class="plus"><a href='javascript:void(0)' onclick='addone("<?= $id_item ?>");'>+</a></span>
-                                            <span class="minus"><a href='javascript:void(0)' onclick='lessone("<?= $id_item ?>");'>-</a></span>
-                                            <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>");'>x</a></span>
-                                <?php if ($_SESSION['comments'][$un]): ?> 
+                                            <span class="plus"><a href='javascript:void(0)' onclick='addone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(array('&', ';', '(', ')', ' ', '[', ']', '{', '}', '@', '#'), '-', $name) ?>");'>+</a></span>
+                                            <span class="minus"><a href='javascript:void(0)' onclick='lessone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(array('&', ';', '(', ')', ' ', '[', ']', '{', '}', '@', '#'), '-', $name) ?>");'>-</a></span>
+                                            <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(array('&', ';', '(', ')', ' ', '[', ']', '{', '}', '@', '#'), '-', $name) ?>");'>x</a></span>
+                                            <?php if ($_SESSION['comments'][$un]): ?> 
                                                 <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>");' title="<?= $_SESSION['comments'][$un] ?>">&Mellintrf;</a></span>
-                                <?php endif; ?>
+                                            <?php endif; ?>
                                         </div>
                                     </span>
                                     <span class="itemprice">
@@ -510,26 +512,26 @@ $total_tax = 0.0;
                                     <div class="itemdesc"><?= $attr_sel ?></div>
                                     <div class="itemqty">Quantity : <span class="qtyred"><?= $no_of_ins ?>*<?= to_currency($p_p_u) ?></span></div>
                                     <div class="itemcount">
-                                        <span class="plus"><a href='javascript:void(0)' onclick='addone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(' ', '-', $name) ?>");'>+</a></span>
-                                        <span class="minus"><a href='javascript:void(0)' onclick='lessone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(' ', '-', $name) ?>");'>-</a></span>
-                                        <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(' ', '-', $name) ?>");'>x</a></span>
+                                        <span class="plus"><a href='javascript:void(0)' onclick='addone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(array('&', ';', '(', ')', ' ', '[', ']', '{', '}', '@', '#'), '-', $name) ?>");'>+</a></span>
+                                        <span class="minus"><a href='javascript:void(0)' onclick='lessone("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(array('&', ';', '(', ')', ' ', '[', ']', '{', '}', '@', '#'), '-', $name) ?>");'>-</a></span>
+                                        <span class="reduce"><a href='javascript:void(0)' onclick='removeItem("<?= $id_item ?>", "ajaxLoading-<?php echo str_replace(array('&', ';', '(', ')', ' ', '[', ']', '{', '}', '@', '#'), '-', $name) ?>");'>x</a></span>
                                         <span  class="loading centered" id="ajaxLoading-<?php echo str_replace(' ', '-', $name) ?>" style="display:none;"><img src="<?php echo ASSETS_SITE_IMAGE_PATH . 'ajax-loader.gif' ?>" alt="Loading..."/></span>
-                    <?php if ($_SESSION['comments'][$un]): ?> 
+                                        <?php if ($_SESSION['comments'][$un]): ?> 
                                             &nbsp;&nbsp;&nbsp;<span class="reduce"><img src="<?php echo ASSETS_SITE_IMAGE_PATH ?>comment.png" title="<?= $_SESSION['comments'][$un] ?>" alt="Comment"/></span>
-            <?php endif; ?>
+                                        <?php endif; ?>
                                     </div>
                                 </span>
                                 <span class="itemprice">
                                     <div class="pricefont1"><?= to_currency($total) ?></div>
                                 </span>
                             </li>
-            <?php endif; ?>
-            <?php //endif;  ?>
-            <?php $total_tax += $total_for_tax * ($cat_tax > 0 ? $cat_tax / 100 : 0); ?>         
+                        <?php endif; ?>
+                        <?php //endif;  ?>
+                        <?php $total_tax += $total_for_tax * ($cat_tax > 0 ? $cat_tax / 100 : 0); ?>         
                     </ul>
                 </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
     </div>
     <div class="calculation">
@@ -593,15 +595,14 @@ $total_tax = 0.0;
             'delivery_cost' => $delivery_plan->delivery_cost,
             'total_order' => $new_total
         );
-       
     }
     else {
         $dcost = 0;
         $ftotal = $new_total;
     }
-     $this->session->set_userdata('delivery_cost', $dcost);
+    $this->session->set_userdata('delivery_cost', $dcost);
     ?>
-<?php if ($deliverytype == 2) : ?>
+    <?php if ($deliverytype == 2) : ?>
         <div class="calculation2">
             <div class="caltext3"><?php echo $this->lang->line('online_cart_delivery_fee') ?></div>
             <div class="caltext4"><?php echo to_currency($dcost) ?></div>
@@ -610,7 +611,7 @@ $total_tax = 0.0;
 
     <?php $_SESSION['carttax'] = $total_tax; ?>
     <?php if ($deliverytype == 2) : ?>
-    <?php $total_tax = $total_tax + ($delivery_plan->delivery_cost * $delivery_plan->taxOnDeliveryCharge) / 100; ?>
+        <?php $total_tax = $total_tax + ($delivery_plan->delivery_cost * $delivery_plan->taxOnDeliveryCharge) / 100; ?>
         <div class="calculation2">
             <div class="caltext3"><?php echo $this->lang->line('online_cart_tax') ?></div>
             <div class="caltext4"><?= to_currency($total_tax) ?></div>
@@ -620,20 +621,20 @@ $total_tax = 0.0;
             <div class="caltext3"><?php echo $this->lang->line('online_cart_tax') ?></div>
             <div class="caltext4"><?= to_currency($total_tax) ?></div>
         </div>
-<?php endif; ?>
+    <?php endif; ?>
 
     <?php
     $ftotal = $ftotal + $total_tax;
     ?>
-<?php if ($globaldiscountObj->HFee > 0) : ?>
-    <?php $ftotal = $ftotal + $globaldiscountObj->HFee; ?>	
+    <?php if ($globaldiscountObj->HFee > 0) : ?>
+        <?php $ftotal = $ftotal + $globaldiscountObj->HFee; ?>	
         <div class="calculation2">
             <div class="caltext3"><?= $this->lang->line('handling_fee') ?> : </div>
             <div class="caltext4"><?= to_currency($globaldiscountObj->HFee) ?></div>
         </div>
-<?php endif; ?>
-<?php if ($grand_total > 0) : ?>
-    <?php if ($deliverytype == 1) : ?>
+    <?php endif; ?>
+    <?php if ($grand_total > 0) : ?>
+        <?php if ($deliverytype == 1) : ?>
             <?php $grand_total_without_del_cost = ($delivery_plan && $delivery_plan->delivery_cost > 0) ? (($ftotal - $delivery_plan->delivery_cost)) : $ftotal; ?>
             <div class="calculation">
                 <div class="caltext1"><?php echo $this->lang->line('online_cart_total') ?></div>
@@ -645,27 +646,27 @@ $total_tax = 0.0;
                 <div class="caltext1"><?php echo $this->lang->line('online_cart_total') ?> </div>
                 <div class="caltext2"><?= to_currency($ftotal) ?></div>
             </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
     <?php else: ?>
         <div class="calculation">
             <div class="caltext1"><?php echo $this->lang->line('online_cart_total') ?> </div>
             <div class="caltext2"><?= (to_currency($grand_total)) ?></div>
         </div>
-<?php endif; ?>
-<?php
-$minorder = 0;
-if ($delivery_plan && $delivery_plan->MinOrder > 0 && $deliverytype == 2) {
-    $minorder = $delivery_plan->MinOrder;
-}
-?>
-<?php if ($minorder <= $grand_total && $grand_total > 0) : ?>
+    <?php endif; ?>
+    <?php
+    $minorder = 0;
+    if ($delivery_plan && $delivery_plan->MinOrder > 0 && $deliverytype == 2) {
+        $minorder = $delivery_plan->MinOrder;
+    }
+    ?>
+    <?php if ($minorder <= $grand_total && $grand_total > 0) : ?>
         <div class="checkoutarea">
             <div class="btncheckout">
                 <a href="<?= $page ?>">CHECKOUT</a>
             </div>
         </div>
-<?php endif; ?>
+    <?php endif; ?>
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function() {
