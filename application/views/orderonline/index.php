@@ -1,20 +1,16 @@
 <?php
-//debugPrint($apiData);
-if (isset($apiData) && !empty($apiData)) {
-    $menuData['categories'] = $apiData ['categories'];
-    $menuData['bases'] = $apiData ['bases'];
-    $menuData['selections'] = $apiData ['selections'];
-    $menuData['restaurant_status'] = $apiData ['restaurant_status'];
-    $menuData['order_policy'] = $apiData ['order_policy'];
-    $menuData['pre_hide_status'] = $apiData ['pre_hide_status'];
-    $restaurantInfoData ['info'] = $apiData ['rest_info'];
-    $restaurantInfoData ['cuisines'] = $apiData ['cuisines'];
-    $restaurantInfoData ['cuisines'] = $apiData ['cuisines'];
-    $restaurantInfoData ['deliverypolicy'] = $apiData ['deliverypolicy'];
-    $restaurantInfoData ['deliveryarea'] = $apiData ['deliveryarea'];
-    $restaurantInfoData ['delarea'] = $apiData ['delarea'];
-    $restaurantSchedule ['schedule'] = $apiData ['schedule'];
-}
+$menuData['categories'] = $categories;
+$menuData['bases'] = $bases;
+$menuData['selections'] = $selections;
+$menuData['restaurant_status'] = $restaurant_status;
+$menuData['order_policy'] = $order_policy;
+$menuData['pre_hide_status'] = $pre_hide_status;
+$restaurantInfoData ['info'] = $rest_info;
+$restaurantInfoData ['cuisines'] = $cuisines;
+$restaurantInfoData ['deliverypolicy'] = $deliverypolicy;
+$restaurantInfoData ['deliveryarea'] = $deliveryarea;
+$restaurantInfoData ['delarea'] = $delarea;
+$restaurantSchedule ['schedule'] = $schedule;
 ?>
 <div class="section service">
     <div class="container">

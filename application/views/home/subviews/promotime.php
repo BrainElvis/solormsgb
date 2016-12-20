@@ -1,4 +1,3 @@
-<?php //debugPrint($rest_vouchers) ?>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -7,52 +6,58 @@
                     <h2><?php echo $this->lang->line('homepage_head_promo_offer') ?></h2>
                 </div>
                 <?php if (!empty($rest_promotion)): ?>
-                    <?php
-                    $min_amount = $rest_promotion[0]['MinAmount'];
-                    $max_amount = $rest_promotion[0]['MaxAmount'];
-                    $discount = (float) $rest_promotion[0]['Discount'];
-                    $discount_string = '';
 
-                    if ($discount < 1) {
-                        $percent_discount = $discount * 100;
-                        $discount_string = (string) $percent_discount . "%";
-                    } else {
-                        $fixed_discount = to_currency($discount);
-                        $discount_string = $fixed_discount;
-                    }
-                    $order_type_string = "";
-
-                    $order_type = explode(',', $rest_promotion[0]['order_type']);
-                    if (in_array(1, $order_type)) {
-                        $order_type_string.="Collection";
-                    }
-                    if (in_array(1, $order_type) && in_array(2, $order_type)) {
-                        $order_type_string.="&nbsp;and&nbsp;";
-                    }
-                    if (in_array(2, $order_type)) {
-                        $order_type_string.="Delivery";
-                    }
-                    ?>
-                <?php endif; ?>
-                <div class="discount alizarin"><?php echo $discount_string; ?> <?php echo $this->lang->line('homepage_promotion_off') ?> <?php echo $order_type_string; ?></div>
-                <div class="descr">
-                    <strong>
-                        <?php echo $this->lang->line('homepage_on_order_amount') ?> <?= to_currency($min_amount) . "-" . to_currency($max_amount) ?><br/><?php echo $rest_promotion[0]['Description'] ?>
-                    </strong>
-                </div>
-                <?php if (!empty($rest_vouchers)): ?>
-                    <div class="coupon midnight-blue">
-                        <a data-toggle="collapse" href="#code-1" class="open-code"><?php echo $this->lang->line('homepage_get_a_code') ?></a>
-                        <div id="code-1" class="collapse code">
-                            <p><?php echo $rest_vouchers[0]['code'] ?></p>
-                            <p>Get <?php $rest_vouchers[0]['price_func'] == 'pound' ? print to_currency($rest_vouchers[0]['price']) : print $rest_vouchers[0]['price'] . '%'; ?> Discount on Voucher</p>
+                    <?php foreach ($rest_promotion as $promo) : ?>
+                        <?php
+                        $min_amount = $promo->MinAmount;
+                        $max_amount = $promo->MaxAmount;
+                        $discount = (float) $promo->Discount;
+                        $discount_string = '';
+                        if ($discount < 1) {
+                            $percent_discount = $discount * 100;
+                            $discount_string = (string) $percent_discount . "%";
+                        } else {
+                            $fixed_discount = to_currency($discount);
+                            $discount_string = $fixed_discount;
+                        }
+                        $order_type_string = "";
+                        $order_type = explode(',', $promo->order_type);
+                        if (in_array(1, $order_type)) {
+                            $order_type_string.="Collection";
+                        }
+                        if (in_array(1, $order_type) && in_array(2, $order_type)) {
+                            $order_type_string.="&nbsp;and&nbsp;";
+                        }
+                        if (in_array(2, $order_type)) {
+                            $order_type_string.="Delivery";
+                        }
+                        ?>
+                        <div class="discount alizarin">
+                            <?php echo $discount_string; ?> <?php echo $this->lang->line('homepage_promotion_off') ?> <?php echo $order_type_string; ?>
                         </div>
-                    </div>
+                        <div class="descr">
+                            <strong>
+                                <?php echo $this->lang->line('homepage_on_order_amount') ?> <?= to_currency($min_amount) . "-" . to_currency($max_amount) ?><br/><?php echo $rest_promotion[0]['Description'] ?>
+                            </strong>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+
+                <?php if (!empty($rest_vouchers)): ?>
+                    <?php foreach ($rest_vouchers as $vaucher): ?>
+                        <div class="coupon midnight-blue">
+                            <a data-toggle="collapse" href="#code-1" class="open-code"><?php echo $this->lang->line('homepage_get_a_code') ?></a>
+                            <div id="code-1" class="collapse code">
+                                <p><?php echo $vaucher->code ?></p>
+                                <p>Get <?php $vaucher->price_func == 'pound' ? print to_currency($vaucher->price) : print $vaucher->price . '%'; ?> Discount on Voucher</p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </div>
         </div>
 
-        <!--------------- End Third Box work ------------------->
         <!------------ First Box work ----------------->
         <div class="col-md-6">
             <div class="openingbg">
